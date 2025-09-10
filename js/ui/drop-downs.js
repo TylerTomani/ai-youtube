@@ -30,7 +30,7 @@ export function initDropDowns() {
 }
 function toggleTopicSnips(topic) {
     console.log(topic)
-    const topicSnips = topic.querySelector('.topic-snips')
+    const topicSnips = topic.querySelector('.drop-snips')
     topicSnips.classList.toggle("hide"); // example toggle
 
 }
