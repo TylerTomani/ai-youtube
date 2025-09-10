@@ -4,22 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ai-youtube</title>
-    <link rel="stylesheet" href="css-index/footer-double-link-header.css">
+    <!-- <link rel="stylesheet" href="css-index/footer-double-link-header.css"> -->
     <link rel="stylesheet" href="css-index/index.css">
-    <link rel="stylesheet" href="css-index/dark-mode.css">
+    <!-- <link rel="stylesheet" href="css-index/dark-mode.css"> -->
     <!-- <link rel="stylesheet" href="css/drop-topic-sub-resources.css"> -->
     
-    
-    <script src="js/dropTopics-topic-resource.js" defer></script>
+    <script type="module" src="js/index-script.js" defer ></script>    
+    <!-- <script src="js/dropTopics-topic-resource.js" defer></script> -->
     <!-- <script src="../js/letterFocus-temps/letterFocus-home-back-link.js" defer></script> -->
     <script src="js/letterFocus-txt-nums.js" defer></script>
-
     <script src="js/dark-mode.js" defer></script>
-    <style>
-        .x-sm-txt{
-            font-style: 20% !important;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="page-wrapper">
@@ -51,12 +46,12 @@
                 <h2>Topics</h2>
                 <!-- Local LLMS-->
                 <div class="topic">
-                    <a tabindex="0" id="localLLMs" class="drop-topic">
+                    <a tabindex="0" id="localLLMs" class="drop-down">
                         <h3>Local LLMS</h3>
                     </a>
                     <ul class="sub-topics-container topic-snips show">
                         <li class="topic">
-                            <a tabindex="0" id="ollamaLocal" class="drop-topic" 
+                            <a tabindex="0" id="ollamaLocal" class="drop-down" 
                             href="#">Ollama (local)
                                 <!-- <br><sub class="x-sm-txt">Learn Ollama in 15 Minutes - Run LLM Models Locally for FREE -->
                             </a>
@@ -71,7 +66,7 @@
                 </div>
                 <!-- BOTS -->
                 <div class="topic-container ">
-                    <a tabindex="0" id="aiBots" class="drop-topic">
+                    <a tabindex="0" id="aiBots" class="drop-down">
                         <h3>Ai Bots</h3>
                     </a>
                     <ul class="sub-resources-container show">

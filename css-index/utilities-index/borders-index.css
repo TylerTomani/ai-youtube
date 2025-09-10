@@ -1,0 +1,8 @@
+.page-wrapper>footer.footer-header {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.footer-header .main-links>a {
+    border: 1px solid black;
+    border-radius: 5px;
+}
