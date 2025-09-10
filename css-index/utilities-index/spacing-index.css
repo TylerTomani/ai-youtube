@@ -1,11 +1,20 @@
-.page-wrapper main#mainContainer {
-    margin: 0 2.5%;
-    padding: 0 2.5%;
-    padding-left: 0;
+.topic {
+    margin: 2% 0;
 }
-.page-wrapper>footer.footer-header {
-    padding: 0 2.5%;
+.topic>.drop-down {
+    padding: .5% 0;
+    padding-left: 2%;
 }
-.footer-header .main-links>a {
-    padding: 10px 0;
+.topic>.drop-down>img {
+    margin-left: 2.5%;
+}
+.topic>.sub-topics-container,
+.topic ul.sub-resources-container {
+    margin-top: 1%;
+    margin-left: 5%;
+    gap: 1%;
+}
+
+.resource>img {
+    margin-left: 1.26%;
 }

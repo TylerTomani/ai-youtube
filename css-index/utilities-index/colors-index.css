@@ -1,4 +1,6 @@
-.main-links a:active,
-.main-links a:focus {
-    color: black;
+.sub-topics-container>.drop-topic {
+    background-color: blue;
+}
+a.resource:visited {
+    color: blue;
 }
