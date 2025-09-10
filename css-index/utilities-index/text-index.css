@@ -1,8 +1,8 @@
-.footer-header .main-links>a {
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    font-size: 16px;
+.topic>.sub-topics-container,
+.topic ul.sub-resources-container {
     text-decoration: none;
 }
-.page-title>h1 {
-    font-size: 80%;
+
+a.resource {
+    text-decoration: none;
 }
