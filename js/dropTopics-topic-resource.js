@@ -1,92 +1,37 @@
-(function(){
-    const dropTopics = document.querySelectorAll('.drop-topic')
-    const dropSubTopic = document.querySelectorAll('.drop-sub-topic')
-    const subResourcesContainers = document.querySelectorAll('.sub-resources-container')
-    const subTopicsContainers = document.querySelectorAll('.sub-topics-container')
-    function hideSubResources() {
-        subResourcesContainers.forEach(el => {
-            if (!el.classList.contains('show')) {
-                const resources = el.querySelectorAll('.resource')
-                resources.forEach(el => {
-                    el.classList.add('hide')
-                })
+// drop-downs.js
+function initDropDowns() {
+    document.addEventListener("click", handleToggle);
+    document.addEventListener("keydown", handleToggle);
+    function handleToggle(e) {
+        let target;
+        
+        if (e.type === "keydown") {
+            
+            if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-topic")) {
+                e.preventDefault();
+                target = document.activeElement;
+            } else {
+                return; // ignore other keys
             }
-        })
-    }
-    function hdieSubTopicsContainers() {
-        if(subTopicsContainers){
-            subTopicsContainers.forEach(el => {
-                if (!el.classList.contains('show')) {
-                    el.classList.add('hide')
-                }
-            })
+        } else if (e.type === "click") {
+            // Ignore clicks triggered by keyboard
+            if (e.detail === 0) return;
+            target = e.target.closest(".drop-topic");
+            if (!target) return;
         }
+        // Unified toggle logic
+        const topic = target.closest(".topic");
+        // console.log("Toggled dropdown:", topic);
+        if (topic) {
+            toggleTopicSnips(topic)
+        }
+        if (!topic) return;
     }
-    hideSubResources()
-    hdieSubTopicsContainers()
+}
+function toggleTopicSnips(topic) {
+    console.log(topic)
+    const topicSnips = topic.querySelector('.topic-snips')
+    topicSnips.classList.toggle("hide"); // example toggle
 
-    dropTopics.forEach(el => {
-        el.addEventListener('click', e => {
-            e.preventDefault()
-            toggleResources(e)
-        })
-        el.addEventListener('keydown', e => {
-            let letter = e.key.toLowerCase()
-            if (letter == 'enter') {
-                e.preventDefault()
-                toggleResources(e)
-            }
-        })
-    })
-    dropSubTopic.forEach(el => {
-        el.addEventListener('click', e => {
-            e.preventDefault()
-            toggleSubTopics(e)
-        })
-    })
-    function toggleResources(e) {
-        const topicContainer = getTopicContainer(e.target.parentElement)
-        if(topicContainer){
-            const subResourcesContainer = topicContainer.querySelector('.sub-resources-container')
-            if(subResourcesContainer){
-                const resources = subResourcesContainer.querySelectorAll('.resource')
-                if(resources){    
-                    resources.forEach(el => {
-                        el.classList.toggle('hide')
-                    })
-                }
-            }
-            const subTopicsContainer = topicContainer.querySelector('.sub-topics-container')
-            if(subTopicsContainer){
-                subTopicsContainer.classList.toggle('hide')
-                const projects = subTopicsContainer.querySelectorAll('.project')
-            }
-        }
-    }
-    function toggleSubTopics(e){
-        const subTopic = getSubTopic(e.target)
-        const subTopicContainer = subTopic.querySelector('.sub-topic-container')
-        subTopicContainer.classList.toggle('hide')
-    }
-
-
-    function getTopicContainer(parent) {
-        if (parent.classList.contains('topic-container')) {
-            return parent
-        } else if (parent.parentElement) {
-            return getTopicContainer(parent.parentElement)
-        } else {
-            return null
-        }
-    }
-    function getSubTopic(parent) {
-        if (parent.classList.contains('sub-topic')) {
-            return parent
-        } else if (parent.parentElement) {
-            return getSubTopic(parent.parentElement)
-        } else {
-            return null
-        }
-    }
-    
-}())
+}
+initDropDowns()

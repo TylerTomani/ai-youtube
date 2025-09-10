@@ -9,12 +9,12 @@
     flex-direction: column;
     justify-content: flex-end;
 }
-.topic-container {
+.topic {
     display: flex;
     flex-direction: column;
     margin: 2% 0 ;
 }
-.topic-container  > .drop-topic {
+.topic  > .drop-topic {
     padding: .5% 0 ;
     padding-left: 2%;
     border: 1px solid black;
@@ -27,8 +27,8 @@
     border: none;
     background-color: blue;
 }
-.topic-container > .sub-topics-container,
-.topic-container ul.sub-resources-container
+.topic > .sub-topics-container,
+.topic ul.sub-resources-container
  {
     margin-top: 1%;
     margin-left: 5%;
@@ -79,7 +79,7 @@ a.resource:visited{
     display: inline-block;
 }
 
-.topic-container>.drop-topic>img {
+.topic>.drop-topic>img {
     max-height: 50px;
     margin-left: 2.5%;
 }
@@ -89,16 +89,16 @@ a.resource:visited{
     max-height: 50px;
 }
 @media screen and (max-width:720px){
-    .topic-container>.sub-topics-container,
-    .topic-container ul.sub-resources-container {
+    .topic>.sub-topics-container,
+    .topic ul.sub-resources-container {
         margin-top: 4%;
     }
 
 }
 @media screen and (max-width:672px){
     
-    .topic-container>.sub-topics-container,
-    .topic-container ul.sub-resources-container {
+    .topic>.sub-topics-container,
+    .topic ul.sub-resources-container {
         margin: 2.5% 0;
         padding-top: 2%;
     }
