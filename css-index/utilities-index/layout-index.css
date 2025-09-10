@@ -1,0 +1,23 @@
+.page-wrapper>footer.footer-header {
+    display: flex;
+    justify-content: space-between;
+}
+.page-title {
+    display: flex;
+    justify-content: space-around;
+}
+.main-links {
+    display: flex;
+    flex-direction: column;
+}
+.footer-header .main-links>a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.styles-btns {
+    justify-self: flex-end;
+    align-self: flex-end;
+}

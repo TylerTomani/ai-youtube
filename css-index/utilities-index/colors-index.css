@@ -1,0 +1,4 @@
+.main-links a:active,
+.main-links a:focus {
+    color: black;
+}

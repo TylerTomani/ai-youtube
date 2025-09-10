@@ -1,3 +1,16 @@
+/* @import url('responsive-index.css'); */
+/* @import url('utilities-index/borders-index.css'); */
+/* @import url('utilities-index/colors-index.css'); */
+/* @import url('utilities-index/effects-index.css'); */
+/* @import url('utilities-index/layout-index.css'); */
+/* @import url('utilities-index/position-index.css'); */
+/* @import url('utilities-index/sizing-index.css'); */
+/* @import url('utilities-index/spacing-index.css'); */
+/* @import url('utilities-index/text-index.css'); */
+/* I Think i should just keep footer-double-link-header for now and rename it to mobile, but 
+make sure you don't overwrite a good footer-double-link, this one seems good but not 100% sure */
+@import url('footer-double-link-header.css');
+@import url('responsive-index.css');
 * {
     margin:0; 
     padding:0;
@@ -9,7 +22,7 @@
     flex-direction: column;
     justify-content: flex-end;
 }
-.topic {
+.topic { 
     display: flex;
     flex-direction: column;
     margin: 2% 0 ;
@@ -88,24 +101,7 @@ a.resource:visited{
     margin-left: 1.26%;
     max-height: 50px;
 }
-@media screen and (max-width:720px){
-    .topic>.sub-topics-container,
-    .topic ul.sub-resources-container {
-        margin-top: 4%;
-    }
 
-}
-@media screen and (max-width:672px){
-    
-    .topic>.sub-topics-container,
-    .topic ul.sub-resources-container {
-        margin: 2.5% 0;
-        padding-top: 2%;
-    }
-    .resource>img {
-        max-width: 50px;
-    }
-}
 
 /* #aiYoutube:focus, */
 #aiLogo {
