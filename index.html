@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="css-index/dark-mode.css">
 
     <script type="module" src="js/index-script.js" defer ></script>        
-    <script src="js/letterFocus-txt-nums.js" defer></script>
+    <script src="js/letterFocus-home-back-link.js" defer></script>
+    <!-- <script src="js/letterFocus-txt-nums.js" defer></script> -->
+     <!-- <script src="js/ui/drop-downs.js" defer></script> -->
     <script src="js/dark-mode.js" defer></script>
 </head>
 <body>
@@ -23,21 +25,27 @@
             </div>
         </header>
         <main tabindex="0" id="mainContainer">
-            <p class="r">I should make sub resources drop with sub-resources-container</p>
-            <p style="color: tomato; font-weight: 999;">This page is lacking correct closest element focus from currrent one, 
-                so letterFocus-txt-nums.js should be disgarded when corect one is found
-            </p>
-            <p>
-                try to incorporate recursive drop-downs from codeCommandShortcuts page,
-            </p>
-            <p>
-                Work on Tech for timm for now than put page as su
-            </p>
-            <p>To DO:</p>
-            <ul>
-                <li>tech with tim ollama</li>
-                <li>Leon van Zyl</li>
-            </ul>
+            <article id="notes">
+                <p class="r">I should make sub resources drop with sub-resources-container</p>
+                <p style="color: tomato; font-weight: 999;">This page is lacking correct closest element focus from currrent one,
+                    This letter focus is bad, both are on this page
+                </p>
+                
+                <p style="color: tomato; font-weight: 999;">This page is lacking correct closest element focus from currrent one,
+                    so letterFocus-txt-nums.js should be disgarded when corect one is found
+                </p>
+                <p>
+                    try to incorporate recursive drop-downs from codeCommandShortcuts page,
+                </p>
+                <p>
+                    Work on Tech for timm for now than put page as su
+                </p>
+                <p>To DO:</p>
+                <ul>
+                    <li>tech with tim ollama</li>
+                    <li>Leon van Zyl</li>
+                </ul>
+            </article>
             <div class="topics-container">
                 <h2>Topics</h2>
                 <!-- Local LLMS-->
@@ -51,28 +59,21 @@
                             href="#">Ollama (local)
                                 <!-- <br><sub class="x-sm-txt">Learn Ollama in 15 Minutes - Run LLM Models Locally for FREE -->
                             </a>
-                            <ul class="sub-resources-container drop-snips ">
-                                <li>
-                                    <a tabindex="0" id="makeDataUseful" class="resource" target="_blank" href="
-                                        https://www.youtube.com/watch?app=desktop&v=tVwdpQyjtOc">
-                                    Tech with Tim
-                                    </a>
-                                </li>
-                                <li>
-                                    <a tabindex="0" id="makeDataUseful" class="resource" target="_blank" href="
-                                        https://www.youtube.com/watch?app=desktop&v=tVwdpQyjtOc">
+                            <div class="sub-resources-container drop-snips ">
+                                <a tabindex="0" id="techTimOllama15" class="resource" target="_blank" href="
+                                    https://www.youtube.com/watch?v=UtSSMs6ObqY&t=15s">
+                                    Tech with Tim (link for now)
+                                    <img src="https://i.ytimg.com/vi/UtSSMs6ObqY/sddefault.jpg" alt="">
+                                    <sup>Learn Ollama in 15 Minutes..</sup>
+                                </a>
+                                <a tabindex="0" id="exampleLLms" class="resource" target="_blank" href="
+                                    https://www.youtube.com/watch?app=desktop&v=tVwdpQyjtOc">
                                     EXample resource in sub-resources-container in topic
-                                    </a>
-                                </li>
-                                <li>
-                                    <a tabindex="0" id="makeDataUseful" class="resource" target="_blank" href="
-                                        https://www.youtube.com/watch?app=desktop&v=tVwdpQyjtOc">
-                                    another Example resource in sub-resources-container in topic
-                                    </a>
-                                </li>
-                                <li>Example </li>
-                                <li>ANother Example</li>
-                            </ul>
+                                    <img src="https://i.ytimg.com/vi/3IoMDc40uzQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDw3Vng5C7N2MuYaLhua4QTLaOJxg" alt="">
+                                </a>
+                                
+                                
+                            </div>
                         </li>
                         <li class="topic">
                             <a tabindex="0" id="ollamaLocal" class="drop-down" 
@@ -107,14 +108,15 @@
                 </div>
                 <!-- BOTS -->
                 <div class="topic ">
-                    <a tabindex="0" id="aiBots" class="drop-down">
-                        <h3>Ai Bots</h3>
+                    <a tabindex="0" id="bots-ai" class="drop-down">
+                        <h3>Bots - AI</h3>
                     </a>
                     <ul class="sub-resources-container drop-snips show">
                         <li>
-                            <a tabindex="0" id="makeDataUseful" class="resource"target="_blank" href="
+                            <a tabindex="0" id="leonVanZylBotsAi" class="resource"target="_blank" href="
                             https://www.youtube.com/watch?app=desktop&v=tVwdpQyjtOc">Leon van Zyl 
-                        (link for now)</a>
+                        (link for now)
+                            <img src="https://i.ytimg.com/vi/tVwdpQyjtOc/maxresdefault.jpg" alt="">
                             </a>
                         </li>
                     </ul>

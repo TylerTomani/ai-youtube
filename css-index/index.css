@@ -1,6 +1,6 @@
 /* I Think i should just keep footer-double-link-header for now and rename it to mobile, but 
 make sure you don't overwrite a good footer-double-link, this one seems good but not 100% sure */
-@import url('footer-double-link-header.css');
+@import url('mobile-footer-header.css');
 @import url('utilities-index/colors-index.css');
 @import url('utilities-index/borders-index.css');
 @import url('utilities-index/effects-index.css');
