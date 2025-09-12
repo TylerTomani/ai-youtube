@@ -6,9 +6,10 @@ make sure you don't overwrite a good footer-double-link, this one seems good but
 @import url('utilities-index/effects-index.css');
 @import url('responsive-index.css');
 @import url('utilities-index/layout-index.css');
+@import url('utilities-index/position-index.css');
 @import url('utilities-index/spacing-index.css');
 @import url('utilities-index/sizing-index.css');
-@import url('utilities-index/text-index.css');
+/* @import url('utilities-index/text-index.css'); */
 * {
     margin:0; 
     padding:0;
@@ -23,7 +24,10 @@ make sure you don't overwrite a good footer-double-link, this one seems good but
 .topics-container > .topic > ul.sub-resources-container > li{
     list-style: none;
 }
-.hide {display: none !important;}
+.hide {
+    /* display: none !important; */
+    opacity: 0;
+}
 .show {display: inline-block;}
 
 /* #aiYoutube:focus, */

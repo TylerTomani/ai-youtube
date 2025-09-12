@@ -1,25 +1,28 @@
-.page-wrapper main#mainContainer {
+#mainContainer {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 75vh;
-    margin: 0 2.5%;
-    padding: 0 2.5%;
-    padding-left: 0;
-    scrollbar-width: none;
-    overflow: hidden;
+    /* height: 75vh; */
+    /* margin: 0 2.5%; */
+    /* padding: 0 2.5%; */
+    /* padding-left: 0; */
+    /* scrollbar-width: none; */
+    /* overflow: hidden; */
+    /* overflow-y: scroll; */
+    /* background-color: blue; */
+    /* border: 2px solid orange; */
+}
+.topics-container {
     overflow-y: scroll;
 }
 .topic {
     display: flex;
     flex-direction: column;
-
 }
 .topic>.drop-down {
     display: flex;
     border: 1px solid black;
 }
-
 .topics-container > .topic > .sub-topics-container {
     display: flex;
     flex-wrap: wrap;
@@ -27,13 +30,13 @@
 .topics-container>.topic>ul.sub-resources-container>li {
     flex-direction: column;
 }
-
 .sub-topics-container > .topic > .sub-resources-container {
     display: flex;
     gap: 1%;
 }
 .sub-resources-container > a.resource {
-    flex-basis: 30%;
+    flex-basis: 20%;
+    min-width: 15vw;
     margin-top: 2%;
     margin-left: 5%;
     display: inline-flex;
