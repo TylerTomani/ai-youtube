@@ -19,17 +19,24 @@
     display: flex;
 }
 
-.topic>.sub-topics-container,
-.topic ul.sub-resources-container {
+.topics-container > .topic > .sub-topics-container {
     display: flex;
     flex-wrap: wrap;
-    align-items: stretch;
 }
 .topics-container>.topic>ul.sub-resources-container>li {
     flex-direction: column;
 }
 
+
 a.resource {
     display: inline-flex;
     flex-direction: column;
+}
+.sub-topics-container > .topic > .sub-resources-container {
+    display: flex;
+}
+.sub-resources-container > a {
+    flex-basis: 30%;
+    display: block;
+    border: 1px solid red;
 }
