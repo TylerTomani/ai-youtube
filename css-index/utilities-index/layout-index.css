@@ -17,6 +17,7 @@
 }
 .topic>.drop-down {
     display: flex;
+    border: 1px solid black;
 }
 
 .topics-container > .topic > .sub-topics-container {
@@ -27,16 +28,15 @@
     flex-direction: column;
 }
 
-
-a.resource {
-    display: inline-flex;
-    flex-direction: column;
-}
 .sub-topics-container > .topic > .sub-resources-container {
     display: flex;
+    gap: 1%;
 }
-.sub-resources-container > a {
+.sub-resources-container > a.resource {
     flex-basis: 30%;
-    display: block;
-    border: 1px solid red;
+    margin-top: 2%;
+    margin-left: 5%;
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px solid black;
 }
