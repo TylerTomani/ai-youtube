@@ -1,5 +1,5 @@
 .topic {
-    margin: 2% 0;
+    margin: 1% 0;
 }
 .topic>.drop-down {
     padding: .5% 0;
@@ -11,7 +11,7 @@
 .topic>.sub-topics-container,
 .topic ul.sub-resources-container {
     margin-top: 1%;
-    margin-left: 5%;
+    margin-left: 2%;
     gap: 1%;
 }
 
