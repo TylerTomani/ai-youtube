@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index-sidebar-temp</title>
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/keyboard-nav.js" defer></script>
+    <!-- <script src="js/keyboard-nav-temp.js" defer></script> -->
+    <script type="module" src="js/core/index.js" defer></script>
+
+
+
+
     <!-- <script src="../../../js-index/ui/drop-downs.js" defer></script> -->
     <!-- <link rel="stylesheet" href="../../../css-index/ui/drop-topic-sub-resources.css"> -->
 </head>
@@ -14,7 +19,7 @@
     <div class="page-wrapper">
         <header class="page-header grid">
             <div class="box back-link-container">
-                <a id="backlink" href="../../../../index.html" class="nav-link">&larr; Back (ai)</a>
+                <a id="backLink" href="../../../../index.html" class="nav-link">&larr; Back (ai)</a>
             </div>
             <div class="box chatGptLink-container">
                 <a id="codeComShortcutsLink" href="https://tylertomani.github.io/codeCmdShortcuts/" class="web-link" target="_blank">
@@ -22,7 +27,7 @@
                 </a>
             </div>
             <div class="box home-link-container">
-                <a id="homePagelink" href="01-techWorldNana.html" class="nav-link">Home (homepage)</a>
+                <a id="homePageLink" href="01-techWorldNana.html" class="nav-link">Home (homepage)</a>
             </div>
             <div class="box codeCmdShortcuts-container">
                 <a id="codeComShortcutsLink" href="https://tylertomani.github.io/codeCmdShortcuts/" class="web-link" target="_blank">
@@ -37,7 +42,7 @@
                 <button tabindex="0" id="darkModeBtn">dark Mode</button>
             </div>
         </header>
-        <nav tabindex="0" id="navLessonTitle">
+        <nav tabindex="0" id="navBarLessonTitle">
             <h2 class="nav-lesson">How to Build AI Chatbots: Full Guide from Beginner to Pro (Latest Update)</h2>
         </nav>
         <main class="main-container">
@@ -46,7 +51,7 @@
                 <div class="side-bar-links-container">
                     <!-- FOR now use #topicsTempId -->
                     <a id="topicsTempId" href="#" class="drop-down side-bar-title" >
-                        <h3>Topics</h3>
+                        <h3>TopicsTempId</h3>
                     </a>
                     <ol class="side-bar-links drop-snips">
                         <li><a tabindex="0" data-video="https://www.youtube.com/watch?app=desktop&v=pg19Z8LL06w"
@@ -120,6 +125,8 @@
             </aside>
             <div class="main-content-container">
                 <div tabindex="0" id="mainTargetDiv" data-href="home-page.html">
+<!-- This is temporary, targetDiv resides in the 
+                     injected html page -->
                     <div id="targetDiv">
                         <header>
                             <h3 id="targetHeaderh3">1. Docker Explain</h3>
@@ -131,8 +138,8 @@
                                 <div tabindex="0" class="step-float" data-video="https://www.youtube.com/watch?app=desktop&v=pg19Z8LL06w"
                                     data-timestamp="1075">
                                     <div class="step-vid">
-                                        <video playsinline webkit-playsinline poster="sidebar-links/01/images/01.png"
-                                            src="sidebar-links/01/images/01.mov"></video>
+                                        <!-- <video playsinline webkit-playsinline poster="sidebar-links/01/images/01.png"
+                                            src="sidebar-links/01/images/01.mov"></video> -->
                                     </div>
                                     <div class="step-txt ">
                                         <h4>01</h4>
@@ -187,12 +194,12 @@ Docker Desktop install</pre>
                                             <pre readonly tabindex="0" class="copy-code">
 
 rm -rf ~/Library/Containers/com.docker.docker
-                    rm -rf ~/Library/Containers/com.docker.helper
-                    rm -rf ~/.docker
-                    rm -rf ~/Library/Group\ Containers/group.com.docker
-                    rm -rf ~/Library/Preferences/com.docker.docker.plist
-                    rm -rf ~/Library/Logs/Docker*
-                    rm -rf ~/Library/Caches/com.docker.docker</pre>
+rm -rf ~/Library/Containers/com.docker.helper
+rm -rf ~/.docker
+rm -rf ~/Library/Group\ Containers/group.com.docker
+rm -rf ~/Library/Preferences/com.docker.docker.plist
+rm -rf ~/Library/Logs/Docker*
+rm -rf ~/Library/Caches/com.docker.docker</pre>
                                         </div>
                                         <div class="code-container">
                                             <pre readonly tabindex="0" class="copy-code">

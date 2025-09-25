@@ -3,22 +3,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-row: 1fr 1fr;
     grid-auto-rows: 5vh;
-    .box{
-        border: 1px dashed blue;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* background-color: lime; */
-    }
-    .box a {
-        /* border: 1px solid blue; */
-        text-decoration: none;
-        display: inline-block;
-        /* background-color: blue; */
-        height: 100%;
-        width: 100%;
-    }
+    
     .box.tutorialLink-darkModeBtn-container{
         display: flex;
         flex-direction: column;
