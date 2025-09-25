@@ -4,10 +4,10 @@
 .resource {
     border: 1px solid black;
 }
-
 .sub-topics-container>.drop-topic {
     border: none;
 }
-.topics-container>.topic>ul.sub-resources-container>li {
-    border: 2px solid red;
+
+.sub-resources-container>a.resource {
+    border: 1px solid black;
 }

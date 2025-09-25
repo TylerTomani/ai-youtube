@@ -5,9 +5,15 @@
 .topics-container>.topic>ul.sub-resources-container>li {
     height: 5vh;
 }
+.sub-resources-container>a.resource {
+    min-width: 15vw;
+}
 a.resource {
     height: 100%;
 }
 .resource>img {    
     max-height: 50px;
+}
+.page-wrapper>footer.mobile-footer-header {
+    width: 100%;
 }

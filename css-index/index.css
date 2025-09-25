@@ -25,8 +25,8 @@ make sure you don't overwrite a good footer-double-link, this one seems good but
     list-style: none;
 }
 .hide {
-    /* display: none !important; */
-    opacity: 0;
+    display: none !important;
+    /* opacity: 0; */
 }
 .show {display: inline-block;}
 

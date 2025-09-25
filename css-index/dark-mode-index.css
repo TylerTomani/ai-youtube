@@ -2,7 +2,9 @@
     --bg-primary: #201d1d;
     --font-primary: whitesmoke;
 }
-
+.dark-mode .mobile-footer-header {
+    background-color: var(--bg-primary) !important;
+}
 .dark-mode {
     background-color: var(--bg-primary);
     color: var(--font-primary)
@@ -40,6 +42,7 @@ h4 .dark-mode p {
 .dark-mode .resource,
 .dark-mode .main-links a{
     border: 1px solid whitesmoke;
+    color: white;
 }
 .dark-mode .main-links a:active,.dark-mode .main-links a:focus{
     color: whitesmoke;

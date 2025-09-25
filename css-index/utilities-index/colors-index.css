@@ -4,3 +4,9 @@
 a.resource:visited {
     color: blue;
 }
+.topic>.drop-down {
+    border: 1px solid black;
+}
+.page-wrapper>footer.mobile-footer-header {
+    background-color: white;
+}
