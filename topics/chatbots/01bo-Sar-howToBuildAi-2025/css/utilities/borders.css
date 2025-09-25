@@ -1,7 +1,15 @@
-nav#navLessonTitle{
+.page-header.grid {
+    .box {
+        border: 1px dashed blue;
+    }
+}
+nav#navBarLessonTitle{
     border-bottom: 1px solid blue;
 }
 aside.side-bar{
     border-right: 1px solid blue;
 
+}
+#mainTargetDiv:active,#mainTargetDiv:focus{
+    border: 2px solid magenta;
 }

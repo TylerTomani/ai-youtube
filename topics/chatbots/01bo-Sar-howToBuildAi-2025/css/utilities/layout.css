@@ -1,3 +1,16 @@
+.page-header.grid {
+    .box {
+        border: 1px dashed blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .box a {
+        display: block;
+        background-color: yellow;
+        
+    }
+}
 main.main-container{
     display: flex;
 }
