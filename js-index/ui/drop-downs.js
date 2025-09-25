@@ -1,4 +1,5 @@
 // drop-downs.js
+const dropSnips = document.querySelectorAll('.drop-snips')
 export function initDropDowns() {
     document.addEventListener("click", handleToggle);
     document.addEventListener("keydown", handleToggle);
@@ -28,6 +29,15 @@ export function initDropDowns() {
         if (!topic) return;
     }
 }
+export function hideTopicSnips() {
+    
+    dropSnips.forEach(el => {
+        if(!el.classList.contains('show')){
+            el.classList.add('hide')
+        }
+    })
+}
+
 function toggleTopicSnips(topic) {
     console.log(topic)
     const topicSnips = topic.querySelector('.drop-snips')

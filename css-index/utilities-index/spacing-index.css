@@ -18,3 +18,8 @@
 .resource>img {
     margin-left: 1.26%;
 }
+
+.sub-resources-container>a.resource {
+    margin-top: 2%;
+    margin-left: 5%;
+}
