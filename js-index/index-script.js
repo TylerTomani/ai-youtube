@@ -1,3 +1,3 @@
-import { initDropDowns,hideTopicSnips } from "./ui/drop-downs.js";
+import { initDropDowns,hideTopicSnips } from "./ui/drop-downs-index.js";
 initDropDowns()
 hideTopicSnips()

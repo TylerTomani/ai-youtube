@@ -1,36 +1,41 @@
-addEventListener('keydown', e => {
-    let key = e.key.toLowerCase()
-    if(key === 'b'){
-       const backLink = document.querySelector('#backLink')
-       backLink.focus()
+
+export function letterFocus(e,t){
+    const key = e.key.toLowerCase();
+    // only react to single alphanumeric keys
+    if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
+    const allAs = [...document.querySelectorAll('a, [id]')].filter(el => {
+        const rect = el.getBoundingClientRect();
+        if (key === 's' && e.target != topicTempId) {
+            topicTempId.focus()
+            return
+        } else {
+            return el.offsetParent !== null && rect.width > 0 && rect.height > 0;
+        }
+    });
+
+    // filter elements whose id starts with the key
+    const letteredAs = allAs.filter(el => el.id.toLowerCase().startsWith(key));
+    if (letteredAs.length === 0) return;
+
+    const activeEl = document.activeElement;
+    const iActiveEl = allAs.indexOf(activeEl);
+
+    let target;
+    if (e.shiftKey) {
+        console.log("here"); // debugging
+        // go backwards: find the last match before the active element
+        target = [...letteredAs].reverse().find(a => allAs.indexOf(a) < iActiveEl)
+            || letteredAs[letteredAs.length - 1];
+    } else {
+        // go forwards: find the first match after the active element
+        target = letteredAs.find(a => allAs.indexOf(a) > iActiveEl)
+            || letteredAs[0];
     }
-    if(key === 'c'){
-        const codeComShortcutsLink = document.querySelector('#codeComShortcutsLink')
-        codeComShortcutsLink.focus()
-    }
-    if(key === 'd'){
-        const darkModeBtn = document.querySelector('#darkModeBtn')
-        darkModeBtn.focus()
-    }
-    else if(key === 't' || key === 's'){
-        const topicsTempId = document.querySelector('#topicsTempId')
-        scroll(0,0)
-        topicsTempId.focus()
-        topicsTempId.style.transform = 'scale(2)'
-        topicsTempId.style.marginLeft = '80%'
-    } 
-    else if(key === 'h'){
-        const homePageLink = document.querySelector('#homePageLink')
-        homePageLink.focus()
-    } else if(key === 'm'){
-        const mainTargetDiv = document.querySelector('#mainTargetDiv')
-        mainTargetDiv.focus()
-        scrollTo(0,0)
-    } else if(key === 'n'){
-        const navBarLessonTitle = document.querySelector('#navBarLessonTitle')
-        navBarLessonTitle.focus()
-    } else{
-        topicsTempId.style.transform = 'scale(1)'
-        topicsTempId.style.marginLeft = '0%'
-    }
-});
+
+    target?.focus();
+    window.lastLetterPressed = key;
+
+}
+    
+
+
