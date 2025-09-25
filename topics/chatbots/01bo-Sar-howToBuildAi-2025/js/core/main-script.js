@@ -1,5 +1,6 @@
 
-import { letterFocus } from "../nav/keyboard-nav.js";
+// import { letterFocus } from "../nav/keyboard-nav.js";
+import { letterFocus } from "../nav/keyboard-nav-temp.js";
 const topicTempId = document.querySelector('#topicsTempId')
 addEventListener('DOMContentLoaded', (e) => {
 
@@ -12,7 +13,7 @@ addEventListener('DOMContentLoaded', (e) => {
         // **
     /* default: (maybe)** NOT Sure whether to make letterFocus header,side-bar focus or 
     header and mainTargetDiv focus???? */
-        letterFocus(e)
+        letterFocus(e,topicTempId)
         
     });
 });
