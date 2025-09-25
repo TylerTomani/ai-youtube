@@ -1,0 +1,10 @@
+.tutorialLink-darkModeBtn-container a#tutorialLink img {
+    /* border: 12px solid orange; */
+    width: 90%;
+    max-width: 200px;
+    max-height: 80px;
+
+}
+aside.side-bar {
+    height: 100vh;
+}
