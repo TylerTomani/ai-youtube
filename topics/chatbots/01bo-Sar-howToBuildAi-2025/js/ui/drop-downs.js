@@ -1,14 +1,17 @@
 // drop-downs-index.js
-// BEST Drop-Down Thus Far, (( put in boiler plate))
+// BEST Drop-Down Thus Far, this IS SAME AS 
+// ../../../drop-downs-index.js
+//  (( put in boiler plate))
+// */
 const dropSnips = document.querySelectorAll('.drop-snips')
 export function initDropDowns() {
     document.addEventListener("click", handleToggle);
     document.addEventListener("keydown", handleToggle);
     function handleToggle(e) {
         let target;
-        
+
         if (e.type === "keydown") {
-            
+
             if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
                 e.preventDefault();
                 target = document.activeElement;
@@ -32,9 +35,9 @@ export function initDropDowns() {
     }
 }
 export function hideTopicSnips() {
-    
+
     dropSnips.forEach(el => {
-        if(!el.classList.contains('show')){
+        if (!el.classList.contains('show')) {
             el.classList.add('hide')
         }
     })

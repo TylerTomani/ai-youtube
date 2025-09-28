@@ -1,6 +1,5 @@
 const topicTempId = document.querySelector('#topicsTempId')
 export function letterFocus({ e}){
-    console.log(e.target)
     const key = e.key.toLowerCase();
     // only react to single alphanumeric keys
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
@@ -32,11 +31,6 @@ export function letterFocus({ e}){
         target = letteredAs.find(a => allAs.indexOf(a) > iActiveEl)
             || letteredAs[0];
     }
-
     target?.focus();
     window.lastLetterPressed = key;
-
 }
-    
-
-

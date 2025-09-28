@@ -5,7 +5,7 @@ addEventListener('keydown', e => {
     let isShiftPressed = e.shiftKey
 
     if (isShiftPressed && letter == 'k') {
-        body.classList.toggle('dark-mode')
+        darkModeBtn.click()
     }
 })
 
