@@ -15,21 +15,24 @@ addEventListener('DOMContentLoaded', (e) => {
     
     // case 'mainTargetDiv:
         const focusZone = getFocusZone({e})
-        console.log(focusZone)
+        // console.log(focusZone)
         // **
     /* default: (maybe)** NOT Sure whether to make letterFocus header,side-bar focus or 
     header and mainTargetDiv focus???? */
     switch (focusZone){
         case 'header': 
             sideBarNav({e})
-            letterFocus({ e })
+            // letterFocus({ e })
         case 'sideBar' :
             letterFocus({ e })
             sideBarNav({e})
             break
         case 'mainTargetDiv':
             // sideBarNavigation({e})
-            console.log('maintaget focused')
+            // console.log('maintaget focused')
+            /* I shouldn't have to put this scrollTo here, BUT it does NOT work 
+            anywhere else */
+            scrollTo(0,0)
             letterFocus({e})
             break
     }
