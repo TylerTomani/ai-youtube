@@ -10,17 +10,24 @@ export function initDropDowns() {
         if (e.type === "keydown") {
             
             if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
-                e.preventDefault();
+                // e.preventDefault();
                 target = document.activeElement;
             } else {
                 return; // ignore other keys
             }
         } else if (e.type === "click") {
-            // Ignore clicks triggered by keyboard
-            e.preventDefault()
-            if (e.detail === 0) return;
-            target = e.target.closest(".drop-down");
-            if (!target) return;
+            
+            // DOn'T know why i need this line?!? sometimes
+            if (e.target.classList.contains('resource')){
+                window.location.href = e.target.href
+            } else {
+                // Ignore clicks triggered by keyboard
+                e.preventDefault()
+                if (e.detail === 0) return;
+                target = e.target.closest(".drop-down");
+                if (!target) return;
+            }
+
         }
         // Unified toggle logic
         const topic = target.closest(".topic");
@@ -41,7 +48,7 @@ export function hideTopicSnips() {
 }
 
 function toggleTopicSnips(topic) {
-    console.log(topic)
+    // console.log(topic)
     const topicSnips = topic.querySelector('.drop-snips')
     topicSnips.classList.toggle("hide"); // example toggle
 

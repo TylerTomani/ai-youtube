@@ -3,7 +3,7 @@
 addEventListener('DOMContentLoaded', () => {
     addEventListener('keydown', e => {
         const key = e.key.toLowerCase();
-
+        // console.log('dkfhs')
         // only react to single alphanumeric keys
         if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
 
@@ -21,7 +21,7 @@ addEventListener('DOMContentLoaded', () => {
 
         let target;
         if (e.shiftKey) {
-            console.log("here"); // debugging
+            // console.log("here"); // debugging
             // go backwards: find the last match before the active element
             target = [...letteredAs].reverse().find(a => allAs.indexOf(a) < iActiveEl)
                 || letteredAs[letteredAs.length - 1];

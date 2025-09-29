@@ -8,8 +8,9 @@ export function initDropDowns() {
         
         if (e.type === "keydown") {
             
-            if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
-                e.preventDefault();
+            if ((e.key === "Enter" || e.key === " ")
+                 && document.activeElement.classList.contains("drop-down")) {
+                // e.preventDefault();
                 target = document.activeElement;
             } else {
                 return; // ignore other keys
