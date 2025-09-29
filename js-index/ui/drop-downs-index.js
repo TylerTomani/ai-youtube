@@ -1,33 +1,25 @@
 // drop-downs-index.js
-// BEST Drop-Down Thus Far, (( put in boiler plate))
+// drop-downs.js
 const dropSnips = document.querySelectorAll('.drop-snips')
 export function initDropDowns() {
     document.addEventListener("click", handleToggle);
     document.addEventListener("keydown", handleToggle);
     function handleToggle(e) {
         let target;
-        
+
         if (e.type === "keydown") {
-            
-            if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
+            if ((e.key === "Enter" || e.key === " ")
+                && document.activeElement.classList.contains("drop-down")) {
                 // e.preventDefault();
                 target = document.activeElement;
             } else {
                 return; // ignore other keys
             }
         } else if (e.type === "click") {
-            
-            // DOn'T know why i need this line?!? sometimes
-            if (e.target.classList.contains('resource')){
-                window.location.href = e.target.href
-            } else {
-                // Ignore clicks triggered by keyboard
-                e.preventDefault()
-                if (e.detail === 0) return;
-                target = e.target.closest(".drop-down");
-                if (!target) return;
-            }
-
+            // Ignore clicks triggered by keyboard
+            if (e.detail === 0) return;
+            target = e.target.closest(".drop-down");
+            if (!target) return;
         }
         // Unified toggle logic
         const topic = target.closest(".topic");
@@ -39,17 +31,18 @@ export function initDropDowns() {
     }
 }
 export function hideTopicSnips() {
-    
+
     dropSnips.forEach(el => {
-        if(!el.classList.contains('show')){
+        if (!el.classList.contains('show')) {
             el.classList.add('hide')
         }
     })
 }
 
 function toggleTopicSnips(topic) {
-    // console.log(topic)
+    console.log(topic)
     const topicSnips = topic.querySelector('.drop-snips')
     topicSnips.classList.toggle("hide"); // example toggle
 
 }
+

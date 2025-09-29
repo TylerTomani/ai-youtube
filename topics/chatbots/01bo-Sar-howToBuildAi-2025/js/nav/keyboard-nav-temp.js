@@ -1,11 +1,14 @@
-let focusZone 
+let focusZone = 'sideBar'
 export function getFocusZone({e}){
     const eTarget = e.target
-    
     if(eTarget.closest('.side-bar')){
-        console.log(eTarget.closest('.side-bar'))
-        focusZone = 'sidebar'
-
+        focusZone = 'sideBar'
+    }
+    if(eTarget.closest('.page-header')){
+        focusZone = 'header'
+    }
+    if(eTarget.closest('#mainTargetDiv')){
+        focusZone = 'mainTargetDiv'
     }
     return focusZone
 

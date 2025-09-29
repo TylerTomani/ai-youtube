@@ -14,7 +14,7 @@ addEventListener('DOMContentLoaded', (e) => {
     
     // case 'mainTargetDiv:
         const focusZone = getFocusZone({e})
-        // console.log(focusZone  )
+        console.log(focusZone)
         // **
     /* default: (maybe)** NOT Sure whether to make letterFocus header,side-bar focus or 
     header and mainTargetDiv focus???? */
