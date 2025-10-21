@@ -4,7 +4,7 @@ import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js"
 
 const sideBarLinks = document.querySelectorAll('.side-bar-links > li > a')
 const subSideBarLinks = document.querySelectorAll('.side-bar-links > li > ol > li a')
-const allSideBarLink = document.querySelector('.side-bar-links a')
+const allSideBarLinks = document.querySelector('.side-bar-links a')
 let sideBarFocused = false
 let iSideBarLinks = -1
 let suppressIndexUpdate = false
