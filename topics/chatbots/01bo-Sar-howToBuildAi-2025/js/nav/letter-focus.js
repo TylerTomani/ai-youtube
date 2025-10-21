@@ -1,38 +1,39 @@
 // letter-focus.js (module scope)
 let lastLetterPressed = null;
 
-// export keeps same call signature used in your main script: letterFocus({ e })
-export function letterFocus({ e }) {
+export function letterFocus({ e, focusZone }) {
     if (!e || !e.key) return;
 
-    // ignore typing/editing and modifier combos (allow Shift)
-    const tag = e.target && e.target.tagName;
-    if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+    // Ignore typing fields and modifier keys
+    const tag = e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
 
     const key = e.key.toLowerCase();
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
 
-    // gather visible anchors and id'd elements that have an id
-    const allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
-        if (!el.id) return false;                 // require an id for matching
+    // Determine which elements to focus
+    let allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
         const rect = el.getBoundingClientRect();
         return el.offsetParent !== null && rect.width > 0 && rect.height > 0;
     });
 
+    // Automatically skip header links
+    // if (focusZone === 'header') {
+    //     allEls = allEls.filter(el => !(el.tagName === 'A' && el.closest('.page-header')));
+    // }
+
+    // Only consider elements whose ID starts with the pressed key
     const matching = allEls.filter(el => el.id.toLowerCase().startsWith(key));
     if (matching.length === 0) return;
 
-    // prefer actual focused element when computing where we are
     const activeEl = document.activeElement;
     let activeIndex = matching.indexOf(activeEl);
 
     let newIndex;
     if (key !== lastLetterPressed) {
-        // fresh letter press → go to first (or last with Shift)
         newIndex = e.shiftKey ? matching.length - 1 : 0;
     } else {
-        // same letter → cycle forward/back
         if (activeIndex === -1) {
             newIndex = e.shiftKey ? matching.length - 1 : 0;
         } else {
@@ -45,11 +46,18 @@ export function letterFocus({ e }) {
     const target = matching[newIndex];
     if (!target) return;
 
-    // ensure focusable then focus
     if (typeof target.focus !== 'function') {
         target.setAttribute('tabindex', '-1');
     }
     target.focus();
 
     lastLetterPressed = key;
+
+    // ✅ If it’s a header link, allow normal activation
+    if (focusZone === 'header' && target.tagName === 'A') {
+        // Do nothing special here — Enter or click will open the href naturally
+        // Optionally you could add a small visual cue for focus
+        target.style.outline = '2px solid blue';
+
+    }
 }

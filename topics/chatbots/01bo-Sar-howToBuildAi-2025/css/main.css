@@ -11,3 +11,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* SHOULD I PUT THIS IN IT'S OWN CSS FILES FOR ui/drop-downs.css ???? */
+.hide {
+    display: none;
+}

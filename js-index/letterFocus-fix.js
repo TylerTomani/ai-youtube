@@ -10,7 +10,7 @@ addEventListener('DOMContentLoaded', () => {
             return el.offsetParent !== null && rect.width > 0 && rect.height > 0;
         });
 
-        // filter elements whose id starts with the key
+        // filter elements whose id or a element's first letter in its text starts with the key
         const letteredAs = allAs.filter(el => el.id.toLowerCase().startsWith(key));
         if (letteredAs.length === 0) return;
 

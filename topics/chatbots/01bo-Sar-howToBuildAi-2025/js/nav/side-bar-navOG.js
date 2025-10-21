@@ -1,4 +1,4 @@
-// side-bar-nav.js
+// side-bar
 // export function sideBarNav({e},sideBarFocused){ // Maybe true with boolean?? might be
 import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js"
 
