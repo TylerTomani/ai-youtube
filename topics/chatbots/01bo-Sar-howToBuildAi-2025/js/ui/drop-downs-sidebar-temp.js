@@ -1,53 +1,42 @@
-// BEST Drop-Down Thus Far, (( put in boiler plate))
-const dropSnips = document.querySelectorAll('.drop-snips')
+const dropSnips = document.querySelectorAll('.drop-snips');
+
 export function initDropDowns({e}) {
-    document.addEventListener("click", handleToggle);
-    document.addEventListener("keydown", handleToggle);
-    function handleToggle(e) {
-        let target;
-        
-        if (e.type === "keydown") {
+    
 
-            if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
-                e.preventDefault();
-                target = document.activeElement;
-            } else {
-                return; // ignore other keys
-            }
-        } else if (e.type === "click") {
+    let target;
 
-            // DOn'T know why i need this line?!? sometimes
-            if (e.target.classList.contains('resource')) {
-                window.location.href = e.target.href
-            } else {
-                // Ignore clicks triggered by keyboard
-                e.preventDefault()
-                if (e.detail === 0) return;
-                target = e.target.closest(".drop-down");
-                if (!target) return;
-            }
-
+    if (e.type === "keydown") {
+        if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
+            e.preventDefault();
+            target = document.activeElement;
+        } else {
+            // return; // ignore other keys
         }
-        // Unified toggle logic
-        const topic = target.closest(".drop-snips");
-        if (topic) {
-            toggleTopicSnips(topic)
+    } else if (e.type === "click") {
+        if (e.target.classList.contains('resource')) {
+            window.location.href = e.target.href;
+            return;
+        } else {
+            e.preventDefault();
+            if (e.detail === 0) return; // ignore synthetic clicks
+            target = e.target.closest(".drop-down");
+            if (!target) return;
         }
-        if (!topic) return;
     }
-}
-export function hideTopicSnips() {
 
+    // Only toggle the **immediate next <ol>** of the clicked drop-down
+    // const nextOl = target.nextElementSibling;
+    // if (nextOl && nextOl.classList.contains('drop-snips')) {
+    //     nextOl.classList.toggle('show');
+    //     nextOl.classList.toggle('hide');
+    // }
+    
+}
+
+export function hideTopicSnips() {
     dropSnips.forEach(el => {
         if (!el.classList.contains('show')) {
-            el.classList.add('hide')
+            el.classList.add('hide');
         }
-    })
-}
-
-function toggleTopicSnips(topic) {
-    // console.log(topic)
-    const topicSnips = topic.querySelector('.drop-snips')
-    topicSnips.classList.toggle("hide"); // example toggle
-
+    });
 }

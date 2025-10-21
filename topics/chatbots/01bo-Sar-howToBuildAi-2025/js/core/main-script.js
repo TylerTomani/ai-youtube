@@ -16,12 +16,7 @@ addEventListener('DOMContentLoaded', (e) => {
         // Only custom handling for sidebar or mainTargetDiv
         switch (focusZone) {
             case 'header':
-                if (document.activeElement.tagName === 'A' && e.key.toLowerCase() === 'enter') {
-                    // Let it navigate naturally
-                    // You can also explicitly do: 
-                    window.location.href = document.activeElement.href;
-                    return; // exit switch so nothing else interferes
-                }
+                
                 break;
             case 'sideBar':
                 initSideBarNav({ e });

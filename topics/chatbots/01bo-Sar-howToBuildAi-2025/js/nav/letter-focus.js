@@ -1,4 +1,4 @@
-// letter-focus.js (module scope)
+// letter-focus.js
 let lastLetterPressed = null;
 
 export function letterFocus({ e, focusZone }) {
@@ -17,11 +17,6 @@ export function letterFocus({ e, focusZone }) {
         const rect = el.getBoundingClientRect();
         return el.offsetParent !== null && rect.width > 0 && rect.height > 0;
     });
-
-    // Automatically skip header links
-    // if (focusZone === 'header') {
-    //     allEls = allEls.filter(el => !(el.tagName === 'A' && el.closest('.page-header')));
-    // }
 
     // Only consider elements whose ID starts with the pressed key
     const matching = allEls.filter(el => el.id.toLowerCase().startsWith(key));
@@ -46,6 +41,7 @@ export function letterFocus({ e, focusZone }) {
     const target = matching[newIndex];
     if (!target) return;
 
+    // Make sure target is focusable
     if (typeof target.focus !== 'function') {
         target.setAttribute('tabindex', '-1');
     }
@@ -53,11 +49,4 @@ export function letterFocus({ e, focusZone }) {
 
     lastLetterPressed = key;
 
-    // ✅ If it’s a header link, allow normal activation
-    if (focusZone === 'header' && target.tagName === 'A') {
-        // Do nothing special here — Enter or click will open the href naturally
-        // Optionally you could add a small visual cue for focus
-        target.style.outline = '2px solid blue';
-
-    }
 }
