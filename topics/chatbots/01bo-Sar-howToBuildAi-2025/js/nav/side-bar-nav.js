@@ -1,8 +1,9 @@
+// side-bar-nav.js
 import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
 
 let sideBarLinks = [...document.querySelectorAll('.side-bar-links > li > a')];
 let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // all links including nested
-let sideBarFocused = false;
+let sideBarFocused = true;
 let iSideBarLinks = -1;
 let suppressIndexUpdate = false;
 
@@ -16,10 +17,10 @@ function isSubLink(el) {
 }
 
 // Track index updates
-allSideBarLinks.forEach((el, idx) => {
+allSideBarLinks.forEach((el, i) => {
     el.addEventListener('focus', () => {
         if (!suppressIndexUpdate) {
-            iSideBarLinks = idx;
+            iSideBarLinks = i;
         }
     });
 });
@@ -38,8 +39,11 @@ allSideBarLinks.forEach(link => {
 });
 
 // Main keyboard nav
-export function initSideBarNav({ e }) {
-    if (!sideBarFocused) return;
+export function sideBarNav({ e , focusZone}) {
+    // if (!sideBarFocused) return;
+    if(focusZone != 'sideBar') return 
+
+    if(!e || !e.key) return 
     const key = e.key.toLowerCase();
 
     // Number keys
@@ -59,9 +63,7 @@ export function initSideBarNav({ e }) {
         }
         return;
     }
-
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
-
     // 'f' key moves forward
     if (key === 'f') {
         suppressIndexUpdate = true;
@@ -74,7 +76,6 @@ export function initSideBarNav({ e }) {
         visibleLinks[iSideBarLinks].focus();
         suppressIndexUpdate = false;
     }
-
     // 'a' key moves backward
     if (key === 'a') {
         suppressIndexUpdate = true;
@@ -85,18 +86,37 @@ export function initSideBarNav({ e }) {
         visibleLinks[iSideBarLinks].focus();
         suppressIndexUpdate = false;
     }
-
     // 's' key: move from sublink back to parent top-level link
     if (key === 's') {
         const activeEl = document.activeElement;
-        // console.log(isSubLink)
+
+        // If sublink, go to its parent top-level link
         if (isSubLink(activeEl)) {
-            console.log('yes')
-            const parentLink = activeEl.closest('.side-bar-links > li > ol > li')?.closest('li')?.querySelector('> a');
-            if (parentLink) parentLink.focus();
-        } else {
-            // If top-level, reset index
-            iSideBarLinks = 0;
+            const ol = activeEl.closest('ol.drop-snips') || activeEl.closest('ol');
+            const parentLi = ol?.closest('.side-bar-links > li') || ol?.closest('li');
+            const parentLink = parentLi?.querySelector(':scope > a.drop-down') || parentLi?.querySelector(':scope > a');
+            if (parentLink) {
+                suppressIndexUpdate = true;
+                parentLink.focus();
+                // update index to parent's index explicitly so visible f/a navigation continues correctly
+                iSideBarLinks = allSideBarLinks.indexOf(parentLink);
+                suppressIndexUpdate = false;
+                return;
+            }
         }
+
+        // If a drop-down link itself has focus, pressing 's' again moves to sidebar button
+        if (activeEl && activeEl.classList && activeEl.classList.contains('drop-down')) {
+            suppressIndexUpdate = true;
+            sideBarBtn.focus();
+            // set index to -1 or 0 depending on how you want f navigation to behave
+            iSideBarLinks = -1;
+            suppressIndexUpdate = false;
+            return;
+        }
+
+        // Fallback: if not in sublink or drop-down, reset index
+        iSideBarLinks = 0;
     }
+
 }

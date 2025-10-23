@@ -1,42 +1,46 @@
-const dropSnips = document.querySelectorAll('.drop-snips');
+// drop-downs-sidebar-temp.js
+export function initDropDowns() {
+    document.addEventListener("click", handleToggle);
+    document.addEventListener("keydown", handleToggle);
+    // hideTopicSnips()
+    function handleToggle(e) {
+        let link;
 
-export function initDropDowns({e}) {
-    
-
-    let target;
-
-    if (e.type === "keydown") {
-        if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
-            e.preventDefault();
-            target = document.activeElement;
-        } else {
-            // return; // ignore other keys
+        // --- Handle keyboard activation ---
+        if (e.type === "keydown") {
+            if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("drop-down")) {
+                e.preventDefault();
+                link = document.activeElement;
+            } else return;
         }
-    } else if (e.type === "click") {
-        if (e.target.classList.contains('resource')) {
-            window.location.href = e.target.href;
-            return;
-        } else {
+
+        // --- Handle mouse click activation ---
+        if (e.type === "click") {
+            const clicked = e.target.closest(".drop-down");
+            if (!clicked) return; // ignore clicks not on .drop-down links
             e.preventDefault();
-            if (e.detail === 0) return; // ignore synthetic clicks
-            target = e.target.closest(".drop-down");
-            if (!target) return;
+            link = clicked;
         }
+
+        if (!link) return;
+
+        // Find the <li> containing this .drop-down link
+        const parentLi = link.closest("li");
+        if (!parentLi) return;
+
+        // Find the nested .drop-snips *inside that li only*
+        const nestedList = parentLi.querySelector(":scope > .drop-snips");
+        if (!nestedList) return;
+
+        // Toggle visibility
+        nestedList.classList.toggle("hide");
     }
-
-    // Only toggle the **immediate next <ol>** of the clicked drop-down
-    // const nextOl = target.nextElementSibling;
-    // if (nextOl && nextOl.classList.contains('drop-snips')) {
-    //     nextOl.classList.toggle('show');
-    //     nextOl.classList.toggle('hide');
-    // }
-    
 }
 
 export function hideTopicSnips() {
-    dropSnips.forEach(el => {
-        if (!el.classList.contains('show')) {
-            el.classList.add('hide');
+    document.querySelectorAll(".drop-snips").forEach(el => {
+        if (!el.classList.contains("show")) {
+            el.classList.add("hide");
         }
     });
 }

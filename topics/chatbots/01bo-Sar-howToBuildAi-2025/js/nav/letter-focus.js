@@ -12,6 +12,11 @@ export function letterFocus({ e, focusZone }) {
     const key = e.key.toLowerCase();
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
 
+
+    if (focusZone === 'sideBar' && key === 's') {
+        // Do nothing here: side-bar-nav.js handles the 's' key navigation
+        return;
+    }
     // Determine which elements to focus
     let allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
         const rect = el.getBoundingClientRect();
