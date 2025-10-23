@@ -2,7 +2,7 @@
 export function initDropDowns() {
     document.addEventListener("click", handleToggle);
     document.addEventListener("keydown", handleToggle);
-    // hideTopicSnips()
+    hideTopicSnips()
     function handleToggle(e) {
         let link;
 
@@ -38,7 +38,7 @@ export function initDropDowns() {
 }
 
 export function hideTopicSnips() {
-    document.querySelectorAll(".drop-snips").forEach(el => {
+    document.querySelectorAll(".side-bar-links .drop-snips").forEach(el => {
         if (!el.classList.contains("show")) {
             el.classList.add("hide");
         }

@@ -1,10 +1,10 @@
 export const sideBar = document.querySelector('.side-bar')
 export const sideBarBtn = document.querySelector('#sideBarBtn')
 export const navBarLessonTitle = document.querySelector('.nav-bar-lesson-title')
-export const mainContainer = document.querySelector('.main-content-container')
+export const mainContainer = document.querySelector('.main-container')
 
 
-export function toggleSidebar({e}) {
+export function initToggleSidebar({e}) {
     [navBarLessonTitle, sideBarBtn].forEach(el => {
         el.addEventListener('click', e => {
             mainContainer?.classList.toggle('collapsed')
@@ -13,8 +13,10 @@ export function toggleSidebar({e}) {
     sideBarBtn.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
         if (key === 'enter') {
+            console.log('click')
             mainContainer?.classList.toggle('collapsed')
         }
+        console.log(mainContainer)
     });
     navBarLessonTitle.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()

@@ -7,7 +7,7 @@ nav#navBarLessonTitle{
     border-bottom: 1px solid blue;
 }
 aside.side-bar{
-    border-right: 1px solid blue;
+    border-right: 1px solid black;
 
 }
 #mainTargetDiv:active,#mainTargetDiv:focus{
