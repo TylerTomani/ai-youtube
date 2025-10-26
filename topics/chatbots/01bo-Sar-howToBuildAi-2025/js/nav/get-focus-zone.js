@@ -1,4 +1,5 @@
 //  get-focus-zone.js
+// Why is is = {} ????
 export function getFocusZone({ e, el } = {}) {
     const target = el || e?.target || document.activeElement;
 
