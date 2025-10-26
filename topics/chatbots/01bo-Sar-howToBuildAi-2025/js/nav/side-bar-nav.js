@@ -68,24 +68,42 @@ export function sideBarNav({ e , focusZone}) {
     if (key === 'f') {
         suppressIndexUpdate = true;
 
-        if (sideBarBtn.contains(e.target)) {
-            iSideBarLinks = 0;
-        } else {
-            iSideBarLinks = (iSideBarLinks + 1) % visibleLinks.length;
-        }
-        visibleLinks[iSideBarLinks].focus();
+        // Refresh visibleLinks
+        const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
+        const activeEl = document.activeElement;
+
+        // Find current position *within* visibleLinks
+        let currentVisibleIndex = visibleLinks.indexOf(activeEl);
+
+        // Move forward (wrap around if needed)
+        const nextIndex = (currentVisibleIndex + 1) % visibleLinks.length;
+
+        // Focus the next visible link
+        visibleLinks[nextIndex].focus();
+
+        // Update global index to match new focus
+        iSideBarLinks = allSideBarLinks.indexOf(visibleLinks[nextIndex]);
+
         suppressIndexUpdate = false;
     }
+
     // 'a' key moves backward
     if (key === 'a') {
         suppressIndexUpdate = true;
 
-        if (iSideBarLinks === -1) iSideBarLinks = visibleLinks.length - 1;
-        else iSideBarLinks = (iSideBarLinks - 1 + visibleLinks.length) % visibleLinks.length;
+        const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
+        const activeEl = document.activeElement;
 
-        visibleLinks[iSideBarLinks].focus();
+        let currentVisibleIndex = visibleLinks.indexOf(activeEl);
+        const prevIndex = (currentVisibleIndex - 1 + visibleLinks.length) % visibleLinks.length;
+
+        visibleLinks[prevIndex].focus();
+
+        iSideBarLinks = allSideBarLinks.indexOf(visibleLinks[prevIndex]);
+
         suppressIndexUpdate = false;
     }
+
     // 's' key: move from sublink back to parent top-level link
     if (key === 's') {
         const activeEl = document.activeElement;
