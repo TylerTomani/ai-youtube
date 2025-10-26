@@ -1,7 +1,7 @@
 :root {
-  --sidebar-width: 120px;
-  --main-content-width: calc(100% - var(--sidebar-width));
-  --sidebar-collapsed-width: 5%;
+  /* --sidebar-width: 120px; */
+  /* --main-content-width: calc(100% - var(--sidebar-width)); */
+  /* --sidebar-collapsed-width: 5%; */
 }
 
 .side-bar {
@@ -20,13 +20,10 @@
 }
 main.main-container.collapsed .main-content-container {
     flex-basis: 95%;
-    background-color: blue !important;
+    /* background-color: blue !important; */
 }
 main.main-container.collapsed .side-bar {
-    /* flex-basis: var(--sidebar-collapsed-width); */
     width: 2.5%;
-    /* display: none; */
-    /* width: 0; */
 }
 main.main-container.collapsed .side-bar a{
     opacity: 0;
