@@ -16,7 +16,6 @@ export function initToggleSidebar({e}) {
             console.log('click')
             mainContainer?.classList.toggle('collapsed')
         }
-        console.log(mainContainer)
     });
     navBarLessonTitle.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()

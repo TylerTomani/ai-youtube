@@ -5,7 +5,7 @@ import { getFocusZone } from "../nav/get-focus-zone.js";
 import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
 // uis
 import { initToggleSidebar } from "../ui/toggle-side-bar.js";
-
+import { lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
 // Initialize drop-downs
 addEventListener('DOMContentLoaded', (e) => {
     // Detect initial focus zone

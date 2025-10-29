@@ -6,8 +6,7 @@ let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // al
 let sideBarFocused = true;
 let iSideBarLinks = -1;
 let suppressIndexUpdate = false;
-export let lastClickedSideBarLink = null
-export let lastFocusedSideBarLink = null
+
 
 // Track focus
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
@@ -20,8 +19,7 @@ function isSubLink(el) {
 
 // Track index updates
 allSideBarLinks.forEach((el, i) => {
-    el.addEventListener('focus', (e) => {
-        lastFocusedSideBarLink = e.target
+    el.addEventListener('focus', () => {
         if (!suppressIndexUpdate) {
             iSideBarLinks = i;
         }
@@ -110,19 +108,8 @@ export function sideBarNav({ e , focusZone}) {
 
     // 's' key: move from sublink back to parent top-level link
     if (key === 's') {
-        if (e.target == sideBarBtn) {
-            if(lastClickedSideBarLink){
-                lastClickedSideBarLink.focus()
-                return 
-            } else if(lastFocusedSideBarLink){
-                lastFocusedSideBarLink.focus()
-                console.log(lastFocusedSideBarLink)
-                return
-            } else {
-                return
-            }
-        }
         const activeEl = document.activeElement;
+
         // If sublink, go to its parent top-level link
         if (isSubLink(activeEl)) {
             const ol = activeEl.closest('ol.drop-snips') || activeEl.closest('ol');
