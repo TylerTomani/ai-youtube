@@ -1,13 +1,31 @@
 // side-bar-nav.js
 import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
-import { injectContent } from "../core/inject-content.js";
+import { injectContent, mainTargetDiv } from "../core/inject-content.js";
 let sideBarLinks = [...document.querySelectorAll('.side-bar-links > li > a')];
 let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // all links including nested
+let subSideBarLinks = [...document.querySelectorAll('.side-bar-links > li > ol > li > a')]; // all links including nested
 let sideBarFocused = true;
 let iSideBarLinks = -1;
 let suppressIndexUpdate = false;
 export let lastClickedSideBarLink = null
 export let lastFocusedSideBarLink = null
+export let clickedSubSideLink = null
+
+subSideBarLinks.forEach(el => {
+    el.addEventListener('focus', e => {
+        clickedSubSideLink = null
+    });
+    el.addEventListener('keydown', e => {
+        let key = e.key.toLowerCase()
+        if(key === 'enter'){
+            if(el == clickedSubSideLink){
+                mainTargetDiv.focus()
+            }
+            clickedSubSideLink = el
+        }
+        
+    });
+})
 
 // Track focus
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
@@ -20,11 +38,20 @@ function isSubLink(el) {
 
 // Track index updates
 allSideBarLinks.forEach((el, i) => {
+    if(el.hasAttribute('autofocus')){
+        lastFocusedSideBarLink = el
+    }
     el.addEventListener('focus', (e) => {
         lastFocusedSideBarLink = e.target
         if (!suppressIndexUpdate) {
             iSideBarLinks = i;
         }
+    });
+    el.addEventListener('click', (e) => {
+        lastClickedSideBarLink = e.target
+        // if (!suppressIndexUpdate) {
+        //     iSideBarLinks = i;
+        // }
     });
     el.addEventListener('keydown', injectContent);
 });
@@ -33,12 +60,17 @@ allSideBarLinks.forEach((el, i) => {
 allSideBarLinks.forEach(link => {
     if (link.classList.contains('drop-down')) {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.stopPropagation()
             const nextOl = link.nextElementSibling;
             if (nextOl && nextOl.tagName === 'OL') {
                 nextOl.classList.toggle('show');
             }
         });
+    } else {
+        link.addEventListener('click', e => {
+            e.preventDefault()
+            e.stopPropagation()
+        })
     }
 });
 
@@ -110,6 +142,9 @@ export function sideBarNav({ e , focusZone}) {
 
     // 's' key: move from sublink back to parent top-level link
     if (key === 's') {
+        /////////////////////////////////
+        //** Will NEED to implement this into mainTargetDiv Focus as well
+        // some way */ 
         if (e.target == sideBarBtn) {
             if(lastClickedSideBarLink){
                 lastClickedSideBarLink.focus()
@@ -122,6 +157,7 @@ export function sideBarNav({ e , focusZone}) {
                 return
             }
         }
+        /////////////////////////////////
         const activeEl = document.activeElement;
         // If sublink, go to its parent top-level link
         if (isSubLink(activeEl)) {
