@@ -55,7 +55,12 @@ allSideBarLinks.forEach((el, i) => {
         //     iSideBarLinks = i;
         // }
     });
-    el.addEventListener('keydown', injectContent);
+    el.addEventListener('keydown', e => {
+        let key = e.key.toLowerCase()
+        if(key === 'enter'){
+            injectContent(e)
+        }
+    });
 });
 
 // Dropdown toggle
