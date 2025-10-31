@@ -1,7 +1,7 @@
 // inject-content.js
 // import { initStepNavigation } from "../nav/step-txt.js";
 // import { addCopyCode } from "../ui/copy-code.js";
-export const mainTargetDiv = document.querySelector('#mainTargetDiv')
+
 export function injectContent(e) {
     
     let href = e.target.href

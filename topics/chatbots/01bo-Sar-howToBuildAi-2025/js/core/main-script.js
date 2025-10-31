@@ -1,11 +1,15 @@
 // main-script.js
 import { letterFocus } from "../nav/letter-focus.js";
 import { sideBarNav } from "../nav/side-bar-nav.js";
+import { mainContentNav } from "../nav/main-content-nav.js";
 import { getFocusZone } from "../nav/get-focus-zone.js";
 import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
 // uis
 import { initToggleSidebar } from "../ui/toggle-side-bar.js";
 import { lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
+
+
+
 // Initialize drop-downs
 addEventListener('DOMContentLoaded', (e) => {
     // Detect initial focus zone
@@ -32,6 +36,7 @@ addEventListener('DOMContentLoaded', (e) => {
                 break;
             case 'mainTargetDiv':
                 // Any custom main content keyboard logic here
+                mainContentNav({e, focusZone})
                 break;
 
         }

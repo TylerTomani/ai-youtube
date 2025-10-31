@@ -1,6 +1,7 @@
 // side-bar-nav.js
 import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
-import { injectContent, mainTargetDiv } from "../core/inject-content.js";
+import { injectContent } from "../core/inject-content.js";
+import { mainTargetDiv } from "./main-content-nav.js";
 let sideBarLinks = [...document.querySelectorAll('.side-bar-links > li > a')];
 let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // all links including nested
 let subSideBarLinks = [...document.querySelectorAll('.side-bar-links > li > ol > li > a')]; // all links including nested
@@ -18,6 +19,7 @@ subSideBarLinks.forEach(el => {
     el.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
         if(key === 'enter'){
+            lastClickedSideBarLink = e.target
             if(el == clickedSubSideLink){
                 mainTargetDiv.focus()
             }
@@ -100,6 +102,9 @@ export function sideBarNav({ e , focusZone}) {
         return;
     }
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
+    if(key === 'm'){
+        mainTargetDiv.focus()
+    }
     // 'f' key moves forward
     if (key === 'f') {
         suppressIndexUpdate = true;

@@ -1,6 +1,6 @@
 // letter-focus.js
 let lastLetterPressed = null;
-
+import { mainTargetDiv } from "./main-content-nav.js";
 export function letterFocus({ e, focusZone }) {
     if (!e || !e.key) return;
 
