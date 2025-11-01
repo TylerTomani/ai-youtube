@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 .page-header.grid {
     .box {
         border: 1px solid black;
