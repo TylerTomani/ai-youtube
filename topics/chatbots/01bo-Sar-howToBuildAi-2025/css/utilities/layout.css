@@ -1,13 +1,12 @@
 .page-header.grid {
     .box {
-        border: 1px dashed blue;
+        border: 1px solid black;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     .box a {
         display: block;
-        background-color: yellow;
         
     }
 }

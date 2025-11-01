@@ -13,7 +13,6 @@ export function initToggleSidebar({e}) {
     sideBarBtn.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
         if (key === 'enter') {
-            console.log('click')
             mainContainer?.classList.toggle('collapsed')
         }
     });
