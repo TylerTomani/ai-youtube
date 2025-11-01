@@ -1,10 +1,9 @@
 // inject-content.js
-// import { initStepNavigation } from "../nav/step-txt.js";
+import { mainTargetDiv } from "../nav/main-content-nav.js";
+import { initStepNavigation } from "../nav/step-nav.js";
 // import { addCopyCode } from "../ui/copy-code.js";
 
-export function injectContent(e) {
-    
-    let href = e.target.href
+export function injectContent(href) {
     
     fetch(href)
         .then(response => {
@@ -13,7 +12,8 @@ export function injectContent(e) {
         })
         .then(html => {
             // Insert HTML into the main container
-            mainTargetDiv.innerHTML = html;
+            mainTargetDiv.innerHTML = html; // HOw is mainTargetDiv known in this script ??????
+            initStepNavigation(mainTargetDiv)
 
             // Update nav lesson title if available
             const parser = new DOMParser();

@@ -11,7 +11,7 @@ let suppressIndexUpdate = false;
 export let lastClickedSideBarLink = null
 export let lastFocusedSideBarLink = null
 export let clickedSubSideLink = null
-
+// sub side bar link handling, (( the link that drop down ))
 subSideBarLinks.forEach(el => {
     el.addEventListener('focus', e => {
         clickedSubSideLink = null
@@ -24,11 +24,9 @@ subSideBarLinks.forEach(el => {
                 mainTargetDiv.focus()
             }
             clickedSubSideLink = el
-        }
-        
+        }        
     });
 })
-
 // Track focus
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
 sideBar.addEventListener('focusout', () => sideBarFocused = false);
@@ -42,13 +40,13 @@ function isSubLink(el) {
 allSideBarLinks.forEach((el, i) => {
     if (el.hasAttribute('autofocus')) {
         lastFocusedSideBarLink = el
+        injectContent(el.href)
     }
     // Dropdown toggle
     if (el.classList.contains('drop-down')) {
         el.addEventListener('click', (e) => {
             e.preventDefault()
-            // e.stopPropagation()
-            injectContent(e)
+            // injectContent(e.target.href)
             const nextOl = el.nextElementSibling;
             if (nextOl && nextOl.tagName === 'OL') {
                 nextOl.classList.toggle('show');
@@ -68,7 +66,7 @@ allSideBarLinks.forEach((el, i) => {
     });
     el.addEventListener('click', (e) => {
         e.preventDefault()
-        injectContent(e)
+        injectContent(e.target.href)
         lastClickedSideBarLink = e.target
         // if (!suppressIndexUpdate) {
         //     iSideBarLinks = i;
@@ -77,7 +75,7 @@ allSideBarLinks.forEach((el, i) => {
     el.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
         if(key === 'enter'){
-            injectContent(e)
+            injectContent(e.target.href)
         }
     });
 });
@@ -86,10 +84,8 @@ allSideBarLinks.forEach((el, i) => {
 export function sideBarNav({ e , focusZone}) {
     // if (!sideBarFocused) return;
     if(focusZone != 'sideBar') return 
-
     if(!e || !e.key) return 
     const key = e.key.toLowerCase();
-
     // Number keys
     if (!isNaN(key)) {
         const intLet = parseInt(key);
@@ -150,7 +146,6 @@ export function sideBarNav({ e , focusZone}) {
 
         suppressIndexUpdate = false;
     }
-
     // 's' key: move from sublink back to parent top-level link
     if (key === 's') {
         /////////////////////////////////
@@ -198,5 +193,4 @@ export function sideBarNav({ e , focusZone}) {
         // Fallback: if not in sublink or drop-down, reset index
         iSideBarLinks = 0;
     }
-
 }

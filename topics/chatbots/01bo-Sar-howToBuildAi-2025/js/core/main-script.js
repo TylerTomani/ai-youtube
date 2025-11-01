@@ -1,7 +1,8 @@
 // main-script.js
 import { letterFocus } from "../nav/letter-focus.js";
 import { sideBarNav } from "../nav/side-bar-nav.js";
-import { mainContentNav } from "../nav/main-content-nav.js";
+// import { mainContentNav } from "../nav/main-content-nav.js";
+import { handleStepNav } from "../nav/step-nav.js";
 import { getFocusZone } from "../nav/get-focus-zone.js";
 import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
 // uis
@@ -29,14 +30,14 @@ addEventListener('DOMContentLoaded', (e) => {
         // Only custom handling for sidebar or mainTargetDiv
         switch (focusZone) {
             case 'header':
-                
+                // don't need this i think ??        
                 break;
             case 'sideBar':
                 sideBarNav({ e , focusZone});
                 break;
             case 'mainTargetDiv':
                 // Any custom main content keyboard logic here
-                mainContentNav({e, focusZone})
+                handleStepNav({e, focusZone})
                 break;
 
         }
