@@ -40,8 +40,25 @@ function isSubLink(el) {
 
 // Track index updates
 allSideBarLinks.forEach((el, i) => {
-    if(el.hasAttribute('autofocus')){
+    if (el.hasAttribute('autofocus')) {
         lastFocusedSideBarLink = el
+    }
+    // Dropdown toggle
+    if (el.classList.contains('drop-down')) {
+        el.addEventListener('click', (e) => {
+            e.preventDefault()
+            // e.stopPropagation()
+            injectContent(e)
+            const nextOl = el.nextElementSibling;
+            if (nextOl && nextOl.tagName === 'OL') {
+                nextOl.classList.toggle('show');
+            }
+        });
+    } else {
+        el.addEventListener('click', e => {
+            e.preventDefault()
+            e.stopPropagation()
+        })
     }
     el.addEventListener('focus', (e) => {
         lastFocusedSideBarLink = e.target
@@ -50,6 +67,8 @@ allSideBarLinks.forEach((el, i) => {
         }
     });
     el.addEventListener('click', (e) => {
+        e.preventDefault()
+        injectContent(e)
         lastClickedSideBarLink = e.target
         // if (!suppressIndexUpdate) {
         //     iSideBarLinks = i;
@@ -61,24 +80,6 @@ allSideBarLinks.forEach((el, i) => {
             injectContent(e)
         }
     });
-});
-
-// Dropdown toggle
-allSideBarLinks.forEach(link => {
-    if (link.classList.contains('drop-down')) {
-        link.addEventListener('click', (e) => {
-            e.stopPropagation()
-            const nextOl = link.nextElementSibling;
-            if (nextOl && nextOl.tagName === 'OL') {
-                nextOl.classList.toggle('show');
-            }
-        });
-    } else {
-        link.addEventListener('click', e => {
-            e.preventDefault()
-            e.stopPropagation()
-        })
-    }
 });
 
 // Main keyboard nav
