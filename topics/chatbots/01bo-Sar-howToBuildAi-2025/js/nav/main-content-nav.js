@@ -1,3 +1,4 @@
+// main-content-nav.js
 export const mainTargetDiv = document.querySelector('#mainTargetDiv')
 import { lastClickedSideBarLink,lastFocusedSideBarLink } from "./side-bar-nav.js"
 import { sideBarBtn } from "../ui/toggle-side-bar.js";

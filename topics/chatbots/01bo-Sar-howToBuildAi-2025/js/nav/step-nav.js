@@ -1,6 +1,5 @@
-import { mainTargetDiv } from "./main-content-nav.js"
-
 // step-nav.js
+import { mainTargetDiv } from "./main-content-nav.js"
 let steps = []
 let iSteps = 0
 export function initStepNavigation(mainTargetDiv){
