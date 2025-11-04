@@ -19,7 +19,8 @@
   background-color: blue;
 }
 main.main-container.collapsed .main-content-container {
-    flex-basis: 95%;
+    flex-basis: 100%;
+
     /* background-color: blue !important; */
 }
 main.main-container.collapsed .side-bar {

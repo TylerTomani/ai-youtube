@@ -7,9 +7,13 @@ export function mainContentNav({ e, focusZone }){
     let key = e.key.toLowerCase()
     e.preventDefault()
     e.stopPropagation()
-    if(e.target == mainTargetDiv){
+    if(e.target == mainTargetDiv && key === 'm'){
         scrollTo(0,0)
     }
+    if(key === 's'){
+        sideBarBtn.focus()
+    }
+
     
 }
 

@@ -7,6 +7,7 @@ import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
 // uis
 import { initToggleSidebar } from "../ui/toggle-side-bar.js";
 import { lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
+import { mainContentNav } from "../nav/main-content-nav.js";
 
 
 
@@ -36,6 +37,7 @@ addEventListener('DOMContentLoaded', (e) => {
                 break;
             case 'mainTargetDiv':
                 // Any custom main content keyboard logic here
+                mainContentNav({e,focusZone})
                 handleStepNav({e, focusZone})
                 break;
 
