@@ -31,6 +31,7 @@ addEventListener('DOMContentLoaded', (e) => {
         switch (focusZone) {
             case 'header':
                 // don't need this i think ??        
+                letterFocus({ e, focusZone });
                 break;
             case 'sideBar':
                 sideBarNav({ e , focusZone});
