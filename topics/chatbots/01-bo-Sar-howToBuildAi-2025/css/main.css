@@ -2,11 +2,13 @@
 @import url('steps.css');
 /* uis */
 @import url('ui/toggle-side-bar.css');
+/* utilities -> header */
+@import url('utilities/header/grid.css');
+@import url('utilities/header/layout.css');
 /* utilities */
 @import url('utilities/borders.css');
 @import url('utilities/effects.css');
-@import url('utilities/grid.css');
-@import url('utilities/layout.css');
+
 @import url('utilities/sizing.css');
 @import url('utilities/spacing.css');
 @import url('utilities/text.css');
