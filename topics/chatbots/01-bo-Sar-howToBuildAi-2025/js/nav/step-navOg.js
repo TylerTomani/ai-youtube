@@ -2,16 +2,19 @@
 import { mainTargetDiv } from "./main-content-nav.js"
 let steps = []
 let iSteps = 0
-export function initStepNavigation(mainTargetDiv){
+export function initStepNavigation(mainTargetDiv) {
+    console.log('once')
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
 }
 
-export function handleStepNav({e, focusZone}){
-    if(focusZone != 'mainTargetDiv') return
+export function handleStepNav({ e, focusZone }) {
+    if (focusZone != 'mainTargetDiv') return
+    console.log('yes')
     let key = e.key
-    if(!isNaN(key)){
+
+    if (!isNaN(key)) {
         let intLet = parseInt(key)
-        steps[intLet - 1 ].focus()
+        steps[intLet - 1].focus()
     }
-    
+
 }

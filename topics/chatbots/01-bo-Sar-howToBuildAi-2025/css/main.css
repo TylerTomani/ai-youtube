@@ -2,6 +2,7 @@
 @import url('steps.css');
 /* uis */
 @import url('ui/toggle-side-bar.css');
+@import url('ui/imgSizes.css');
 /* utilities -> header */
 @import url('utilities/header/grid.css');
 @import url('utilities/header/layout.css');

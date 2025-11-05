@@ -12,7 +12,7 @@ export function injectContent(href) {
         })
         .then(html => {
             // Insert HTML into the main container
-            mainTargetDiv.innerHTML = html; // HOw is mainTargetDiv known in this script ??????
+            mainTargetDiv.innerHTML = html; 
             initStepNavigation(mainTargetDiv)
 
             // Update nav lesson title if available
