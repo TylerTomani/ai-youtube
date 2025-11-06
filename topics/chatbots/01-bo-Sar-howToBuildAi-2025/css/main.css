@@ -1,8 +1,9 @@
 @import url('responsive.css');
 @import url('steps.css');
+/* @import url('steps-imgs.css'); */
 /* uis */
 @import url('ui/toggle-side-bar.css');
-@import url('ui/imgSizes.css');
+/* @import url('ui/imgSizes.css'); */
 /* utilities -> header */
 @import url('utilities/header/grid.css');
 @import url('utilities/header/layout.css');

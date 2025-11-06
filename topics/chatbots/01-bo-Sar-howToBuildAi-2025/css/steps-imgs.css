@@ -1,0 +1,16 @@
+.step-img,
+.step-vid {
+    position: relative;
+}
+img,
+video {
+    max-height: 200px;
+    max-width: 200px;
+}
+.step-img,
+.step-vid {
+    float: right;
+    width: 45%;
+    margin-right: 5%;
+    margin-left: 10px;
+}

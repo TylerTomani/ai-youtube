@@ -20,7 +20,6 @@ main.main-container.collapsed .side-bar {
 main.main-container.collapsed .main-content-container {
   flex-basis: 95%;
   flex-grow: 1;
-  border-right: 10px solid magenta;
   /* background-color: blue; */
 }
 
