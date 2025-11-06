@@ -93,7 +93,7 @@ export function initStepNavigation(mainTargetDiv){
 
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
-    console.log('yes')
+    console.log('handle Step Nav pressed')
     let key = e.key
 
     if(!isNaN(key)){
