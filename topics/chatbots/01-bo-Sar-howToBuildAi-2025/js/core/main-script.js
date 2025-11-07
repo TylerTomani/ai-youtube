@@ -44,6 +44,7 @@ addEventListener('DOMContentLoaded', (e) => {
                 // inject-content.js  and use in handleStepNav in step-nav.js
                 //  */
                 handleStepNav({e, focusZone})
+                // handleStepNav is in step-nav.js
                 break;
 
         }

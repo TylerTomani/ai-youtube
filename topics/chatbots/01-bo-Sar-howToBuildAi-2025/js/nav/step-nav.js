@@ -11,7 +11,6 @@ let iImgContainerImages = 0
 let stepClicked = false
 export let copyCodesStepFocused = false;
 export function initStepNavigation(mainTargetDiv){
-    console.log('once')
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img"));
     steps.forEach((step, index) => {
@@ -93,7 +92,7 @@ export function initStepNavigation(mainTargetDiv){
 
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
-    console.log('handle Step Nav pressed')
+    console.log('once')
     let key = e.key
 
     if(!isNaN(key)){

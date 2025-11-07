@@ -1,4 +1,5 @@
 // side-bar-nav.js
+import { lastStep } from "./step-nav.js";
 import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
 import { injectContent } from "../core/inject-content.js";
 import { mainTargetDiv } from "./main-content-nav.js";
@@ -101,6 +102,10 @@ export function sideBarNav({ e , focusZone}) {
     }
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
+        if(lastStep) {
+            lastStep.focus()
+            return 
+        } 
         mainTargetDiv.focus()
     }
     // 'f' key moves forward
