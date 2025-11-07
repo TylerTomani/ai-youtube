@@ -7,6 +7,7 @@ export function getFocusZone({ e, el } = {}) {
 
     if (target.closest('header')) return 'header';
     if (target.closest('aside.side-bar')) return 'sideBar';
+    if (target.closest('nav#navBarLessonTitle')) return 'sideBar';
     if (target.closest('#mainTargetDiv')) return 'mainTargetDiv';
 
     return null;

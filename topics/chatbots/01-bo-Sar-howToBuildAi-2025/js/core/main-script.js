@@ -4,12 +4,12 @@ import { sideBarNav } from "../nav/side-bar-nav.js";
 import { getFocusZone } from "../nav/get-focus-zone.js";
 import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
 // step-navigation
-import { handleStepNav } from "../nav/step-nav.js";
+import { handleStepNav,lastStep } from "../nav/step-nav.js";
 // uis
 import { initToggleSidebar } from "../ui/toggle-side-bar.js";
 import { lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
 import { mainContentNav } from "../nav/main-content-nav.js";
-
+export const navBarLessonTitle = document.querySelector('#navBarLessonTitle')
 // Initialize drop-downs
 addEventListener('DOMContentLoaded', (e) => {
     // Detect initial focus zone
@@ -21,18 +21,18 @@ addEventListener('DOMContentLoaded', (e) => {
     letterFocus({ e, focusZone: initialZone });
     initToggleSidebar({e})
     
+    
     // Keydown listener for the whole page
     addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
-        const focusZone = getFocusZone({ e });
+        let focusZone = getFocusZone({ e });
+        console.log(focusZone)
         // Letter navigation works for all zones
         letterFocus({ e, focusZone });
-        // Only custom handling for sidebar or mainTargetDiv
-        console.log(focusZone)
         switch (focusZone) {
             case 'header':
                 // don't need this i think ??        
-                letterFocus({ e , focusZone });
+                // letterFocus({ e , focusZone });
                 break;
             case 'sideBar':
                 sideBarNav({ e , focusZone});
@@ -42,10 +42,9 @@ addEventListener('DOMContentLoaded', (e) => {
                 mainContentNav({ e , focusZone})
                 // 
                 //** We initialize new steps with initStepNavigation(mainTargetDiv) in
-                // inject-content.js  and use in handleStepNav in step-nav.js
+                // inject-content.js  and use in handleStepNav from step-nav.js
+                // in main-content-nav.js
                 //  */
-                // letterFocus({ e , focusZone})
-                handleStepNav({ e, focusZone})
                 // handleStepNav is in step-nav.js
                 break;
 
