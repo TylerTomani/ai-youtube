@@ -1,6 +1,6 @@
 // side-bar-nav.js
 import { lastStep } from "./step-nav.js";
-import { sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
+import { sideBar, sideBarBtn,navBarLessonTitle } from "../ui/toggle-side-bar.js";
 import { injectContent } from "../core/inject-content.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 let sideBarLinks = [...document.querySelectorAll('.side-bar-links > li > a')];
@@ -164,6 +164,7 @@ export function sideBarNav({ e , focusZone}) {
                 return
             }
         }
+        // if(e.target)
         /////////////////////////////////
         const activeEl = document.activeElement;
         // If sublink, go to its parent top-level link
