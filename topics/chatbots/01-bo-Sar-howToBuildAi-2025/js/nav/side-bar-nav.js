@@ -90,7 +90,7 @@ export function sideBarNav({ e , focusZone}) {
 
         // Sublist logic
         if (isSubLink(activeEl)) {
-            const currentSubList = activeEl.closest('ol'); // the current ol
+            const currentSubList = activeEl.closest('ul'); // the current ol
             const subLinks = [...currentSubList.querySelectorAll('li > a')].filter(a => a.offsetParent !== null);
             subLinks[intLet - 1]?.focus();
         } else {
