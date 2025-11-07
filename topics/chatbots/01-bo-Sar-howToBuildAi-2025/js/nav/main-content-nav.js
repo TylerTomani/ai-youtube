@@ -22,6 +22,8 @@ export function mainContentNav({ e, focusZone }){
     }
     if(key === 's'){
         sideBarBtn.focus()
+        console.log('here')
+        return
     }
 
     

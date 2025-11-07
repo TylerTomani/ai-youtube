@@ -28,22 +28,24 @@ addEventListener('DOMContentLoaded', (e) => {
         // Letter navigation works for all zones
         letterFocus({ e, focusZone });
         // Only custom handling for sidebar or mainTargetDiv
+        console.log(focusZone)
         switch (focusZone) {
             case 'header':
                 // don't need this i think ??        
-                letterFocus({ e, focusZone });
+                letterFocus({ e , focusZone });
                 break;
             case 'sideBar':
                 sideBarNav({ e , focusZone});
                 break;
             case 'mainTargetDiv':
                 // Any custom main content keyboard logic here
-                mainContentNav({e,focusZone})
+                mainContentNav({ e , focusZone})
                 // 
                 //** We initialize new steps with initStepNavigation(mainTargetDiv) in
                 // inject-content.js  and use in handleStepNav in step-nav.js
                 //  */
-                handleStepNav({e, focusZone})
+                // letterFocus({ e , focusZone})
+                handleStepNav({ e, focusZone})
                 // handleStepNav is in step-nav.js
                 break;
 

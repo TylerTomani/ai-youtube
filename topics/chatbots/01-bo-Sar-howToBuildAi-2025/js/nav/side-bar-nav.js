@@ -41,6 +41,7 @@ function isSubLink(el) {
 allSideBarLinks.forEach((el, i) => {
     if (el.hasAttribute('autofocus')) {
         lastFocusedSideBarLink = el
+        lastClickedSideBarLink = el
         injectContent(el.href)
     }
     // Dropdown toggle
@@ -158,7 +159,6 @@ export function sideBarNav({ e , focusZone}) {
                 return 
             } else if(lastFocusedSideBarLink){
                 lastFocusedSideBarLink.focus()
-                console.log(lastFocusedSideBarLink)
                 return
             } else {
                 return

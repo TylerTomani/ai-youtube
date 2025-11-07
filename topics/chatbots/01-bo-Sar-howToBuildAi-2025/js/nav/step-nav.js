@@ -2,6 +2,7 @@
 import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
+import { lastClickedSideBarLink } from "./side-bar-nav.js"
 let steps = []
 let iSteps = 0
 export let lastStep = null;
@@ -92,13 +93,28 @@ export function initStepNavigation(mainTargetDiv){
 
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
-    console.log('once')
     let key = e.key
-
     if(!isNaN(key)){
         let intLet = parseInt(key)
-        steps[intLet - 1 ].focus()
+        if(intLet <= steps.length){
+            steps[intLet - 1 ].focus()
+        }
     }
+    if(key === 's'){
+        console.log("'s' in step-nav ")
+        console.log(lastClickedSideBarLink)
+        if (lastClickedSideBarLink){
+            lastClickedSideBarLink.focus()
+            return
+        }
+    }
+    if (key === 'f') {
+        iSteps = (iSteps + 1) % steps.length
+    }
+    if (key === 'a') {
+        iSteps = (iSteps - 1 + steps.length) % steps.length
+    }
+    steps[iSteps].focus()
     
     
 }
