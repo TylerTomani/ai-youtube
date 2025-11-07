@@ -4,7 +4,7 @@ import { injectContent } from "../core/inject-content.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 let sideBarLinks = [...document.querySelectorAll('.side-bar-links > li > a')];
 let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // all links including nested
-let subSideBarLinks = [...document.querySelectorAll('.side-bar-links > li > ol > li > a')]; // all links including nested
+let subSideBarLinks = [...document.querySelectorAll('.side-bar-links > li > ul > li > a')]; // all links including nested
 let sideBarFocused = true;
 let iSideBarLinks = -1;
 let suppressIndexUpdate = false;
@@ -31,9 +31,9 @@ subSideBarLinks.forEach(el => {
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
 sideBar.addEventListener('focusout', () => sideBarFocused = false);
 
-// Determine if an element is a subLink (nested inside li > ol > li)
+// Determine if an element is a subLink (nested inside li > ul > li)
 function isSubLink(el) {
-    return el.closest('.side-bar-links > li > ol > li a');
+    return el.closest('.side-bar-links > li > ul > li a');
 }
 
 // Track index updates
@@ -66,18 +66,14 @@ allSideBarLinks.forEach((el, i) => {
     });
     el.addEventListener('click', (e) => {
         e.preventDefault()
+        e.stopPropagation()
         injectContent(e.target.href)
         lastClickedSideBarLink = e.target
         // if (!suppressIndexUpdate) {
         //     iSideBarLinks = i;
         // }
     });
-    el.addEventListener('keydown', e => {
-        let key = e.key.toLowerCase()
-        if(key === 'enter'){
-            injectContent(e.target.href)
-        }
-    });
+    //  DO NOT NEED 'keydown' with 'click' 
 });
 
 // Main keyboard nav
@@ -167,8 +163,8 @@ export function sideBarNav({ e , focusZone}) {
         const activeEl = document.activeElement;
         // If sublink, go to its parent top-level link
         if (isSubLink(activeEl)) {
-            const ol = activeEl.closest('ol.drop-snips') || activeEl.closest('ol');
-            const parentLi = ol?.closest('.side-bar-links > li') || ol?.closest('li');
+            const ul = activeEl.closest('ul.drop-snips') || activeEl.closest('ul');
+            const parentLi = ul?.closest('.side-bar-links > li') || ul?.closest('li');
             const parentLink = parentLi?.querySelector(':scope > a.drop-down') || parentLi?.querySelector(':scope > a');
             if (parentLink) {
                 suppressIndexUpdate = true;

@@ -1,10 +1,8 @@
 // main-script.js
 import { letterFocus } from "../nav/letter-focus.js";
 import { sideBarNav } from "../nav/side-bar-nav.js";
-
 import { getFocusZone } from "../nav/get-focus-zone.js";
 import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
-
 // step-navigation
 import { handleStepNav } from "../nav/step-nav.js";
 // uis

@@ -9,9 +9,12 @@ export function mainContentNav({ e, focusZone }){
     e.preventDefault()
     e.stopPropagation()
     if(e.target == mainTargetDiv && key === 'm'){
-        // scrollTo(0,0)
-        lastStep.focus()
-        return 
+        
+        if(lastStep){
+            lastStep.focus()
+            return 
+        }
+        scrollTo(0,0)
     }
     if(e.target != mainTargetDiv && key === 'm'){
         scrollTo(0,0)
