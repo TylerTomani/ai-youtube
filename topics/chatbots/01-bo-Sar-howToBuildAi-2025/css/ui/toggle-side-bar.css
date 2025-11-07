@@ -1,19 +1,4 @@
-:root {
-  --sidebar-width: 120px;
-  --main-content-width: calc(100% - var(--sidebar-width));
-  --sidebar-collapsed-width: 2.5%;
-}
 
-.side-bar {
-  width: var(--sidebar-width);
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  /* sticks below header if header has height */
-  flex-shrink: 0;
-  /* overflow: hidden; */
-  /* height: calc(100vh - var(--header-height, 80px)); */
-}
 main.main-container.collapsed .side-bar {
   width: var(--sidebar-collapsed-width)
 }
@@ -22,9 +7,6 @@ main.main-container.collapsed .main-content-container {
   flex-grow: 1;
   /* background-color: blue; */
 }
-
-
-
 main.main-container.collapsed .side-bar h2,
 main.main-container.collapsed .side-bar .sidebar-links-ul {
   display: none;
@@ -32,17 +14,6 @@ main.main-container.collapsed .side-bar .sidebar-links-ul {
 
 main.main-container.collapsed .header-codeColor-lesson h3 {
   margin-left: 10%;
-}
-
-#sideBarBtn {
-  position: absolute;
-  top: 0px;
-  /* always stays above bottom edge */
-  left: 5px;
-  /* always at left edge */
-  z-index: 9999;
-  pointer-events: auto;
-  /* make sure it's above other stuff */
 }
 main.main-container.collapsed #sideBarBtn {
   max-height: fit-content;

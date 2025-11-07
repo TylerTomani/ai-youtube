@@ -26,7 +26,6 @@ addEventListener('DOMContentLoaded', (e) => {
     addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
         let focusZone = getFocusZone({ e });
-        console.log(focusZone)
         // Letter navigation works for all zones
         letterFocus({ e, focusZone });
         switch (focusZone) {
