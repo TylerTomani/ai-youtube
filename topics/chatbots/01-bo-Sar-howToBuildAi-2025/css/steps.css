@@ -1,44 +1,30 @@
-.step-float {
-    display: block;
-    /* ensure normal block flow between .step-floats */
-    overflow: auto;
-    /* ensures floated content doesn't break the container */
-    margin-bottom: 2rem;
+/* steps.css */
+.steps-container{
+    display: flex;
+    flex-direction: column;
 }
-
-.step-media {
+.step-img,
+.step-vid {
     float: right;
-    margin-left: 15px;
-    margin-bottom: 10px;
-    max-width: 45%;
-    /* adjust as needed */
+    /* width: 45%; */
+    /* margin-right: 5%; */
+    margin-left: 10px;
+}
+img,video{
+    max-height: 200px;
+    max-width: 200px;
+}
+#navLessonTitle {
+    display: flex;
+    /* flex-grow: 1; */
+    align-content: center;
 }
 
-.step-media img,
-.step-media video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-}
-
-.step-content {
-    overflow: hidden;
-    /* ensures wrapping behaves well */
-}
-
-.code-container {
-    clear: both;
-    /* ensures code blocks start below floated image/video */
-    margin-top: 1rem;
-}
-
-.step-float+.step-float {
-    border-top: 1px solid #333;
-    padding-top: 1rem;
-}
-.code-container {
-    border: 1px solid black;
+.step-float>.step-txt {
+    /* flex-shrink: 1; */
+    flex-grow: 1;
+    /* max-width: 50%; */
+    flex-basis: 50%;
 }
 .code-container>textarea.copy-code,
 .code-container>pre.copy-code {

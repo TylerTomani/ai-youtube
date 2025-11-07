@@ -1,16 +1,49 @@
+/* Container that holds everything */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Each step section */
+.step-float {
+    display: grid;
+    grid-template-columns: 1fr minmax(200px, 40%);
+    grid-gap: 1.5rem;
+    align-items: start;
+}
+
+/* Media always top-right */
 .step-img,
 .step-vid {
-    position: relative;
+    grid-column: 2;
+    /* always on the right */
 }
-img,
-video {
-    max-height: 200px;
-    max-width: 200px;
+
+.step-img img,
+.step-vid video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
 }
-.step-img,
-.step-vid {
-    float: right;
-    width: 45%;
-    margin-right: 5%;
-    margin-left: 10px;
+
+/* Text/content automatically flows beside media */
+.step-content,
+.step-txt {
+    grid-column: 1;
+}
+
+/* Optional: stack on small screens */
+@media (max-width: 700px) {
+    .step-float {
+        grid-template-columns: 1fr;
+    }
+
+    .step-img,
+    .step-vid {
+        grid-column: 1;
+        order: -1;
+        /* place media on top */
+    }
 }
