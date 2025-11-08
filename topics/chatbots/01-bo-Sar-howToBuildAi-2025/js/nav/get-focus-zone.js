@@ -1,5 +1,5 @@
 //  get-focus-zone.js
-// Why is is = {} ????
+// Why is is = {} ????  - answer = it can't be passed an empty object
 export function getFocusZone({ e, el } = {}) {
     const target = el || e?.target || document.activeElement;
 
