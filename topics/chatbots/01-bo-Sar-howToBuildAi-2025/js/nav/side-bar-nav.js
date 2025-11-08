@@ -1,4 +1,5 @@
 // side-bar-nav.js
+import { changeTutorialLink } from "../ui/change-tutorial-link.js";
 import { lastStep } from "./step-nav.js";
 import { sideBar, sideBarBtn,navBarLessonTitle } from "../ui/toggle-side-bar.js";
 import { injectContent } from "../core/inject-content.js";
@@ -38,7 +39,7 @@ sideBar.addEventListener('focusout', () => sideBarFocused = false);
 function isSubLink(el) {
     return el.closest('.side-bar-links > li > ul > li a');
 }
-
+// I DO NOT Know IF THIS IS Doing anything, I think i have to initialize this somewhere
 // Track index updates
 allSideBarLinks.forEach((el, i) => {
     if (el.hasAttribute('autofocus')) {
@@ -72,6 +73,7 @@ allSideBarLinks.forEach((el, i) => {
         e.preventDefault()
         e.stopPropagation()
         injectContent(e.target.href)
+        changeTutorialLink(e)
         lastClickedSideBarLink = e.target
         // if (!suppressIndexUpdate) {
         //     iSideBarLinks = i;
