@@ -18,7 +18,10 @@ addEventListener('DOMContentLoaded', (e) => {
     if (initialZone === 'sideBar') sideBarNav({e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
     initToggleSidebar({e})
-    sideBarBtn.addEventListener('keydown', e => {
+    sideBarBtn.addEventListener('keydown', handleSKeySideBarNav);
+    navBarLessonTitle.addEventListener('keydown', handleSKeySideBarNav);
+    function handleSKeySideBarNav(e){
+        console.log('here')
         let key = e.key.toLowerCase()
         if(key === 's'){
             e.preventDefault()
@@ -31,8 +34,7 @@ addEventListener('DOMContentLoaded', (e) => {
                 lastFocusedSideBarLink.focus()   
             }
         }
-        
-    });
+    }
     // Keydown listener for the whole page
     addEventListener('keydown', e => {
         let key = e.key.toLowerCase()

@@ -28,6 +28,8 @@ subSideBarLinks.forEach(el => {
         }        
     });
 })
+
+
 // Track focus
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
 sideBar.addEventListener('focusout', () => sideBarFocused = false);
