@@ -25,8 +25,13 @@
     pointer-events: auto;
     /* make sure it's above other stuff */
 }
+ul.side-bar-links > li {
+    margin-top: 10%;
+}
 .side-bar ul {
     list-style: num;
+    margin:0;
+    margin-left: 20%;
     
 }
 .side-bar ul > li{
