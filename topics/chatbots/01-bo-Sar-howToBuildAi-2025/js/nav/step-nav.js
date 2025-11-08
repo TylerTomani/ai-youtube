@@ -114,6 +114,11 @@ export function handleStepNav({e, focusZone}){
     if (key === 'a') {
         iSteps = (iSteps - 1 + steps.length) % steps.length
     }
+    if(key === 'f' && e.target === mainTargetDiv){
+        console.log('here')
+        iSteps = 0
+
+    }
     steps[iSteps].focus()
     
     

@@ -14,7 +14,6 @@ addEventListener('DOMContentLoaded', (e) => {
     // Detect initial focus zone
     initDropDowns({e});
     const initialZone = getFocusZone({ el: document.activeElement });
-
     // Pass the initialZone to any scripts that need it
     if (initialZone === 'sideBar') sideBarNav({e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
@@ -24,10 +23,7 @@ addEventListener('DOMContentLoaded', (e) => {
         if(key === 's'){
             e.preventDefault()
             e.stopPropagation()
-            console.log(lastClickedSideBarLink)
             const dropSnips = lastClickedSideBarLink.closest('ul')
-            console.log(dropSnips)
-
             if(lastClickedSideBarLink && !dropSnips.classList.contains('hide')){
                 lastClickedSideBarLink.focus()
                 return
@@ -37,7 +33,6 @@ addEventListener('DOMContentLoaded', (e) => {
         }
         
     });
-    
     // Keydown listener for the whole page
     addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
