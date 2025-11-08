@@ -154,7 +154,7 @@ export function sideBarNav({ e , focusZone}) {
         //** Will NEED to implement this into mainTargetDiv Focus as well
         // some way */ 
         if (e.target == sideBarBtn) {
-            // console.log('here')
+            console.log('here')
             // console.log(lastClickedSideBarLink)
             if(lastClickedSideBarLink){
                 lastClickedSideBarLink.focus()

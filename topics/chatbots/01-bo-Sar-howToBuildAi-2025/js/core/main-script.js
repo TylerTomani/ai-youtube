@@ -1,13 +1,12 @@
 // main-script.js
 import { letterFocus } from "../nav/letter-focus.js";
-import { sideBarNav } from "../nav/side-bar-nav.js";
 import { getFocusZone } from "../nav/get-focus-zone.js";
 import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
 // step-navigation
 import { handleStepNav,lastStep } from "../nav/step-nav.js";
 // uis
-import { initToggleSidebar } from "../ui/toggle-side-bar.js";
-import { lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
+import { initToggleSidebar, sideBarBtn } from "../ui/toggle-side-bar.js";
+import { sideBarNav,lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
 import { mainContentNav } from "../nav/main-content-nav.js";
 export const navBarLessonTitle = document.querySelector('#navBarLessonTitle')
 // Initialize drop-downs
@@ -20,7 +19,24 @@ addEventListener('DOMContentLoaded', (e) => {
     if (initialZone === 'sideBar') sideBarNav({e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
     initToggleSidebar({e})
-    
+    sideBarBtn.addEventListener('keydown', e => {
+        let key = e.key.toLowerCase()
+        if(key === 's'){
+            e.preventDefault()
+            e.stopPropagation()
+            console.log(lastClickedSideBarLink)
+            const dropSnips = lastClickedSideBarLink.closest('ul')
+            console.log(dropSnips)
+
+            if(lastClickedSideBarLink && !dropSnips.classList.contains('hide')){
+                lastClickedSideBarLink.focus()
+                return
+            } else {
+                lastFocusedSideBarLink.focus()   
+            }
+        }
+        
+    });
     
     // Keydown listener for the whole page
     addEventListener('keydown', e => {
@@ -31,7 +47,7 @@ addEventListener('DOMContentLoaded', (e) => {
         switch (focusZone) {
             case 'header':
                 // don't need this i think ??        
-                letterFocus({ e , focusZone });
+                // letterFocus({ e , focusZone });
                 break;
             case 'sideBar':
                 sideBarNav({ e , focusZone});
