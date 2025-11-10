@@ -29,7 +29,8 @@ export function mainContentNav({ e, focusZone }){
         console.log('here')
         return
     }
+    // THE PROBLEM IS IN handleStepNav.js
     // handleStepNav is in step-nav.js
-    handleStepNav({ e, focusZone })    
+    handleStepNav({ e, focusZone })
 }
 

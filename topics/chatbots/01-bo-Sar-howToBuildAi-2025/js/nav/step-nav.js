@@ -42,7 +42,7 @@ export function initStepNavigation(mainTargetDiv){
                     const vid = step.querySelector('video')
                     // console.log(vid.currentTime)
                     // handleVideo({ vid, e, steps, allVids })
-                    changeTutorialLink(e.target)
+                    // changeTutorialLink(e.target)
                     // const copyCodes = document.querySelectorAll('.copy-code, a')
                     if (key === 'enter') {
                         // copyCodesStepFocused = true
@@ -60,11 +60,12 @@ export function initStepNavigation(mainTargetDiv){
                         copyCodesStepFocused = true
                         firstCopyCode?.focus()
                     }
-                    changeTutorialLink(e.target)
+                    // changeTutorialLink(e.target)
                     lastStep = step
                     stepClicked = true
                 }
                 if (key === 'm') {
+                    // console.log('here')
                     if (!copyCodesStepFocused) {
                         mainTargetDiv.focus()
                         // console.log('line 60 step-txt.js breaking code');
@@ -83,7 +84,7 @@ export function initStepNavigation(mainTargetDiv){
                 if (e.target.tagName !== "IMG") {
                     denlargeAllImages(allImgs);
                     lastStep = step;
-                    changeTutorialLink(e.target)
+                    // changeTutorialLink(e.target)
                 }
             });
             step.dataset.listenerAdded = "true";

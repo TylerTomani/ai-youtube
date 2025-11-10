@@ -1,9 +1,10 @@
 // letter-focus.js
 let lastLetterPressed = null;
 import { mainTargetDiv } from "./main-content-nav.js";
+
 export function letterFocus({ e, focusZone }) {
     if (!e || !e.key) return;
-
+    
     // Ignore typing fields and modifier keys
     const tag = e.target.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
@@ -12,23 +13,37 @@ export function letterFocus({ e, focusZone }) {
     const key = e.key.toLowerCase();
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
 
+    // Skip letter focus in mainTargetDiv or targetHeaderh3 zones
+    if (focusZone === 'mainTargetDiv') {
 
-    if (focusZone === 'sideBar' && key === 's') {
-        // Do nothing here: side-bar-nav.js handles the 's' key navigation
         return;
     }
-    // Determine which elements to focus
-    let allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
+    // Skip the 's' key inside the sidebar — handled elsewhere
+    if (focusZone === 'sideBar' && key === 's') {
+
+        return;
+    }
+
+    // Find visible, valid elements
+    const allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
         const rect = el.getBoundingClientRect();
         return el.offsetParent !== null && rect.width > 0 && rect.height > 0;
     });
 
-    // Only consider elements whose ID starts with the pressed key
-    const matching = allEls.filter(el => el.id.toLowerCase().startsWith(key));
+    // Filter elements by ID starting with pressed key
+    const matching = allEls.filter(el => {
+        const id = el.id?.toLowerCase?.() || '';
+        return (
+            id.startsWith(key) &&
+            id !== 'targetdiv' &&
+            id !== 'targetheaderh3'
+        );
+    });
+
     if (matching.length === 0) return;
 
     const activeEl = document.activeElement;
-    let activeIndex = matching.indexOf(activeEl);
+    const activeIndex = matching.indexOf(activeEl);
 
     let newIndex;
     if (key !== lastLetterPressed) {
@@ -46,12 +61,11 @@ export function letterFocus({ e, focusZone }) {
     const target = matching[newIndex];
     if (!target) return;
 
-    // Make sure target is focusable
+    // Ensure focusability
     if (typeof target.focus !== 'function') {
         target.setAttribute('tabindex', '-1');
     }
+
     target.focus();
-
     lastLetterPressed = key;
-
 }

@@ -1,65 +1,117 @@
 // main-script.js
+// ===== Imports =====
 import { letterFocus } from "../nav/letter-focus.js";
 import { getFocusZone } from "../nav/get-focus-zone.js";
-import { initDropDowns, } from "../ui/drop-downs-sidebar-temp.js";
-// step-navigation
-import { handleStepNav,lastStep } from "../nav/step-nav.js";
-// uis
-import { initToggleSidebar, sideBarBtn } from "../ui/toggle-side-bar.js";
-import { sideBarNav,lastClickedSideBarLink,lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
+import { initDropDowns } from "../ui/drop-downs-sidebar-temp.js";
+import { handleStepNav, lastStep } from "../nav/step-nav.js";
+import { initToggleSidebar, mainContainer, sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
+import { sideBarNav, lastClickedSideBarLink, lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
 import { mainContentNav } from "../nav/main-content-nav.js";
-export const navBarLessonTitle = document.querySelector('#navBarLessonTitle')
-// Initialize drop-downs
-addEventListener('DOMContentLoaded', (e) => {
-    // Detect initial focus zone
-    initDropDowns({e});
+export const navBarLessonTitle = document.querySelector('#navBarLessonTitle');
+// ===== Initialization =====
+document.addEventListener('DOMContentLoaded', initMain);
+
+function initMain(e) {
+    // Prevent re-initialization if script runs twice (e.g. reinjected content)
+    if (window._mainScriptInitialized) return;
+    window._mainScriptInitialized = true;
+
+    // Initialize UI elements
+    initDropDowns({ e });
+    initToggleSidebar({ e });
+
+    // Detect and handle initial focus zone
     const initialZone = getFocusZone({ el: document.activeElement });
-    // Pass the initialZone to any scripts that need it
-    if (initialZone === 'sideBar') sideBarNav({e, focusZone: initialZone });
+    if (initialZone === 'sideBar') sideBarNav({ e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
-    initToggleSidebar({e})
+
+    // Initialize event listeners
+    setupSidebarShortcuts();
+    setupGlobalKeyListener();
+}
+
+// ===== Sidebar “S” Key Shortcut =====
+function setupSidebarShortcuts() {
+    if (!sideBarBtn || !navBarLessonTitle) return;
+
     sideBarBtn.addEventListener('keydown', handleSKeySideBarNav);
     navBarLessonTitle.addEventListener('keydown', handleSKeySideBarNav);
-    function handleSKeySideBarNav(e){
-        console.log('here')
-        let key = e.key.toLowerCase()
-        if(key === 's'){
-            e.preventDefault()
-            e.stopPropagation()
-            const dropSnips = lastClickedSideBarLink.closest('ul')
-            if(lastClickedSideBarLink && !dropSnips.classList.contains('hide')){
-                lastClickedSideBarLink.focus()
-                return
-            } else {
-                lastFocusedSideBarLink.focus()   
-            }
+}
+
+function handleSKeySideBarNav(e) {
+    const key = e.key.toLowerCase();
+    if (key !== 's') return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Ensure references exist before using them
+    if (!lastClickedSideBarLink && !lastFocusedSideBarLink) return;
+
+    const dropSnips = lastClickedSideBarLink?.closest?.('ul');
+    if (!mainContainer.classList.contains('collapsed')){
+
+        if (lastClickedSideBarLink && dropSnips && !dropSnips.classList.contains('hide')) {
+            lastClickedSideBarLink.focus();
+        } else if(lastFocusedSideBarLink ) {
+            lastFocusedSideBarLink?.focus();
         }
+    } else {
+        return 
     }
-    // Keydown listener for the whole page
-    addEventListener('keydown', e => {
-        let key = e.key.toLowerCase()
-        let focusZone = getFocusZone({ e });
-        // Letter navigation works for all zones
+}
+
+// ===== Global Key Listener =====
+function setupGlobalKeyListener() {
+    addEventListener('keydown', (e) => {
+        if (!e || !e.key) return;
+        const key = e.key.toLowerCase();
+        const focusZone = getFocusZone({ e });
+
+        // Always allow letterFocus everywhere (header, outside zones, etc.)
         letterFocus({ e, focusZone });
+
+        // --- global cross-zone shortcuts ---
+        // jump to sidebar
+        if (focusZone !== 'sideBar' && key === 's') {
+            if (lastClickedSideBarLink) lastClickedSideBarLink.focus();
+            else if (lastFocusedSideBarLink) lastFocusedSideBarLink.focus();
+            else sideBarBtn?.focus();
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+
+        // jump to mainTargetDiv / lastStep
+        if (focusZone !== 'mainTargetDiv' && focusZone !== 'header' && key === 'm') {
+            if (lastStep && typeof lastStep.focus === 'function') {
+                lastStep.focus();
+            } else {
+                mainTargetDiv?.focus();
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+
+        // --- normal per-zone behavior ---
         switch (focusZone) {
-            case 'header':
-                // don't need this i think ??        
-                // letterFocus({ e , focusZone });
-                break;
             case 'sideBar':
-                sideBarNav({ e , focusZone});
-                break;
-            case 'mainTargetDiv':
-                // Any custom main content keyboard logic here
-                mainContentNav({ e , focusZone})
-                // 
-                //** We initialize new steps with initStepNavigation(mainTargetDiv) in
-                // inject-content.js  and use in handleStepNav from step-nav.js
-                // in main-content-nav.js
-                //  */
-                // handleStepNav is in step-nav.js
+                sideBarNav({ e, focusZone });
                 break;
 
+            case 'mainTargetDiv':
+                mainContentNav({ e, focusZone });
+                break;
+
+            case 'header':
+                // header links will respond naturally to letterFocus
+                break;
+
+            default:
+                // outside any zone, just letterFocus applies
+                break;
         }
     });
-});
+}
+
