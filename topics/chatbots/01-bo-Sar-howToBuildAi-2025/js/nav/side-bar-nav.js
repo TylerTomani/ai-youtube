@@ -29,8 +29,6 @@ subSideBarLinks.forEach(el => {
         }        
     });
 })
-
-
 // Track focus
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
 sideBar.addEventListener('focusout', () => sideBarFocused = false);
@@ -50,19 +48,29 @@ allSideBarLinks.forEach((el, i) => {
     // Dropdown toggle
     if (el.classList.contains('drop-down')) {
         el.addEventListener('click', (e) => {
+            console.log('here')
             e.preventDefault()
-            // injectContent(e.target.href)
             const nextOl = el.nextElementSibling;
             if (nextOl && nextOl.tagName === 'OL') {
                 nextOl.classList.toggle('show');
             }
         });
+        el.addEventListener('keydown', (e) => {
+            e.preventDefault()
+            let key = e.key.toLowerCase()
+            if(key === 'enter'){
+                scrollTo(0,0)
+                injectContent(e.target.href)
+            }
+            
+        });
     } else {
         el.addEventListener('click', e => {
             e.preventDefault()
-            e.stopPropagation()
+            // e.stopPropagation()
         })
     }
+    
     el.addEventListener('focus', (e) => {
         lastFocusedSideBarLink = e.target
         if (!suppressIndexUpdate) {
@@ -71,7 +79,7 @@ allSideBarLinks.forEach((el, i) => {
     });
     el.addEventListener('click', (e) => {
         e.preventDefault()
-        e.stopPropagation()
+        // e.stopPropagation()
         injectContent(e.target.href)
         changeTutorialLink(e)
         lastClickedSideBarLink = e.target

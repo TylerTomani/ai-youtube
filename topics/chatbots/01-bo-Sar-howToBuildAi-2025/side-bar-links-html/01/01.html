@@ -236,68 +236,7 @@ chmod +x remove-docker.sh
                         
                     </div>
                 </div>
-                <!-- 4. toubleshoot - fix (SAFER)  -->
-                <div tabindex="0" class="step-float" data-video="https://www.youtube.com/watch?v=b0HMimUb4f0" 
-                data-timestamp="1075">
-                    <div class="step-img">
-                        <!-- <img src="sidebar-links/01/images/04.png"> -->
-                    </div>
-                    <div class="step-txt">
-                        <h4>4. toubleshoot - fix (SAFE)</h4>
-                        <p>
-                            safe, Docker-specific cleanup script for macOS that targets only Docker Desktop, CLI binaries, and related system
-                            files—not anything in your personal projects or unrelated files.
-                            
-                            Here’s a recommended script:, you;ll have to do one by on i think
-                        </p>
-                        
-                        <div class="code-container">
-                            <pre readonly tabindex="0" class="copy-code">
-#!/bin/bash
-echo "Starting safe Docker cleanup..."
 
-# Quit Docker Desktop if running
-osascript -e 'quit app "Docker"' 2>/dev/null
-
-# Remove Docker Desktop app
-echo "Removing Docker Desktop application..."
-sudo rm -rf /Applications/Docker.app
-
-# Remove Docker binaries from /usr/local/bin
-echo "Removing Docker CLI binaries..."
-sudo rm -f /usr/local/bin/docker
-sudo rm -f /usr/local/bin/docker-compose
-sudo rm -f /usr/local/bin/docker-machine
-
-# Remove Docker system files
-echo "Removing Docker system files..."
-sudo rm -rf ~/Library/Containers/com.docker.docker
-sudo rm -rf ~/Library/Application\ Support/Docker\ Desktop
-sudo rm -rf ~/Library/Group\ Containers/group.com.docker
-
-# Remove Docker configuration and state files
-sudo rm -rf ~/.docker
-
-# Optional: remove Docker virtual machines (if using Docker Machine)
-sudo rm -rf /usr/local/share/docker
-sudo rm -rf /usr/local/lib/docker
-sudo rm -rf /var/lib/docker 2>/dev/null
-
-echo "Docker cleanup complete!"</pre>
-                        </div>
-                        <h3>Usage: Save it as safe-docker-cleanup.sh.</h3>
-                        <h4>Make it executable:</h4>
-                        <div class="code-container">
-                            <pre readonly tabindex="0" class="copy-code">
-chmod +x safe-docker-cleanup.sh</pre>
-                        </div>
-                        <p>run it</p>
-                        <div class="code-container">
-./safe-docker-cleanup.sh</textarea>
-                        </div>
-                        
-                    </div>
-                </div>
             </div>
         </div>
         </div>
