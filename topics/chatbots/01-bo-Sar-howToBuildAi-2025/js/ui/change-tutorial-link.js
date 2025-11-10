@@ -1,8 +1,9 @@
+// change-tutorial-link.js
 export function changeTutorialLink(e) {
     const targetLink = e.target
-    console.log(e.target)
+    // console.log(e.target)
     const vidBase = targetLink.getAttribute("data-video");
-    console.log(vidBase)
+    // console.log(vidBase)
     const ts = targetLink.getAttribute("data-timestamp");
     let vidHref = vidBase;
     if (ts) {

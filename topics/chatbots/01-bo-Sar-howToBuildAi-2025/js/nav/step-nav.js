@@ -64,17 +64,20 @@ export function initStepNavigation(mainTargetDiv){
                     lastStep = step
                     stepClicked = true
                 }
-                if (key === 'm') {
-                    // console.log('here')
-                    if (!copyCodesStepFocused) {
-                        mainTargetDiv.focus()
-                        // console.log('line 60 step-txt.js breaking code');
-                        // This was breaking code
-                        // body.scrollIntoView({ behavior: 'instant', block: 'start'})
-                    } else {
-                        step.focus()
-                    }
-                }
+                // if (key === 'm') {
+                //     // console.log('here')
+                //     console.log('here')
+                //     if(e.target == step){
+                //         mainTargetDiv.focus()
+                //     }
+                //     if (!copyCodesStepFocused) {
+                //         // console.log('line 60 step-txt.js breaking code');
+                //         // This was breaking code
+                //         // body.scrollIntoView({ behavior: 'instant', block: 'start'})
+                //     } else {
+                //         step.focus()
+                //     }
+                // }
 
             });
             // --- unified pointerdown for click/tap ---
@@ -116,7 +119,6 @@ export function handleStepNav({e, focusZone}){
         iSteps = (iSteps - 1 + steps.length) % steps.length
     }
     if(key === 'f' && e.target === mainTargetDiv){
-        console.log('here')
         iSteps = 0
 
     }
