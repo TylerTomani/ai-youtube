@@ -53,7 +53,7 @@ export function initStepNavigation(mainTargetDiv){
 
                 if (key === "enter") {
                     toggleStepImages(step, e);
-                    step.scrollIntoView({ behavior: 'instant', block: 'center' });
+                    // step.scrollIntoView({ behavior: 'instant', block: 'center' });
                     const firstCopyCode = e.target.querySelector('.copy-code')
                     // copyCodesStepFocused = true
                     if (step == lastStep && stepClicked) {
@@ -64,20 +64,7 @@ export function initStepNavigation(mainTargetDiv){
                     lastStep = step
                     stepClicked = true
                 }
-                // if (key === 'm') {
-                //     // console.log('here')
-                //     console.log('here')
-                //     if(e.target == step){
-                //         mainTargetDiv.focus()
-                //     }
-                //     if (!copyCodesStepFocused) {
-                //         // console.log('line 60 step-txt.js breaking code');
-                //         // This was breaking code
-                //         // body.scrollIntoView({ behavior: 'instant', block: 'start'})
-                //     } else {
-                //         step.focus()
-                //     }
-                // }
+                
 
             });
             // --- unified pointerdown for click/tap ---

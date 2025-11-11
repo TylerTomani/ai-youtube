@@ -22,10 +22,11 @@ export function mainContentNav({ e, focusZone }){
         // if a step is focused → move to mainTargetDiv
         else if (document.activeElement.classList.contains('step-float')) {
             mainTargetDiv.focus();
+            scrollTo(0, 0);
         }
         // fallback: scroll to top
         else {
-            scrollTo(0, 0);
+            // scrollTo(0, 0);
         }
         return;
     }
