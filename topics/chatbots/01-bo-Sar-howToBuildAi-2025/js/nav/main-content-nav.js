@@ -12,6 +12,7 @@ export function mainContentNav({ e, focusZone }){
     if (['s', 'n', 'm'].includes(key)) {
         e.preventDefault()
         e.stopPropagation()
+        return
     }
 
     if (key === 'm') {

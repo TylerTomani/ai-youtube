@@ -3,6 +3,7 @@ import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
+// import {home}
 let steps = []
 let iSteps = 0
 export let lastStep = null;
@@ -37,20 +38,14 @@ export function initStepNavigation(mainTargetDiv){
 
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
-                const hasVideo = step.querySelector('video') ? true : false
-                if (hasVideo) {
-                    const vid = step.querySelector('video')
-                    // console.log(vid.currentTime)
-                    // handleVideo({ vid, e, steps, allVids })
-                    // changeTutorialLink(e.target)
-                    // const copyCodes = document.querySelectorAll('.copy-code, a')
-                    if (key === 'enter') {
-                        // copyCodesStepFocused = true
-                    }
-
-                    return
-                }
-
+                // const hasVideo = step.querySelector('video') ? true : false
+                // if (hasVideo) {
+                //     const vid = step.querySelector('video')
+                //     if (key === 'enter') {
+                //         // copyCodesStepFocused = true
+                //     }
+                //     return
+                // }
                 if (key === "enter") {
                     toggleStepImages(step, e);
                     // step.scrollIntoView({ behavior: 'instant', block: 'center' });
@@ -83,7 +78,7 @@ export function initStepNavigation(mainTargetDiv){
 }
 
 export function handleStepNav({e, focusZone}){
-    if(focusZone != 'mainTargetDiv') return
+    // if(focusZone != 'mainTargetDiv') return
     let key = e.key
     if(!isNaN(key)){
         let intLet = parseInt(key)
@@ -91,6 +86,10 @@ export function handleStepNav({e, focusZone}){
             steps[intLet - 1 ].focus()
         }
     }
+    /////////////
+    //**
+    // FIGURE OUT how to make header shortcuts work when mainTargetDiv has focus
+    //  */
     if(key === 's'){
         console.log("'s' in step-nav ")
         console.log(lastClickedSideBarLink)
@@ -102,14 +101,19 @@ export function handleStepNav({e, focusZone}){
     if (key === 'f') {
         iSteps = (iSteps + 1) % steps.length
     }
+    if (key === 'f' && e.target === mainTargetDiv) {
+        iSteps = 0
+    }
     if (key === 'a') {
         iSteps = (iSteps - 1 + steps.length) % steps.length
     }
-    if(key === 'f' && e.target === mainTargetDiv){
-        iSteps = 0
+    /////////////
+    if(steps[iSteps]){
 
+        steps[iSteps].focus()
+    } else{
+        
     }
-    steps[iSteps].focus()
     
     
 }

@@ -22,6 +22,8 @@ function initMain(e) {
 
     // Detect and handle initial focus zone
     const initialZone = getFocusZone({ el: document.activeElement });
+    // const initialZone = 'sideBar'
+    console.log(initialZone)
     if (initialZone === 'sideBar') sideBarNav({ e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
 
@@ -67,32 +69,11 @@ function setupGlobalKeyListener() {
         if (!e || !e.key) return;
         const key = e.key.toLowerCase();
         const focusZone = getFocusZone({ e });
-
+        console.log(e.target)
         // Always allow letterFocus everywhere (header, outside zones, etc.)
-        letterFocus({ e, focusZone });
+        
 
-        // --- global cross-zone shortcuts ---
-        // jump to sidebar
-        if (focusZone !== 'sideBar' && key === 's') {
-            if (lastClickedSideBarLink) lastClickedSideBarLink.focus();
-            else if (lastFocusedSideBarLink) lastFocusedSideBarLink.focus();
-            else sideBarBtn?.focus();
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-        }
-
-        // jump to mainTargetDiv / lastStep
-        if (focusZone !== 'mainTargetDiv' && focusZone !== 'header' && key === 'm') {
-            if (lastStep && typeof lastStep.focus === 'function') {
-                lastStep.focus();
-            } else {
-                mainTargetDiv?.focus();
-            }
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-        }
+        
 
         // --- normal per-zone behavior ---
         switch (focusZone) {
@@ -112,6 +93,28 @@ function setupGlobalKeyListener() {
                 // outside any zone, just letterFocus applies
                 break;
         }
+        // --- global cross-zone shortcuts ---
+        // jump to sidebar
+        if (focusZone !== 'sideBar' && key === 's') {
+            if (lastClickedSideBarLink) lastClickedSideBarLink.focus();
+            else if (lastFocusedSideBarLink) lastFocusedSideBarLink.focus();
+            else sideBarBtn?.focus();
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        // jump to mainTargetDiv / lastStep
+        if (focusZone !== 'mainTargetDiv' && focusZone !== 'header' && key === 'm') {
+            if (lastStep && typeof lastStep.focus === 'function') {
+                lastStep.focus();
+            } else {
+                mainTargetDiv?.focus();
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        letterFocus({ e, focusZone });
     });
 }
 

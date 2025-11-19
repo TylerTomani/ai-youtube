@@ -14,8 +14,9 @@ export function letterFocus({ e, focusZone }) {
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
 
     // Skip letter focus in mainTargetDiv or targetHeaderh3 zones
-    if (focusZone === 'mainTargetDiv') {
-
+    if (focusZone === 'mainTargetDiv' && key === 'm') {
+        mainTargetDiv.focus()
+        scrollTo({behavior: "smooth", block: 'center'})
         return;
     }
     // Skip the 's' key inside the sidebar — handled elsewhere
