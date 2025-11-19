@@ -4,12 +4,24 @@ export const mainTargetDiv = document.querySelector('#mainTargetDiv')
 import { lastClickedSideBarLink,lastFocusedSideBarLink } from "./side-bar-nav.js"
 import { sideBarBtn } from "../ui/toggle-side-bar.js";
 import { handleStepNav,lastStep } from "./step-nav.js";
+import { letterFocus } from "./letter-focus.js";
+// import { letterFocus } from "./letter-focus.js";
 export function mainContentNav({ e, focusZone }){
     if (focusZone != 'mainTargetDiv') return 
     let key = e.key.toLowerCase()
 
     // Only block propagation for global nav keys
-    if (['s', 'n', 'm'].includes(key)) {
+    // console.log(letteredEls)
+    // letteredEls.forEach((el, i, arr) => {
+    //     // console.log(el.id)
+    //     if(key = el.id[0]){
+    //         e.preventDefault()
+    //         e.stopPropagation()
+    //         return
+    //     }
+
+    // })
+    if (['s', 'n'].includes(key)) {
         e.preventDefault()
         e.stopPropagation()
         return
@@ -17,11 +29,16 @@ export function mainContentNav({ e, focusZone }){
 
     if (key === 'm') {
         // if mainTargetDiv currently has focus → go back to last step
-        if (document.activeElement === mainTargetDiv && lastStep) {
-            lastStep.focus();
+        if (document.activeElement != lastStep) {
+            // console.log('here')
+            // console./log(lastStep)
+            if(lastStep){
+                lastStep.focus()
+                return;
+            }
         }
         // if a step is focused → move to mainTargetDiv
-        else if (document.activeElement.classList.contains('step-float')) {
+        if (document.activeElement.classList.contains('step-float')) {
             mainTargetDiv.focus();
             scrollTo(0, 0);
         }
@@ -48,5 +65,7 @@ export function mainContentNav({ e, focusZone }){
     // THE PROBLEM IS IN handleStepNav.js
     // handleStepNav is in step-nav.js
     handleStepNav({ e, focusZone })
+    // letterFocus({ e, focusZone })
+
 }
 

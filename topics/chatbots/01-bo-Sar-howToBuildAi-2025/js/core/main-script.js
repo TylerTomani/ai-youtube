@@ -6,7 +6,7 @@ import { initDropDowns } from "../ui/drop-downs-sidebar-temp.js";
 import { handleStepNav, lastStep } from "../nav/step-nav.js";
 import { initToggleSidebar, mainContainer, sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
 import { sideBarNav, lastClickedSideBarLink, lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
-import { mainContentNav } from "../nav/main-content-nav.js";
+import { mainContentNav, mainTargetDiv } from "../nav/main-content-nav.js";
 export const navBarLessonTitle = document.querySelector('#navBarLessonTitle');
 // ===== Initialization =====
 document.addEventListener('DOMContentLoaded', initMain);
@@ -30,15 +30,12 @@ function initMain(e) {
     setupSidebarShortcuts();
     setupGlobalKeyListener();
 }
-
 // ===== Sidebar “S” Key Shortcut =====
 function setupSidebarShortcuts() {
     if (!sideBarBtn || !navBarLessonTitle) return;
-
     sideBarBtn.addEventListener('keydown', handleSKeySideBarNav);
     navBarLessonTitle.addEventListener('keydown', handleSKeySideBarNav);
 }
-
 function handleSKeySideBarNav(e) {
     const key = e.key.toLowerCase();
     if (key !== 's') return;
@@ -61,7 +58,6 @@ function handleSKeySideBarNav(e) {
         return 
     }
 }
-
 // ===== Global Key Listener =====
 function setupGlobalKeyListener() {
     addEventListener('keydown', (e) => {
@@ -72,10 +68,12 @@ function setupGlobalKeyListener() {
         // --- normal per-zone behavior ---
         switch (focusZone) {
             case 'sideBar':
+                console.log(focusZone)
                 sideBarNav({ e, focusZone });
                 break;
 
             case 'mainTargetDiv':
+                console.log(focusZone)
                 mainContentNav({ e, focusZone });
                 break;
 
@@ -87,28 +85,36 @@ function setupGlobalKeyListener() {
                 // outside any zone, just letterFocus applies
                 break;
         }
+        // console.log('here')
+        letterFocus({ e, focusZone });
         // --- global cross-zone shortcuts ---
         // jump to sidebar
-        if (focusZone !== 'sideBar' && key === 's') {
-            if (lastClickedSideBarLink) lastClickedSideBarLink.focus();
-            else if (lastFocusedSideBarLink) lastFocusedSideBarLink.focus();
-            else sideBarBtn?.focus();
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-        }
+        // if (focusZone !== 'sideBar' && key === 's') {
+        //     if (lastClickedSideBarLink) lastClickedSideBarLink.focus();
+        //     else if (lastFocusedSideBarLink) lastFocusedSideBarLink.focus();
+        //     else sideBarBtn?.focus();
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     return;
+        // }
+        // if (focusZone !== 'sideBar' && key === 'm') {
+        //     mainTargetDiv.focus()
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     return;
+        // }
         // jump to mainTargetDiv / lastStep
-        if (focusZone !== 'mainTargetDiv' && focusZone !== 'header' && key === 'm') {
-            if (lastStep && typeof lastStep.focus === 'function') {
-                lastStep.focus();
-            } else {
-                mainTargetDiv?.focus();
-            }
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-        }
-        letterFocus({ e, focusZone });
+        // if (focusZone !== 'mainTargetDiv' && focusZone !== 'header' && key === 'm') {
+        //     if (lastStep && typeof lastStep.focus === 'function') {
+        //         lastStep.focus();
+        //     } else {
+        //         mainTargetDiv?.focus();
+        //     }
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     return;
+        // }
+        
     });
 }
 

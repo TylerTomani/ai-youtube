@@ -116,10 +116,13 @@ export function sideBarNav({ e , focusZone}) {
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
         if(lastStep) {
+            console.log(lastStep)
+            e.preventDefault()
             lastStep.focus()
             return 
-        } 
-        mainTargetDiv.focus()
+        }  else {
+            mainTargetDiv.focus()
+        }
     }
     // 'f' key moves forward
     if (key === 'f') {
@@ -143,7 +146,6 @@ export function sideBarNav({ e , focusZone}) {
 
         suppressIndexUpdate = false;
     }
-
     // 'a' key moves backward
     if (key === 'a') {
         suppressIndexUpdate = true;

@@ -1,7 +1,10 @@
 // letter-focus.js
 let lastLetterPressed = null;
 import { mainTargetDiv } from "./main-content-nav.js";
-
+import { lastClickedSideBarLink } from "./side-bar-nav.js";
+import { sideBarBtn } from "../ui/toggle-side-bar.js";
+import { lastStep } from "./step-nav.js";
+// export let letteredEls = []
 export function letterFocus({ e, focusZone }) {
     if (!e || !e.key) return;
     
@@ -12,18 +15,33 @@ export function letterFocus({ e, focusZone }) {
 
     const key = e.key.toLowerCase();
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
-
+    
+    
+    // if ((focusZone === 'mainTargetDiv' || focusZone === 'sideBar')){
+    //     return
+    // }
     // Skip letter focus in mainTargetDiv or targetHeaderh3 zones
-    if (focusZone === 'mainTargetDiv' && key === 'm') {
-        mainTargetDiv.focus()
-        scrollTo({behavior: "smooth", block: 'center'})
-        return;
-    }
+    // if ((focusZone === 'mainTargetDiv' || focusZone === 'sideBar') && key === 'm') {
+    //     if(e.target === 'mainTargetDiv'){
+    //         console.log('here')
+    //         if(lastStep){
+    //             lastStep.focus()
+    //         }
+    //     }
+    //     mainTargetDiv.focus()
+    //     scrollTo({behavior: "smooth", block: 'center'})
+    //     return;
+    // }
     // Skip the 's' key inside the sidebar — handled elsewhere
-    if (focusZone === 'sideBar' && key === 's') {
-
-        return;
-    }
+    // if (focusZone === 'sideBar' && key === 's') {
+    //     // console.log(lastClickedSideBarLink)
+    //     lastClickedSideBarLink.focus()
+    //     // return;
+    // }
+    // if (focusZone === 'header' && key === 'f') {
+    //     sideBarBtn.focus()
+    //     return;
+    // }
 
     // Find visible, valid elements
     const allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
@@ -41,8 +59,18 @@ export function letterFocus({ e, focusZone }) {
         );
     });
 
+    if (key === 'm') {
+        if (focusZone != 'mainTargetDiv'){
+            console.log(matching)
+            matching.push(mainTargetDiv)
+            if(lastStep){
+                lastStep.focus()
+                return 
+            }
+        }
+    }
     if (matching.length === 0) return;
-
+    // letteredEls = matching
     const activeEl = document.activeElement;
     const activeIndex = matching.indexOf(activeEl);
 
