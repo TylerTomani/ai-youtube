@@ -1,11 +1,14 @@
 @import url('responsive.css');
-@import url('steps.css');
+/* @import url('steps.css'); */
 /* uis */
 @import url('ui/toggle-side-bar.css');
 @import url('ui/side-bar.css');
 /* utilities -> header */
 @import url('utilities/header/grid.css');
 @import url('utilities/header/layout.css');
+/* utilities -> steps */
+@import url('utilities/steps/step-text.css');
+@import url('utilities/steps/code-containers.css');
 /* utilities */
 @import url('utilities/borders.css');
 @import url('utilities/effects.css');

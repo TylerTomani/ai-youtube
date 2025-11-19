@@ -1,0 +1,48 @@
+#targetDiv>.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* steps.css */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.step-img,
+.step-vid {
+    float: right;
+    /* width: 45%; */
+    /* margin-right: 5%; */
+    margin-left: 10px;
+}
+
+img,
+video {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+#navLessonTitle {
+    display: flex;
+    /* flex-grow: 1; */
+    align-content: center;
+}
+
+.step-float>.step-txt {
+    /* flex-shrink: 1; */
+    flex-grow: 1;
+    /* max-width: 50%; */
+    flex-basis: 50%;
+}
+
+
+
+.step-txt p {    
+    padding: 1% 2%
+}
+.step-txt > ul {    
+    padding: 2% 0 ;
+    border: 1px solid red;
+    padding-left: 20%;
+}
