@@ -48,7 +48,6 @@ allSideBarLinks.forEach((el, i) => {
     // Dropdown toggle
     if (el.classList.contains('drop-down')) {
         el.addEventListener('click', (e) => {
-            console.log('here')
             e.preventDefault()
             const nextOl = el.nextElementSibling;
             if (nextOl && nextOl.tagName === 'OL') {
@@ -116,13 +115,14 @@ export function sideBarNav({ e , focusZone}) {
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
         if(lastStep) {
+            console.log('side-bar-nav key == \'m\'')
             console.log(lastStep)
-            e.preventDefault()
+            // e.preventDefault()
             lastStep.focus()
-            return 
         }  else {
             mainTargetDiv.focus()
         }
+        return 
     }
     // 'f' key moves forward
     if (key === 'f') {
@@ -186,12 +186,14 @@ export function sideBarNav({ e , focusZone}) {
             const ul = activeEl.closest('ul.drop-snips') || activeEl.closest('ul');
             const parentLi = ul?.closest('.side-bar-links > li') || ul?.closest('li');
             const parentLink = parentLi?.querySelector(':scope > a.drop-down') || parentLi?.querySelector(':scope > a');
+            console.log(parentLink)
             if (parentLink) {
-                suppressIndexUpdate = true;
+                e.preventDefault()
+                // suppressIndexUpdate = true;
                 parentLink.focus();
                 // update index to parent's index explicitly so visible f/a navigation continues correctly
                 iSideBarLinks = allSideBarLinks.indexOf(parentLink);
-                suppressIndexUpdate = false;
+                // suppressIndexUpdate = false;
                 return;
             }
         }

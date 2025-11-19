@@ -65,15 +65,13 @@ function setupGlobalKeyListener() {
         const key = e.key.toLowerCase();
         const focusZone = getFocusZone({ e });
         // Always allow letterFocus everywhere (header, outside zones, etc.)
-        // --- normal per-zone behavior ---
+        // --- normal per-zone behavior ---        
         switch (focusZone) {
             case 'sideBar':
-                console.log(focusZone)
                 sideBarNav({ e, focusZone });
                 break;
 
             case 'mainTargetDiv':
-                console.log(focusZone)
                 mainContentNav({ e, focusZone });
                 break;
 
@@ -87,6 +85,7 @@ function setupGlobalKeyListener() {
         }
         // console.log('here')
         letterFocus({ e, focusZone });
+        
         // --- global cross-zone shortcuts ---
         // jump to sidebar
         // if (focusZone !== 'sideBar' && key === 's') {

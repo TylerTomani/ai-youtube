@@ -16,33 +16,6 @@ export function letterFocus({ e, focusZone }) {
     const key = e.key.toLowerCase();
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
     
-    
-    // if ((focusZone === 'mainTargetDiv' || focusZone === 'sideBar')){
-    //     return
-    // }
-    // Skip letter focus in mainTargetDiv or targetHeaderh3 zones
-    // if ((focusZone === 'mainTargetDiv' || focusZone === 'sideBar') && key === 'm') {
-    //     if(e.target === 'mainTargetDiv'){
-    //         console.log('here')
-    //         if(lastStep){
-    //             lastStep.focus()
-    //         }
-    //     }
-    //     mainTargetDiv.focus()
-    //     scrollTo({behavior: "smooth", block: 'center'})
-    //     return;
-    // }
-    // Skip the 's' key inside the sidebar — handled elsewhere
-    // if (focusZone === 'sideBar' && key === 's') {
-    //     // console.log(lastClickedSideBarLink)
-    //     lastClickedSideBarLink.focus()
-    //     // return;
-    // }
-    // if (focusZone === 'header' && key === 'f') {
-    //     sideBarBtn.focus()
-    //     return;
-    // }
-
     // Find visible, valid elements
     const allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
         const rect = el.getBoundingClientRect();
@@ -58,17 +31,41 @@ export function letterFocus({ e, focusZone }) {
             id !== 'targetheaderh3'
         );
     });
-
+// SPECIAL CASES for mainTargetDiv and sideBar in side-bar-nav.js and main-content-nav.js
     if (key === 'm') {
         if (focusZone != 'mainTargetDiv'){
-            console.log(matching)
             matching.push(mainTargetDiv)
             if(lastStep){
                 lastStep.focus()
-                return 
+            } else {
+                mainTargetDiv.focus()
+            }
+            return 
+        } 
+        if (focusZone == 'mainTargetDiv') {
+            if(e.target != lastStep){
+                if(lastStep){
+                    lastStep.focus()
+                }
+                return
             }
         }
+        if(focusZone == 'sideBar') {
+            if (lastStep) {
+                lastStep.focus()
+            } else {
+                mainTargetDiv.focus()
+            }
+            return
+        }
     }
+    if(key === 's'){
+        if(focusZone === 'sideBar'){
+            return 
+        }
+    }
+
+    
     if (matching.length === 0) return;
     // letteredEls = matching
     const activeEl = document.activeElement;

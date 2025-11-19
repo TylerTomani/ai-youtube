@@ -11,27 +11,16 @@ export function mainContentNav({ e, focusZone }){
     let key = e.key.toLowerCase()
 
     // Only block propagation for global nav keys
-    // console.log(letteredEls)
-    // letteredEls.forEach((el, i, arr) => {
-    //     // console.log(el.id)
-    //     if(key = el.id[0]){
-    //         e.preventDefault()
-    //         e.stopPropagation()
-    //         return
-    //     }
-
-    // })
-    if (['s', 'n'].includes(key)) {
-        e.preventDefault()
-        e.stopPropagation()
-        return
-    }
 
     if (key === 'm') {
         // if mainTargetDiv currently has focus → go back to last step
         if (document.activeElement != lastStep) {
-            // console.log('here')
-            // console./log(lastStep)
+            if(lastStep){
+                lastStep.focus()
+                return;
+            }
+        }
+        if (document.activeElement != mainTargetDiv) {
             if(lastStep){
                 lastStep.focus()
                 return;
@@ -58,8 +47,8 @@ export function mainContentNav({ e, focusZone }){
         return
     }
     if(key === 's'){
-        sideBarBtn.focus()
-        console.log('here')
+        // sideBarBtn.focus()
+        // console.log('here')
         return
     }
     // THE PROBLEM IS IN handleStepNav.js
