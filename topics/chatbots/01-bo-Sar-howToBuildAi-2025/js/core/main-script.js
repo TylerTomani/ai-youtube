@@ -23,7 +23,6 @@ function initMain(e) {
     // Detect and handle initial focus zone
     const initialZone = getFocusZone({ el: document.activeElement });
     // const initialZone = 'sideBar'
-    console.log(initialZone)
     if (initialZone === 'sideBar') sideBarNav({ e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
 
@@ -69,12 +68,7 @@ function setupGlobalKeyListener() {
         if (!e || !e.key) return;
         const key = e.key.toLowerCase();
         const focusZone = getFocusZone({ e });
-        console.log(e.target)
         // Always allow letterFocus everywhere (header, outside zones, etc.)
-        
-
-        
-
         // --- normal per-zone behavior ---
         switch (focusZone) {
             case 'sideBar':
