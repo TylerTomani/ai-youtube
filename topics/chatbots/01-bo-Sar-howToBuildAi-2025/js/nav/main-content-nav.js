@@ -31,17 +31,10 @@ export function mainContentNav({ e, focusZone }){
             mainTargetDiv.focus();
             scrollTo(0, 0);
         }
-        // fallback: scroll to top
-        else {
-            // scrollTo(0, 0);
-        }
         return;
     }
 
-    // if(e.target != mainTargetDiv && key === 'm'){
-    //     scrollTo(0,0)
-    //     return 
-    // }
+    
     if(key === 'n'){
         navBarLessonTitle.focus()
         return
