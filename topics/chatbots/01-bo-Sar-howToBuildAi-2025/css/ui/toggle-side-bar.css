@@ -7,14 +7,11 @@ main.main-container.collapsed .main-content-container {
   flex-grow: 1;
   /* background-color: blue; */
 }
-main.main-container.collapsed .side-bar h2,
+main.main-container.collapsed .side-bar h3,
 main.main-container.collapsed .side-bar .sidebar-links-ul {
   display: none;
 }
 
-main.main-container.collapsed .header-codeColor-lesson h3 {
-  margin-left: 10%;
-}
 main.main-container.collapsed #sideBarBtn {
   max-height: fit-content;
   position: fixed;

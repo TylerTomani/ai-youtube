@@ -55,12 +55,26 @@ allSideBarLinks.forEach((el, i) => {
             }
         });
         el.addEventListener('keydown', (e) => {
-            e.preventDefault()
             let key = e.key.toLowerCase()
             if(key === 'enter'){
+                e.preventDefault()
                 scrollTo(0,0)
                 lastClickedSideBarLink = e.target
                 injectContent(e.target.href)
+            }
+            if(key === 'm'){
+                
+                if (lastStep) {
+                    console.log('step')
+                    
+                    console.log(lastStep)
+                    // e.preventDefault()
+                    lastStep.focus()
+                } else {
+                    console.log('main')
+                    mainTargetDiv.focus()
+                }
+                return 
             }
             
         });
@@ -115,15 +129,17 @@ export function sideBarNav({ e , focusZone}) {
     }
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
-        // if(lastStep) {
-        //     console.log('side-bar-nav key == \'m\'')
-        //     console.log(lastStep)
-        //     // e.preventDefault()
-        //     lastStep.focus()
-        // }  else {
-        //     mainTargetDiv.focus()
-        // }
-        // return 
+        e.preventDefault()
+        if(lastStep) {
+            console.log('side-bar-nav key == \'m\'')
+            console.log(lastStep)
+            // e.preventDefault()
+            lastStep.focus()
+            return
+        }  else {
+            mainTargetDiv.focus()
+        }
+        return 
     }
     // 'f' key moves forward
     if (key === 'f') {

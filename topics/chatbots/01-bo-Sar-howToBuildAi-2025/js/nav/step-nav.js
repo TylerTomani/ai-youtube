@@ -28,7 +28,7 @@ export function initStepNavigation(mainTargetDiv){
                 // pauseEnlargeAllVids(allVids)
                 lastStep = step
                 stepClicked = false
-                step.scrollIntoView({ behavior: 'instant', inline: 'center' })
+                step.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
             });
             step.addEventListener("focusin", () => {

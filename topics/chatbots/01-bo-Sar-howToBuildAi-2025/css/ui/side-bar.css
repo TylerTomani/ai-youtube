@@ -3,7 +3,15 @@
     --main-content-width: calc(100% - var(--sidebar-width));
     --sidebar-collapsed-width: 2.5%;
 }
-
+.side-bar a.topic{
+    text-decoration: none;
+}
+.side-bar h3{
+    border-bottom: 1px solid blue;
+    width: 50%;
+    margin-bottom: 5%;
+    margin-top: 20%;
+}
 .side-bar {
     width: var(--sidebar-width);
     position: sticky;
@@ -25,18 +33,23 @@
     pointer-events: auto;
     /* make sure it's above other stuff */
 }
-ul.side-bar-links > li {
-    margin-top: 10%;
+
+ul.side-bar-links>li {
+    /* margin-top: 10%; */
 }
+
 .side-bar ul {
-    list-style: num;
-    margin:0;
+    list-style: decimal;
+    /* font-size: .5rem; */
+    margin: 0;
     margin-left: 20%;
-    
+
 }
-.side-bar ul > li{
-}
-.side-bar ul > li > a{
+
+.side-bar ul>li {}
+
+.side-bar ul>li>a {
     text-decoration: none;
 
 }
+

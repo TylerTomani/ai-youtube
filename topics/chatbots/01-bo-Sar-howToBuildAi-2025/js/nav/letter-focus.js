@@ -2,7 +2,7 @@
 let lastLetterPressed = null;
 import { mainTargetDiv } from "./main-content-nav.js";
 import { lastClickedSideBarLink } from "./side-bar-nav.js";
-import { sideBarBtn } from "../ui/toggle-side-bar.js";
+import { mainContainer, sideBarBtn } from "../ui/toggle-side-bar.js";
 import { lastStep } from "./step-nav.js";
 // export let letteredEls = []
 export function letterFocus({ e, focusZone }) {
@@ -34,6 +34,7 @@ export function letterFocus({ e, focusZone }) {
 // SPECIAL CASES for mainTargetDiv and sideBar in side-bar-nav.js and main-content-nav.js
     if (key === 'm') {
         if (focusZone != 'mainTargetDiv'){
+            
             matching.push(mainTargetDiv)
             if(lastStep){
                 lastStep.focus()
@@ -46,6 +47,8 @@ export function letterFocus({ e, focusZone }) {
             if(e.target != lastStep){
                 if(lastStep){
                     lastStep.focus()
+                } else {
+                    mainTargetDiv.focus()
                 }
                 return
             }
@@ -54,6 +57,9 @@ export function letterFocus({ e, focusZone }) {
     }
     if(key === 's'){
         if(focusZone === 'mainTargetDiv'){
+            if(mainContainer.classList.contains('collapsed')){
+                sideBarBtn.focus()
+            }
             return 
         }
         if(focusZone === 'sideBar'){
