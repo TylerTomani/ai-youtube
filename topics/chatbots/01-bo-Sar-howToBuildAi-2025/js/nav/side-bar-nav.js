@@ -83,6 +83,24 @@ allSideBarLinks.forEach((el, i) => {
             e.preventDefault()
             // e.stopPropagation()
         })
+        el.addEventListener('keydown', e => {
+            let key = e.key.toLowerCase()
+            if (key === 'm') {
+                e.preventDefault()
+                console.log('what the fuck')
+
+                if (lastStep) {
+                    console.log('step')
+
+                    console.log(lastStep)
+                    lastStep.focus()
+                } else {
+                    console.log('main')
+                    mainTargetDiv.focus()
+                }
+                return
+            }
+        })
     }
     
     el.addEventListener('focus', (e) => {
