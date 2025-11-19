@@ -38,25 +38,28 @@ function setupSidebarShortcuts() {
 }
 function handleSKeySideBarNav(e) {
     const key = e.key.toLowerCase();
-    if (key !== 's') return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Ensure references exist before using them
-    if (!lastClickedSideBarLink && !lastFocusedSideBarLink) return;
-
-    const dropSnips = lastClickedSideBarLink?.closest?.('ul');
-    if (!mainContainer.classList.contains('collapsed')){
-
-        if (lastClickedSideBarLink && dropSnips && !dropSnips.classList.contains('hide')) {
-            lastClickedSideBarLink.focus();
-        } else if(lastFocusedSideBarLink ) {
-            lastFocusedSideBarLink?.focus();
+    if(key === 's'){
+        e.preventDefault();
+        e.stopPropagation();
+        if(mainContainer.classList.contains('collapsed')){
+            mainContainer.classList.remove('collapsed')
         }
-    } else {
-        return 
+        // Ensure references exist before using them
+        if (!lastClickedSideBarLink && !lastFocusedSideBarLink) return;
+
+        const dropSnips = lastClickedSideBarLink?.closest?.('ul');
+        if (!mainContainer.classList.contains('collapsed')){
+
+            if (lastClickedSideBarLink && dropSnips && !dropSnips.classList.contains('hide')) {
+                lastClickedSideBarLink.focus();
+            } else if(lastFocusedSideBarLink ) {
+                lastFocusedSideBarLink?.focus();
+            }
+        } else {
+            return 
+        }
     }
+    
 }
 // ===== Global Key Listener =====
 function setupGlobalKeyListener() {

@@ -50,16 +50,12 @@ export function letterFocus({ e, focusZone }) {
                 return
             }
         }
-        if(focusZone == 'sideBar') {
-            if (lastStep) {
-                lastStep.focus()
-            } else {
-                mainTargetDiv.focus()
-            }
-            return
-        }
+        
     }
     if(key === 's'){
+        if(focusZone === 'mainTargetDiv'){
+            return 
+        }
         if(focusZone === 'sideBar'){
             return 
         }

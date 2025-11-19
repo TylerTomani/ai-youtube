@@ -59,6 +59,7 @@ allSideBarLinks.forEach((el, i) => {
             let key = e.key.toLowerCase()
             if(key === 'enter'){
                 scrollTo(0,0)
+                lastClickedSideBarLink = e.target
                 injectContent(e.target.href)
             }
             
@@ -114,15 +115,15 @@ export function sideBarNav({ e , focusZone}) {
     }
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
-        if(lastStep) {
-            console.log('side-bar-nav key == \'m\'')
-            console.log(lastStep)
-            // e.preventDefault()
-            lastStep.focus()
-        }  else {
-            mainTargetDiv.focus()
-        }
-        return 
+        // if(lastStep) {
+        //     console.log('side-bar-nav key == \'m\'')
+        //     console.log(lastStep)
+        //     // e.preventDefault()
+        //     lastStep.focus()
+        // }  else {
+        //     mainTargetDiv.focus()
+        // }
+        // return 
     }
     // 'f' key moves forward
     if (key === 'f') {
@@ -186,7 +187,6 @@ export function sideBarNav({ e , focusZone}) {
             const ul = activeEl.closest('ul.drop-snips') || activeEl.closest('ul');
             const parentLi = ul?.closest('.side-bar-links > li') || ul?.closest('li');
             const parentLink = parentLi?.querySelector(':scope > a.drop-down') || parentLi?.querySelector(':scope > a');
-            console.log(parentLink)
             if (parentLink) {
                 e.preventDefault()
                 // suppressIndexUpdate = true;

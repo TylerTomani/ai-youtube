@@ -48,7 +48,8 @@ export function mainContentNav({ e, focusZone }){
     }
     if(key === 's'){
         // sideBarBtn.focus()
-        // console.log('here')
+        console.log(lastClickedSideBarLink)
+        lastClickedSideBarLink.focus()
         return
     }
     // THE PROBLEM IS IN handleStepNav.js
