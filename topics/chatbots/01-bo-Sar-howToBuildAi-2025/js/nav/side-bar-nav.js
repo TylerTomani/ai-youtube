@@ -1,4 +1,5 @@
 // side-bar-nav.js
+import { handleMKey } from "./m-key-handler.js";
 import { changeTutorialLink } from "../ui/change-tutorial-link.js";
 import { lastStep } from "./step-nav.js";
 import { sideBar, sideBarBtn,navBarLessonTitle } from "../ui/toggle-side-bar.js";
@@ -63,18 +64,8 @@ allSideBarLinks.forEach((el, i) => {
                 injectContent(e.target.href)
             }
             if(key === 'm'){
-                
-                if (lastStep) {
-                    console.log('step')
-                    
-                    console.log(lastStep)
-                    // e.preventDefault()
-                    lastStep.focus()
-                } else {
-                    console.log('main')
-                    mainTargetDiv.focus()
-                }
-                return 
+                handleMKey(e);
+                return;
             }
             
         });
@@ -86,19 +77,8 @@ allSideBarLinks.forEach((el, i) => {
         el.addEventListener('keydown', e => {
             let key = e.key.toLowerCase()
             if (key === 'm') {
-                e.preventDefault()
-                console.log('what the fuck')
-
-                if (lastStep) {
-                    console.log('step')
-
-                    console.log(lastStep)
-                    lastStep.focus()
-                } else {
-                    console.log('main')
-                    mainTargetDiv.focus()
-                }
-                return
+                handleMKey(e);
+                return;
             }
         })
     }
@@ -147,17 +127,8 @@ export function sideBarNav({ e , focusZone}) {
     }
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
-        e.preventDefault()
-        if(lastStep) {
-            console.log('side-bar-nav key == \'m\'')
-            console.log(lastStep)
-            // e.preventDefault()
-            lastStep.focus()
-            return
-        }  else {
-            mainTargetDiv.focus()
-        }
-        return 
+          handleMKey(e);
+        return;
     }
     // 'f' key moves forward
     if (key === 'f') {

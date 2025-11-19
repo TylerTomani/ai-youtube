@@ -1,5 +1,6 @@
 // letter-focus.js
 let lastLetterPressed = null;
+import { handleMKey } from "./m-key-handler.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 import { lastClickedSideBarLink } from "./side-bar-nav.js";
 import { mainContainer, sideBarBtn } from "../ui/toggle-side-bar.js";
@@ -33,26 +34,9 @@ export function letterFocus({ e, focusZone }) {
     });
 // SPECIAL CASES for mainTargetDiv and sideBar in side-bar-nav.js and main-content-nav.js
     if (key === 'm') {
-        if (focusZone != 'mainTargetDiv'){
-            
-            matching.push(mainTargetDiv)
-            if(lastStep){
-                lastStep.focus()
-            } else {
-                mainTargetDiv.focus()
-            }
-            return 
-        } 
-        if (focusZone == 'mainTargetDiv') {
-            if(e.target != lastStep){
-                if(lastStep){
-                    lastStep.focus()
-                } else {
-                    mainTargetDiv.focus()
-                }
-                return
-            }
-        }
+        handleMKey(e);
+        return;
+
         
     }
     if(key === 's'){

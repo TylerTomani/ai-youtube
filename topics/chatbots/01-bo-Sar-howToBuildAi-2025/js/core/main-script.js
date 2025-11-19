@@ -61,6 +61,7 @@ function handleSKeySideBarNav(e) {
     }
     
 }
+
 // ===== Global Key Listener =====
 function setupGlobalKeyListener() {
     addEventListener('keydown', (e) => {
@@ -86,37 +87,7 @@ function setupGlobalKeyListener() {
                 // outside any zone, just letterFocus applies
                 break;
         }
-        // console.log('here')
         letterFocus({ e, focusZone });
-        
-        // --- global cross-zone shortcuts ---
-        // jump to sidebar
-        // if (focusZone !== 'sideBar' && key === 's') {
-        //     if (lastClickedSideBarLink) lastClickedSideBarLink.focus();
-        //     else if (lastFocusedSideBarLink) lastFocusedSideBarLink.focus();
-        //     else sideBarBtn?.focus();
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     return;
-        // }
-        // if (focusZone !== 'sideBar' && key === 'm') {
-        //     mainTargetDiv.focus()
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     return;
-        // }
-        // jump to mainTargetDiv / lastStep
-        // if (focusZone !== 'mainTargetDiv' && focusZone !== 'header' && key === 'm') {
-        //     if (lastStep && typeof lastStep.focus === 'function') {
-        //         lastStep.focus();
-        //     } else {
-        //         mainTargetDiv?.focus();
-        //     }
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     return;
-        // }
-        
     });
 }
 
