@@ -31,12 +31,14 @@ export function letterFocus({ e, focusZone }) {
         );
     });
 // SPECIAL CASES for mainTargetDiv and sideBar in side-bar-nav.js and main-content-nav.js
-    if (key === 'm' ) {
-        handleMKey(e);
-        // return;
-        console.log('letter-focus.js')
-
+    if (focusZone === 'mainTargetDiv'){
         
+        if (key === 'm' ) {
+            handleMKey({e,focusZone});
+            // console.log('here')
+            return;
+            // console.log('letter-focus.js')
+        }
     }
     if(key === 's'){
         if(focusZone === 'mainTargetDiv'){

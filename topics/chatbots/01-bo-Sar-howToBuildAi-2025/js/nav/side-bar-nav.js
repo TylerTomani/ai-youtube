@@ -64,7 +64,7 @@ allSideBarLinks.forEach((el, i) => {
                 injectContent(e.target.href)
             }
             if(key === 'm'){
-                handleMKey(e);
+                // handleMKey({e,focusZone:mainTargetDiv});
                 return;
             }
             
@@ -77,11 +77,18 @@ allSideBarLinks.forEach((el, i) => {
         el.addEventListener('keydown', e => {
             let key = e.key.toLowerCase()
             if (key === 'm') {
-                handleMKey(e);
+                // handleMKey({e,focusZone:mainTargetDiv})
                 return;
             }
-        })
+        }) 
     }
+    el.addEventListener('keydown', e => {
+        let key = e.key.toLowerCase()
+        if (key === 'm') {
+            handleMKey({e,focusZone:mainTargetDiv})
+            return;
+        }
+    }) 
     
     el.addEventListener('focus', (e) => {
         lastFocusedSideBarLink = e.target
@@ -98,6 +105,7 @@ allSideBarLinks.forEach((el, i) => {
         // if (!suppressIndexUpdate) {
         //     iSideBarLinks = i;
         // }
+        
     });
     //  DO NOT NEED 'keydown' with 'click' 
 });
@@ -127,7 +135,7 @@ export function sideBarNav({ e , focusZone}) {
     }
     const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
     if(key === 'm'){
-          handleMKey(e);
+          handleMKey({e,focusZone:mainTargetDiv})
         return;
     }
     // 'f' key moves forward
@@ -170,22 +178,6 @@ export function sideBarNav({ e , focusZone}) {
     }
     // 's' key: move from sublink back to parent top-level link
     if (key === 's') {
-        /////////////////////////////////
-        //** Will NEED to implement this into mainTargetDiv Focus as well
-        // some way */ 
-        // if (e.target == sideBarBtn) {
-        //     console.log('here')
-        //     // console.log(lastClickedSideBarLink)
-        //     if(lastClickedSideBarLink){
-        //         lastClickedSideBarLink.focus()
-        //     } else if(lastFocusedSideBarLink){
-        //         // lastFocusedSideBarLink.focus()
-        //     } else {
-        //         return
-        //     }
-        // }
-        // if(e.target)
-        /////////////////////////////////
         const activeEl = document.activeElement;
         // If sublink, go to its parent top-level link
         if (isSubLink(activeEl)) {
@@ -217,3 +209,10 @@ export function sideBarNav({ e , focusZone}) {
         iSideBarLinks = 0;
     }
 }
+sideBarBtn.addEventListener('keydown', e => {
+    let key = e.key.toLowerCase()
+    if(key === 'm'){
+        mainTargetDiv.focus()
+        // handleMKey({ e, focusZone: 'mainTargetDiv' })
+    }
+});

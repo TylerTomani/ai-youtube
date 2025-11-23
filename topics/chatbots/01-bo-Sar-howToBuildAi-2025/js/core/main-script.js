@@ -67,7 +67,7 @@ function setupGlobalKeyListener() {
         const key = e.key.toLowerCase();
         let focusZone = getFocusZone({ e });
         // /////////////////       I DID IT !!!!!!!!!         /////////////////
-        const allowedKeys = ['b','c','e','h','m','p']
+        const allowedKeys = ['b','c','d','e','h','p']
         if(allowedKeys.includes(key)) {
             focusZone = 'header'
         }

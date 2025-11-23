@@ -2,18 +2,41 @@
 import { lastStep } from "./step-nav.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 
-export function handleMKey(e) {
+export function handleMKey({e,focusZone}) {
     e.preventDefault();
     e.stopPropagation();
-
+    // console.log(focusZone)
     // 1. If there is a lastStep → ALWAYS go there
-    if (lastStep && document.body.contains(lastStep)) {
-        lastStep.focus();
-        return;
+    if(focusZone != 'mainTargetDiv'){
+        console.log(lastStep)
+        if(lastStep){
+            lastStep.focus()
+        } else if(document.contains(mainTargetDiv)){
+            mainTargetDiv.focus()
+        }
     }
-
+    
     // 2. Otherwise ALWAYS go to mainTargetDiv
-    if (mainTargetDiv && document.body.contains(mainTargetDiv)) {
-        mainTargetDiv.focus();
+    // if (mainTargetDiv && document.body.contains(mainTargetDiv)) {
+    //     // console.log('here')
+    //     mainTargetDiv.focus()
+    //     // scrollTo(0,0)
+    //     // mainTargetDiv.scrollIntoView({behavior:'instant',block:'start'});
+    // }
+    // console.log(focusZone)
+    if (focusZone === 'mainTargetDiv'){
+        if (e.target === lastStep){
+            console.log('here')
+            // console.log(mainTargetDiv)
+            mainTargetDiv.focus()
+            mainTargetDiv.scrollIntoView({behavior:'instant',block:'start'});
+            return
+        } else
+        if(e.target === mainTargetDiv){
+            if(lastStep){
+                lastStep.focus()
+                return
+            } 
+        }
     }
 }

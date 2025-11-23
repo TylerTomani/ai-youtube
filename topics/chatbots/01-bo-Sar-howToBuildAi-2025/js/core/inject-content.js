@@ -1,6 +1,8 @@
 // inject-content.js
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
+import { removeLastStep } from "../nav/step-nav.js";
+// import { handleMKey } from "../nav/m-key-handler.js";
 // import { addCopyCode } from "../ui/copy-code.js";
 // const nxtBtn = document.querySelector('nxtBtn')
 // const prevBtn = document.querySelector('prevBtn')
@@ -16,7 +18,7 @@ export function injectContent(href) {
             // Insert HTML into the main container
             mainTargetDiv.innerHTML = html; 
             initStepNavigation(mainTargetDiv)
-
+            removeLastStep()
             // Update nav lesson title if available
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');

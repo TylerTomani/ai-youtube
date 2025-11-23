@@ -13,6 +13,10 @@ let allImgs = [];
 let iImgContainerImages = 0
 let stepClicked = false
 export let copyCodesStepFocused = false;
+export function removeLastStep(){
+    lastStep = null
+
+}
 export function initStepNavigation(mainTargetDiv){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img"));
@@ -48,10 +52,10 @@ export function initStepNavigation(mainTargetDiv){
                 //     return
                 // }
                 if(key == 'm'){
-                    e.preventDefault()
-                    // handleMKey(e)
-                    console.log('here')
-                    console.log(mainTargetDiv)
+                    // e.preventDefault()
+                    // handleMKey({e, focusZone:'mainTargetDiv'})
+                    // console.log('here')
+                    // console.log(mainTargetDiv)
                     
                 }
                 
@@ -87,7 +91,8 @@ export function initStepNavigation(mainTargetDiv){
 }
 
 export function handleStepNav({e, focusZone}){
-    // if(focusZone != 'mainTargetDiv') return
+    // console.log(focusZone)
+    if(focusZone != 'mainTargetDiv') return
     let key = e.key
     if(!isNaN(key)){
         let intLet = parseInt(key)
