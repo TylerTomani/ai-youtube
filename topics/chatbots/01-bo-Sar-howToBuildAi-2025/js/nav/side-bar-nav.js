@@ -6,7 +6,7 @@ import { sideBar, sideBarBtn,navBarLessonTitle } from "../ui/toggle-side-bar.js"
 import { injectContent } from "../core/inject-content.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 let sideBarLinks = [...document.querySelectorAll('.side-bar-links > li > a')];
-let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // all links including nested
+export let allSideBarLinks = [...document.querySelectorAll('.side-bar-links a')]; // all links including nested
 let subSideBarLinks = [...document.querySelectorAll('.side-bar-links > li > ul > li > a')]; // all links including nested
 let sideBarFocused = true;
 let iSideBarLinks = -1;
@@ -213,6 +213,5 @@ sideBarBtn.addEventListener('keydown', e => {
     let key = e.key.toLowerCase()
     if(key === 'm'){
         mainTargetDiv.focus()
-        // handleMKey({ e, focusZone: 'mainTargetDiv' })
     }
 });

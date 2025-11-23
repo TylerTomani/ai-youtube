@@ -2,11 +2,28 @@
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 import { removeLastStep } from "../nav/step-nav.js";
+import { handleSKeySideBarNav } from "./main-script.js";
 // import { handleMKey } from "../nav/m-key-handler.js";
 // import { addCopyCode } from "../ui/copy-code.js";
-// const nxtBtn = document.querySelector('nxtBtn')
-// const prevBtn = document.querySelector('prevBtn')
-// nxtBtn.addEventListener('click', injectContent);
+const nxtBtn = document.querySelector('#endNxtBtn')
+const prevBtn = document.querySelector('#prevBtn')
+nxtBtn.addEventListener('click', e => {
+
+})
+nxtBtn.addEventListener('keydown', e => {
+    let key = e.key.toLowerCase()
+    if(key === 's'){
+        handleSKeySideBarNav(e)
+    }
+
+})
+prevBtn.addEventListener('keydown', e => {
+    let key = e.key.toLowerCase()
+    if(key === 's'){
+        handleSKeySideBarNav(e)
+    }
+
+})
 export function injectContent(href) {
     
     fetch(href)

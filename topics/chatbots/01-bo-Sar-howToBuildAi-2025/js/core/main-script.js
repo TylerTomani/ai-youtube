@@ -35,7 +35,7 @@ function setupSidebarShortcuts() {
     sideBarBtn.addEventListener('keydown', handleSKeySideBarNav);
     navBarLessonTitle.addEventListener('keydown', handleSKeySideBarNav);
 }
-function handleSKeySideBarNav(e) {
+export function handleSKeySideBarNav(e) {
     const key = e.key.toLowerCase();
     if(key === 's'){
         e.preventDefault();
@@ -67,7 +67,7 @@ function setupGlobalKeyListener() {
         const key = e.key.toLowerCase();
         let focusZone = getFocusZone({ e });
         // /////////////////       I DID IT !!!!!!!!!         /////////////////
-        const allowedKeys = ['b','c','d','e','h','p']
+        const allowedKeys = ['b','c','d','e','h','p','n']
         if(allowedKeys.includes(key)) {
             focusZone = 'header'
         }

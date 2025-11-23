@@ -17,13 +17,6 @@ export function handleMKey({e,focusZone}) {
     }
     
     // 2. Otherwise ALWAYS go to mainTargetDiv
-    // if (mainTargetDiv && document.body.contains(mainTargetDiv)) {
-    //     // console.log('here')
-    //     mainTargetDiv.focus()
-    //     // scrollTo(0,0)
-    //     // mainTargetDiv.scrollIntoView({behavior:'instant',block:'start'});
-    // }
-    // console.log(focusZone)
     if (focusZone === 'mainTargetDiv'){
         if (e.target === lastStep){
             console.log('here')
