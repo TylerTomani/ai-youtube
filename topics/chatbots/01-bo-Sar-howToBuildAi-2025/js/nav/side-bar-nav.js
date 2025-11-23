@@ -15,6 +15,16 @@ export let lastClickedSideBarLink = null
 export let lastFocusedSideBarLink = null
 export let clickedSubSideLink = null
 // sub side bar link handling, (( the link that drop down ))
+
+
+
+// I think 
+// ** I need to add event listener for when document first i loaded what element has focus, if 
+// sidebar link that link is lastClickedSideBarLink*/
+
+
+
+
 subSideBarLinks.forEach(el => {
     el.addEventListener('focus', e => {
         clickedSubSideLink = null
@@ -88,8 +98,7 @@ allSideBarLinks.forEach((el, i) => {
             handleMKey({e,focusZone:mainTargetDiv})
             return;
         }
-    }) 
-    
+    })  
     el.addEventListener('focus', (e) => {
         lastFocusedSideBarLink = e.target
         if (!suppressIndexUpdate) {

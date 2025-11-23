@@ -1,4 +1,6 @@
 // inject-content.js
+let iAllSideBarLinks = 0
+import { allSideBarLinks,lastClickedSideBarLink } from "../nav/side-bar-nav.js";
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 import { removeLastStep } from "../nav/step-nav.js";
@@ -12,15 +14,41 @@ nxtBtn.addEventListener('click', e => {
 })
 nxtBtn.addEventListener('keydown', e => {
     let key = e.key.toLowerCase()
+    if(key === 'm'){
+        mainTargetDiv.focus()
+    }
     if(key === 's'){
         handleSKeySideBarNav(e)
     }
+    if(key === 'enter'){
+        iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink)
+        iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length
+        const href = allSideBarLinks[iAllSideBarLinks].href
+        console.log(allSideBarLinks[iAllSideBarLinks])
+        console.log(allSideBarLinks.length)
+        injectContent(href)
+    }
+    
 
 })
 prevBtn.addEventListener('keydown', e => {
     let key = e.key.toLowerCase()
+    if (key === 'm') {
+        mainTargetDiv.focus()
+    }
     if(key === 's'){
         handleSKeySideBarNav(e)
+    }
+    if (key === 'enter') {
+        iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink)
+        iAllSideBarLinks = (allSideBarLinks - 1 + allSideBarLinks.length) % allSideBarLinks.length
+        
+        const href = allSideBarLinks[iAllSideBarLinks].href
+        if(href){
+            console.log(href)
+
+            injectContent(href)
+        }
     }
 
 })

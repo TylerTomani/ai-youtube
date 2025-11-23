@@ -1,0 +1,5 @@
+#endNxtBtn:active,#endNxtBtn:focus
+#prevBtn:active {
+    box-shadow: 2px 2px 10px red;
+    border: 5px solid orange;
+}

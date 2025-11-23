@@ -16,6 +16,9 @@
     height: 100%;
 
 }
-#prevBtn{
 
+#endNxtBtn:active,#endNxtBtn:focus, 
+#prevBtn:active,#prevBtn:focus {
+    box-shadow: 2px -3px 12px lawngreen;
+    
 }
