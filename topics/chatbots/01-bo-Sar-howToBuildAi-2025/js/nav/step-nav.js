@@ -3,10 +3,11 @@ import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
+import { handleMKey } from "./m-key-handler.js"
 // import {home}
 let steps = []
 let iSteps = 0
-export let lastStep = null;
+export let lastStep ;
 let allImgs = [];
 
 let iImgContainerImages = 0
@@ -46,6 +47,14 @@ export function initStepNavigation(mainTargetDiv){
                 //     }
                 //     return
                 // }
+                if(key == 'm'){
+                    e.preventDefault()
+                    // handleMKey(e)
+                    console.log('here')
+                    console.log(mainTargetDiv)
+                    
+                }
+                
                 if (key === "enter") {
                     toggleStepImages(step, e);
                     // step.scrollIntoView({ behavior: 'instant', block: 'center' });

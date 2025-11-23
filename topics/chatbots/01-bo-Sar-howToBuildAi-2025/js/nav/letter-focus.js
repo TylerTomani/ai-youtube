@@ -5,10 +5,8 @@ import { mainTargetDiv } from "./main-content-nav.js";
 import { lastClickedSideBarLink } from "./side-bar-nav.js";
 import { mainContainer, sideBarBtn } from "../ui/toggle-side-bar.js";
 import { lastStep } from "./step-nav.js";
-// export let letteredEls = []
 export function letterFocus({ e, focusZone }) {
-    if (!e || !e.key) return;
-    
+    if (!e || !e.key) return;    
     // Ignore typing fields and modifier keys
     const tag = e.target.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
@@ -33,9 +31,10 @@ export function letterFocus({ e, focusZone }) {
         );
     });
 // SPECIAL CASES for mainTargetDiv and sideBar in side-bar-nav.js and main-content-nav.js
-    if (key === 'm') {
+    if (key === 'm' ) {
         handleMKey(e);
-        return;
+        // return;
+        console.log('letter-focus.js')
 
         
     }
@@ -50,13 +49,9 @@ export function letterFocus({ e, focusZone }) {
             return 
         }
     }
-
-    
     if (matching.length === 0) return;
-    // letteredEls = matching
     const activeEl = document.activeElement;
     const activeIndex = matching.indexOf(activeEl);
-
     let newIndex;
     if (key !== lastLetterPressed) {
         newIndex = e.shiftKey ? matching.length - 1 : 0;
@@ -69,15 +64,12 @@ export function letterFocus({ e, focusZone }) {
                 : (activeIndex + 1) % matching.length;
         }
     }
-
     const target = matching[newIndex];
     if (!target) return;
-
     // Ensure focusability
     if (typeof target.focus !== 'function') {
         target.setAttribute('tabindex', '-1');
     }
-
     target.focus();
     lastLetterPressed = key;
 }

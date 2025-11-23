@@ -10,7 +10,6 @@ import { mainContentNav, mainTargetDiv } from "../nav/main-content-nav.js";
 export const navBarLessonTitle = document.querySelector('#navBarLessonTitle');
 // ===== Initialization =====
 document.addEventListener('DOMContentLoaded', initMain);
-
 function initMain(e) {
     // Prevent re-initialization if script runs twice (e.g. reinjected content)
     if (window._mainScriptInitialized) return;
@@ -61,33 +60,37 @@ function handleSKeySideBarNav(e) {
     }
     
 }
-
 // ===== Global Key Listener =====
 function setupGlobalKeyListener() {
     addEventListener('keydown', (e) => {
         if (!e || !e.key) return;
         const key = e.key.toLowerCase();
-        const focusZone = getFocusZone({ e });
+        let focusZone = getFocusZone({ e });
+        // /////////////////       I DID IT !!!!!!!!!         /////////////////
+        const allowedKeys = ['b','c','e','h','m','p']
+        if(allowedKeys.includes(key)) {
+            focusZone = 'header'
+        }
+        /** The ABOVE 4 LINES !!! fixes it ALLL!!, I sandboxed in when to be each focusZone with THIS !!!!
+         * Took since pretty much March 25', but this page particulary since August, it's now November 22,2025
+         */
         // Always allow letterFocus everywhere (header, outside zones, etc.)
         // --- normal per-zone behavior ---        
         switch (focusZone) {
             case 'sideBar':
                 sideBarNav({ e, focusZone });
                 break;
-
             case 'mainTargetDiv':
                 mainContentNav({ e, focusZone });
                 break;
 
             case 'header':
                 // header links will respond naturally to letterFocus
+                letterFocus({e, focusZone})
                 break;
-
             default:
-                // outside any zone, just letterFocus applies
+                // Nothing now
                 break;
         }
-        letterFocus({ e, focusZone });
     });
 }
-

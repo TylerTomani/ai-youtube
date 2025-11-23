@@ -2,7 +2,9 @@
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 // import { addCopyCode } from "../ui/copy-code.js";
-
+// const nxtBtn = document.querySelector('nxtBtn')
+// const prevBtn = document.querySelector('prevBtn')
+// nxtBtn.addEventListener('click', injectContent);
 export function injectContent(href) {
     
     fetch(href)
