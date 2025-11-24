@@ -1,6 +1,7 @@
 // inject-content.js
 let iAllSideBarLinks = 0
-import { allSideBarLinks,lastClickedSideBarLink } from "../nav/side-bar-nav.js";
+import { allSideBarLinks,lastClickedSideBarLink,
+    updateLastClicked,getHrefFromLink } from "../nav/side-bar-nav.js";
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 import { removeLastStep } from "../nav/step-nav.js";
@@ -9,51 +10,40 @@ import { handleSKeySideBarNav } from "./main-script.js";
 // import { addCopyCode } from "../ui/copy-code.js";
 const nxtBtn = document.querySelector('#endNxtBtn')
 const prevBtn = document.querySelector('#prevBtn')
-nxtBtn.addEventListener('click', e => {
-
-})
+// nxtBtn.addEventListener('click', e => {})
 nxtBtn.addEventListener('keydown', e => {
-    let key = e.key.toLowerCase()
-    if(key === 'm'){
-        mainTargetDiv.focus()
-    }
-    if(key === 's'){
-        handleSKeySideBarNav(e)
-    }
-    if(key === 'enter'){
-        iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink)
-        iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length
-        const href = allSideBarLinks[iAllSideBarLinks].href
-        console.log(allSideBarLinks[iAllSideBarLinks])
-        console.log(allSideBarLinks.length)
-        injectContent(href)
-    }
-    
+    const key = e.key.toLowerCase();
+    if (key === 'm') mainTargetDiv.focus();
+    if (key === 's') handleSKeySideBarNav(e);
 
-})
-prevBtn.addEventListener('keydown', e => {
-    let key = e.key.toLowerCase()
-    if (key === 'm') {
-        mainTargetDiv.focus()
-    }
-    if(key === 's'){
-        handleSKeySideBarNav(e)
-    }
+    // move forward
     if (key === 'enter') {
-        iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink)
-        iAllSideBarLinks = (allSideBarLinks - 1 + allSideBarLinks.length) % allSideBarLinks.length
-        
-        const href = allSideBarLinks[iAllSideBarLinks].href
-        if(href){
-            console.log(href)
-
-            injectContent(href)
+        // start from the last clicked link
+        iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink);
+        iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length;
+        updateLastClicked(allSideBarLinks[iAllSideBarLinks])
+        const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
+        if (href) {
+            injectContent(href);
         }
     }
+});
+// move backward
+prevBtn.addEventListener('keydown', e => {
+    const key = e.key.toLowerCase();
+    if (key === 'm') mainTargetDiv.focus();
+    if (key === 's') handleSKeySideBarNav(e);
+    if (key === 'enter') {
+        iAllSideBarLinks = (iAllSideBarLinks - 1 + allSideBarLinks.length) % allSideBarLinks.length;
+        updateLastClicked(allSideBarLinks[iAllSideBarLinks])
+        const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
+        if (href) {
+            injectContent(href);
+        }
+    }
+});
 
-})
 export function injectContent(href) {
-    
     fetch(href)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -69,15 +59,11 @@ export function injectContent(href) {
             const doc = parser.parseFromString(html, 'text/html');
             // const headerH3 = doc.querySelector('#targetHeaderh3');
             // if (headerH3 && navLessonTitle) navLessonTitle.textContent = headerH3.textContent;
-
             // Initialize step navigation & copy-code buttons
             // initStepNavigation(mainTargetDiv, sidebarLinks, iSideBarLinks);
             // addCopyCode();
-
             // Optional callback after injection
             if (typeof callback === "function") callback();
         })
-        .catch(err => {
-            console.error('Failed to load content:', err);
-        });
+        // .catch(err => {console.error('Failed to load content:', err);});
 }

@@ -20,7 +20,7 @@ export function removeLastStep(){
 export function initStepNavigation(mainTargetDiv){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img"));
-    steps.forEach((step, index) => {
+    steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
 
@@ -33,7 +33,12 @@ export function initStepNavigation(mainTargetDiv){
                 // pauseEnlargeAllVids(allVids)
                 lastStep = step
                 stepClicked = false
-                step.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                if(index < arr.length - 1){
+                    step.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                } else {
+                    // last step
+                    step.scrollIntoView({ behavior: 'smooth', block: 'end' })
+                }
 
             });
             step.addEventListener("focusin", () => {

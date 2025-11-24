@@ -15,16 +15,19 @@ export let lastClickedSideBarLink = null
 export let lastFocusedSideBarLink = null
 export let clickedSubSideLink = null
 // sub side bar link handling, (( the link that drop down ))
-
-
-
+export function updateLastClicked(link){
+    let i = allSideBarLinks.indexOf(link)
+    console.log(i)
+    lastClickedSideBarLink = allSideBarLinks[i]
+    lastFocusedSideBarLink = allSideBarLinks[i]
+}
+export function getHrefFromLink(link) {
+    let href = lastClickedSideBarLink.href
+    return link?.getAttribute('href') || null;
+}
 // I think 
 // ** I need to add event listener for when document first i loaded what element has focus, if 
 // sidebar link that link is lastClickedSideBarLink*/
-
-
-
-
 subSideBarLinks.forEach(el => {
     el.addEventListener('focus', e => {
         clickedSubSideLink = null
@@ -43,7 +46,6 @@ subSideBarLinks.forEach(el => {
 // Track focus
 sideBar.addEventListener('focusin', () => sideBarFocused = true);
 sideBar.addEventListener('focusout', () => sideBarFocused = false);
-
 // Determine if an element is a subLink (nested inside li > ul > li)
 function isSubLink(el) {
     return el.closest('.side-bar-links > li > ul > li a');
@@ -118,7 +120,6 @@ allSideBarLinks.forEach((el, i) => {
     });
     //  DO NOT NEED 'keydown' with 'click' 
 });
-
 // Main keyboard nav
 export function sideBarNav({ e , focusZone}) {
     // if (!sideBarFocused) return;

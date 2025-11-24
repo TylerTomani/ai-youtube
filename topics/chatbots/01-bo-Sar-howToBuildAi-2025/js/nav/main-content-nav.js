@@ -13,7 +13,6 @@ export function mainContentNav({ e, focusZone }){
         handleMKey({e,focusZone})
         return;
     }
-    
     // Only block propagation for global nav keys
     if(key === 'n'){
         navBarLessonTitle.focus()
@@ -22,7 +21,6 @@ export function mainContentNav({ e, focusZone }){
     if(key === 's'){
         if(!mainContainer.classList.contains('collapsed')) {
             lastClickedSideBarLink.focus()
-            console.log(sideBar)
             return
         }
         if (mainContainer.classList.contains('collapsed')){
@@ -31,9 +29,6 @@ export function mainContentNav({ e, focusZone }){
         return
     }
     // THE PROBLEM IS IN handleStepNav.js
-    // handleStepNav is in step-nav.js
     handleStepNav({ e, focusZone })
-    // letterFocus({ e, focusZone })
-
 }
 
