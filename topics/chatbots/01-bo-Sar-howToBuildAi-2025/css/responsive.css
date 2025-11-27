@@ -19,13 +19,13 @@
     .side-bar ul li a{
         font-size: .86rem;
     }
-    .step-txt p {
+    .step-content p {
         font-size: 75%;   
     }
     .step-vid>video,
     .step-img>img {
         max-height: 250px;
-        max-width: 300px !important;
+        max-width: 300px ;
     }
     
 }

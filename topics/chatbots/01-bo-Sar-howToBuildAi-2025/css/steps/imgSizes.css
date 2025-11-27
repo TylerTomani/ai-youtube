@@ -30,13 +30,13 @@
 /* Default step images */
 .step-vid>video,
 .step-img>img {
-    max-height: 300px;
-    max-width:  450px;
+    max-height: 200px;
+    max-width:  250px;
     box-shadow: 0 0 1px 1px lightcyan;
     pointer-events: auto;
     transition: all 0.025s ease;
     touch-action: manipulation;
-    border: 1px solid black;
+    border: 1px solid blue;
 }
 /* Enlarged images always on top */
 .step-vid>video,
@@ -53,13 +53,14 @@
 }
 .step-float .step-vid>video.enlarge,
 .step-float .step-img>img.enlarge {
+    /* not absolute, escape parent */
     position: fixed;
     pointer-events: auto;
-    /* not absolute, escape parent */
     top: 50%;
     left: 50%;
-    width: 55vw;
-    /* center + enlarge */
+    width: 50vw;
+    max-height: 300px;
+    max-width: 450px;
     border: 1px solid black !important;
     transform: translate(-50%, -90%) scale(1.8);
     z-index: 9999 !important;
