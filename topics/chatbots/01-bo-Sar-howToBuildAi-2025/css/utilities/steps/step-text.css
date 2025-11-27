@@ -39,9 +39,6 @@ video {
     /* max-width: 50%; */
     flex-basis: 50%;
 }
-
-
-
 .step-txt p {    
     padding: 1% 2%
 }
@@ -53,15 +50,4 @@ video {
 .step-float{
     margin: 1%;
     padding: 2%;
-}
-.step-float:focus,
-.step-float:active,
-.step-float:hover{
-    box-shadow:  2px 2px 10px lightblue;
-    border: 2px solid lightcyan;
-}
-.selected{
-    box-shadow:  2px 2px 10px orange;
-    border: 2px solid lightcyan;
-
 }

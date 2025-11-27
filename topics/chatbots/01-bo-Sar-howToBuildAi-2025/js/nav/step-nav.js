@@ -141,11 +141,9 @@ export function handleStepNav({e, focusZone}){
 document.addEventListener('click', (e) => {
     const step = e.target.closest('.step-float');
     if (!step) return;
-
     // remove from all
     document.querySelectorAll('.step-float.selected')
         .forEach(el => el.classList.remove('selected'));
-
     // add to the tapped one
     step.classList.add('selected');
 });
