@@ -74,9 +74,31 @@ export function handleStepNav({e, focusZone}){
     }
     /////////////
     //**
-    // FIGURE OUT how to make header shortcuts work when mainTargetDiv has focus
+    // MAKE FOCUS ZONES for stepFocused and not !stepFocused
     //  */
-    
+    if(key === 's'){
+        // if (lastClickedSideBarLink){
+        //     lastClickedSideBarLink.focus()
+        //     return
+        // }
+    }
+    if (key === 'f') {
+        iSteps = (iSteps + 1) % steps.length
+        steps[iSteps].focus()
+    }
+    if (key === 'f' && e.target === mainTargetDiv) {
+        iSteps = 0
+        steps[iSteps].focus()
+    }
+    if (key === 'a') {
+        iSteps = (iSteps - 1 + steps.length) % steps.length
+        steps[iSteps].focus()
+    }
+    /////////////
+    if(steps[iSteps]){
+    } else{
+        
+    }
 }
 document.addEventListener('click', (e) => {
     const step = e.target.closest('.step-float');
