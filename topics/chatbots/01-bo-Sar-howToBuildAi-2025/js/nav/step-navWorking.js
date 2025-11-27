@@ -47,22 +47,46 @@ export function initStepNavigation(mainTargetDiv){
 
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
-                if(key == 'm'){   
+                // const hasVideo = step.querySelector('video') ? true : false
+                // if (hasVideo) {
+                //     const vid = step.querySelector('video')
+                //     if (key === 'enter') {
+                //         // copyCodesStepFocused = true
+                //     }
+                //     return
+                // }
+                if(key == 'm'){
+                    // e.preventDefault()
+                    // handleMKey({e, focusZone:'mainTargetDiv'})
+                    
                 }
+                
                 if (key === "enter") {
+                    // toggleStepImages(step, e);
+                    // const stepFloat = e.target.closest('.step-float')
+                    // const img = stepFloat.querySelector('img ,video')
+// 
+                    // toggleSingleImage(img)
+                    // lastStep = step
                 }
+                
+
             });
             // --- unified pointerdown for click/tap ---
             step.addEventListener("pointerdown", e => {
+                // e.preventDefault();
+                // e.stopPropagation();
                 if (e.target.tagName !== "IMG") {
                     denlargeAllImages(allImgs);
                     lastStep = step;
+                    // changeTutorialLink(e.target)
                 }
             });
-            // step.dataset.listenerAdded = "true";
+            step.dataset.listenerAdded = "true";
         }
     });
 }
+
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
     let key = e.key
@@ -76,13 +100,38 @@ export function handleStepNav({e, focusZone}){
     //**
     // FIGURE OUT how to make header shortcuts work when mainTargetDiv has focus
     //  */
+    if(key === 's'){
+        if (lastClickedSideBarLink){
+            lastClickedSideBarLink.focus()
+            return
+        }
+    }
+    if (key === 'f') {
+        iSteps = (iSteps + 1) % steps.length
+    }
+    if (key === 'f' && e.target === mainTargetDiv) {
+        iSteps = 0
+    }
+    if (key === 'a') {
+        iSteps = (iSteps - 1 + steps.length) % steps.length
+    }
+    /////////////
+    if(steps[iSteps]){
+        steps[iSteps].focus()
+    } else{
+        
+    }
+    
     
 }
+
+
 document.addEventListener('click', (e) => {
     const step = e.target.closest('.step-float');
     if (!step) return;
     // remove from all
-    document.querySelectorAll('.step-float.selected').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('.step-float.selected')
+        .forEach(el => el.classList.remove('selected'));
     // add to the tapped one
     step.classList.add('selected');
 });

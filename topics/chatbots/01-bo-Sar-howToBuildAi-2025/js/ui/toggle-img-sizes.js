@@ -5,7 +5,7 @@ export function updateImgs(){
 // --- Image handling ---
 export function toggleSingleImage(img) {
     denlargeAllImages()
-    console.log(img)
+    // console.log(img)
     img.classList.toggle("enlarge");
     // img.style.zIndex = img.classList.contains("enlarge") ? 100 : 0;
 }
