@@ -7,8 +7,9 @@
 @import url('utilities/header/grid.css');
 @import url('utilities/header/layout.css');
 /* utilities -> steps */
-@import url('utilities/steps/step-text.css');
-@import url('utilities/steps/code-containers.css');
+@import url('steps/step-text.css');
+@import url('steps/code-containers.css');
+@import url('steps/imgSizes.css');
 /* utilities */
 @import url('utilities/background.css');
 @import url('utilities/borders.css');

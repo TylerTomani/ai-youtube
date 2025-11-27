@@ -19,7 +19,7 @@ export function removeLastStep(){
 }
 export function initStepNavigation(mainTargetDiv){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
-    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img"));
+    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
     steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
@@ -66,6 +66,11 @@ export function initStepNavigation(mainTargetDiv){
                 
                 if (key === "enter") {
                     toggleStepImages(step, e);
+                    const stepFloat = e.target.closest('.step-float')
+                    const img = stepFloat.querySelector('img ,video')
+
+                    console.log(img)
+                    toggleSingleImage(img)
                     // step.scrollIntoView({ behavior: 'instant', block: 'center' });
                     const firstCopyCode = e.target.querySelector('.copy-code')
                     // copyCodesStepFocused = true
@@ -128,7 +133,6 @@ export function handleStepNav({e, focusZone}){
     }
     /////////////
     if(steps[iSteps]){
-
         steps[iSteps].focus()
     } else{
         

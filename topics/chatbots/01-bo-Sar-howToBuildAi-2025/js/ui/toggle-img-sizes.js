@@ -1,5 +1,11 @@
+let allImgs 
+export function updateImgs(){
+    allImgs = document.querySelectorAll('.step-img img, .step-vid video')
+}
 // --- Image handling ---
 export function toggleSingleImage(img) {
+    denlargeAllImages()
+    console.log(img)
     img.classList.toggle("enlarge");
     // img.style.zIndex = img.classList.contains("enlarge") ? 100 : 0;
 }
@@ -29,7 +35,7 @@ export function toggleStepImages(step, e) {
 }
 
 // --- Utility ---
-export function denlargeAllImages(allImgs) {
+export function denlargeAllImages() {
     allImgs.forEach(img => {
         if (img.classList.contains('enlarge')) img.classList.remove("enlarge");
         // img.style.zIndex = 0;

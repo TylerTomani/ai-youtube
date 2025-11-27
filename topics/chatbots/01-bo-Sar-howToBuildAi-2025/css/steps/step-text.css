@@ -10,19 +10,7 @@
     flex-direction: column;
 }
 
-.step-img,
-.step-vid {
-    float: right;
-    /* width: 45%; */
-    /* margin-right: 5%; */
-    margin-left: 10px;
-}
 
-img,
-video {
-    max-height: 200px;
-    max-width: 200px;
-}
 
 #navLessonTitle {
     display: flex;
@@ -39,12 +27,13 @@ video {
     /* max-width: 50%; */
     flex-basis: 50%;
 }
-.step-txt p {    
-    padding: 1% 2%
+.step-content p {    
+    padding: 1% 2%;
+    line-height: 2;
 }
 .step-txt > ul {    
     padding: 2% 0 ;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding-left: 20%;
 }
 .step-float{

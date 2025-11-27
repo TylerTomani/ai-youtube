@@ -2,6 +2,11 @@
     --bg-primary: #201d1d;
     --font-primary: whitesmoke;
 }
+.dark-mode .page-header {
+    background-color: var(--bg-primary);
+    color: var(--bg-primary) !important;
+}
+
 .dark-mode .mobile-footer-header {
     background-color: var(--bg-primary) !important;
 }
@@ -56,4 +61,7 @@ h4 .dark-mode p {
 }
 .dark-mode .topic {
     border: 1px solid whitesmoke !important;
+}
+.dark-mode .side-bar ul li a {
+    color: var(--font-primary) !important;
 }

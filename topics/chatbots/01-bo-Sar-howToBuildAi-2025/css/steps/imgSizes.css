@@ -1,0 +1,80 @@
+.clear {
+    clear: both;
+    /* position: relative; */
+    /* float: right; */
+    /* flex: 0 0 auto; */
+}
+.step-img::after,
+.step-vid::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.step-img,
+.step-vid {
+    float: right;
+    margin-right: 5%;
+    margin-left: 10px;
+}
+.imgs-container {width: 100%;}
+.imgs-container .img-container .step-img {
+    position: relative;
+    pointer-events: auto;
+    height: fit-content;
+}
+.imgs-container {
+    display: flex;
+    position: static;
+}
+.imgs-container>* {flex-basis: 50%;}
+/* Default step images */
+.step-vid>video,
+.step-img>img {
+    max-height: 300px;
+    max-width:  450px;
+    box-shadow: 0 0 1px 1px lightcyan;
+    pointer-events: auto;
+    transition: all 0.025s ease;
+    touch-action: manipulation;
+    border: 1px solid black;
+}
+/* Enlarged images always on top */
+.step-vid>video,
+.step-img>img {z-index: 0}
+.imgs-container .step-img>img.enlarge {
+    position: fixed !important;
+    /* not absolute, escape parent */
+    top: 50%;
+    left: 50%;
+    /* center + enlarge */
+    transform: translate(-50%, -90%) scale(1.2);
+    z-index: 9999 !important;
+
+}
+.step-float .step-vid>video.enlarge,
+.step-float .step-img>img.enlarge {
+    position: fixed;
+    pointer-events: auto;
+    /* not absolute, escape parent */
+    top: 50%;
+    left: 50%;
+    width: 55vw;
+    /* center + enlarge */
+    border: 1px solid black !important;
+    transform: translate(-50%, -90%) scale(1.8);
+    z-index: 9999 !important;
+}
+@media screen and (min-width: 700px) {
+    video.enlarge,
+    video.first-vid-enlarge {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) scale(2);
+        max-width: 50vw;
+        max-height: 50vh;
+        z-index: 9999 !important;
+        /* DUDE This fixed it somehow,the double tap */
+        pointer-events: none;
+    }
+}

@@ -6,6 +6,8 @@ import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 import { removeLastStep } from "../nav/step-nav.js";
 import { handleSKeySideBarNav } from "./main-script.js";
+
+import { updateImgs } from "../ui/toggle-img-sizes.js";
 // import { handleMKey } from "../nav/m-key-handler.js";
 // import { addCopyCode } from "../ui/copy-code.js";
 const nxtBtn = document.querySelector('#endNxtBtn')
@@ -57,6 +59,7 @@ export function injectContent(href) {
             // Update nav lesson title if available
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
+            updateImgs()
             // const headerH3 = doc.querySelector('#targetHeaderh3');
             // if (headerH3 && navLessonTitle) navLessonTitle.textContent = headerH3.textContent;
             // Initialize step navigation & copy-code buttons
