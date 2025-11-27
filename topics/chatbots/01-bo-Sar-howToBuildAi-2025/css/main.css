@@ -10,7 +10,9 @@
 @import url('utilities/steps/step-text.css');
 @import url('utilities/steps/code-containers.css');
 /* utilities */
+@import url('utilities/background.css');
 @import url('utilities/borders.css');
+@import url('utilities/colors.css');
 @import url('utilities/effects.css');
 @import url('utilities/layout.css');
 
@@ -23,6 +25,4 @@
     box-sizing: border-box;
 }
 /* SHOULD I PUT THIS IN IT'S OWN CSS FILES FOR ui/drop-downs.css ???? */
-.hide {
-    display: none;
-}
+.hide { display: none; }

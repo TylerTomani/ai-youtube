@@ -1,3 +1,4 @@
+
 #targetDiv>.main-container {
     display: flex;
     flex-direction: column;
@@ -29,6 +30,9 @@ video {
     align-content: center;
 }
 
+.step-float{
+    border:  1px solid lightskyblue;
+}
 .step-float>.step-txt {
     /* flex-shrink: 1; */
     flex-grow: 1;
@@ -53,7 +57,7 @@ video {
 .step-float:focus,
 .step-float:active,
 .step-float:hover{
-    box-shadow:  2px 2px 10px orange;
+    box-shadow:  2px 2px 10px lightblue;
     border: 2px solid lightcyan;
 }
 .selected{
