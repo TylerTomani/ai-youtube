@@ -4,7 +4,6 @@ import { mainTargetDiv } from "./main-content-nav.js";
 export function handleMKey({e,focusZone}) {
     e.preventDefault();
     e.stopPropagation();
-    // console.log(focusZone)
     // 1. If there is a lastStep → ALWAYS go there
     if(focusZone != 'mainTargetDiv'){
         if(lastStep){

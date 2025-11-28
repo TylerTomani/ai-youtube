@@ -4,12 +4,11 @@ export function updateImgs(){
 }
 // --- Image handling ---
 export function toggleSingleImage(img) {
-    denlargeAllImages()
-    // console.log(img)
+    // denlargeAllImages()
     img.classList.toggle("enlarge");
     // img.style.zIndex = img.classList.contains("enlarge") ? 100 : 0;
-}
 
+}
 export function toggleStepImages(step, e) {
 
     const images = Array.from(step.querySelectorAll(".step-img > img"));
@@ -33,12 +32,11 @@ export function toggleStepImages(step, e) {
     }
 
 }
-
 // --- Utility ---
 export function denlargeAllImages() {
     allImgs.forEach(img => {
         if (img.classList.contains('enlarge')) img.classList.remove("enlarge");
-        // img.style.zIndex = 0;
+        img.style.zIndex = 0;
     });
     // allVids.forEach(vid => {
     //     if (vid.classList.contains('first-vid-enlarge')) vid.classList.remove("first-vid-enlarge");

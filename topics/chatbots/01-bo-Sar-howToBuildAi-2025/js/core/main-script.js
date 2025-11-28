@@ -14,17 +14,14 @@ function initMain(e) {
     // Prevent re-initialization if script runs twice (e.g. reinjected content)
     if (window._mainScriptInitialized) return;
     window._mainScriptInitialized = true;
-
     // Initialize UI elements
     initDropDowns({ e });
     initToggleSidebar({ e });
-
     // Detect and handle initial focus zone
     const initialZone = getFocusZone({ el: document.activeElement });
     // const initialZone = 'sideBar'
     if (initialZone === 'sideBar') sideBarNav({ e, focusZone: initialZone });
     letterFocus({ e, focusZone: initialZone });
-
     // Initialize event listeners
     setupSidebarShortcuts();
     setupGlobalKeyListener();
@@ -45,7 +42,6 @@ export function handleSKeySideBarNav(e) {
         }
         // Ensure references exist before using them
         if (!lastClickedSideBarLink && !lastFocusedSideBarLink) return;
-
         const dropSnips = lastClickedSideBarLink?.closest?.('ul');
         if (!mainContainer.classList.contains('collapsed')){
 
@@ -58,7 +54,6 @@ export function handleSKeySideBarNav(e) {
             return 
         }
     }
-    
 }
 // ===== Global Key Listener =====
 function setupGlobalKeyListener() {
@@ -83,7 +78,6 @@ function setupGlobalKeyListener() {
             case 'mainTargetDiv':
                 mainContentNav({ e, focusZone });
                 break;
-
             case 'header':
                 // header links will respond naturally to letterFocus
                 letterFocus({e, focusZone})

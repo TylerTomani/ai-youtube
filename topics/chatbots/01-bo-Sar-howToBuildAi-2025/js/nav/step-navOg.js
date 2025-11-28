@@ -3,23 +3,27 @@ import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
+import { handleMKey } from "./m-key-handler.js"
+// import {home}
 let steps = []
 let iSteps = 0
-export let lastStep = null;
+export let lastStep ;
 let allImgs = [];
 
 let iImgContainerImages = 0
 let stepClicked = false
 export let copyCodesStepFocused = false;
+export function removeLastStep(){
+    lastStep = null
+}
 export function initStepNavigation(mainTargetDiv){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
-    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img"));
-    steps.forEach((step, index) => {
+    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
+    steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
-
             step.addEventListener("focus", () => {
-                copyCodesStepFocused = false
+                // copyCodesStepFocused = false
                 iSteps = index;
                 iImgContainerImages = 0;
                 // iCopyCodes = 0
@@ -27,7 +31,12 @@ export function initStepNavigation(mainTargetDiv){
                 // pauseEnlargeAllVids(allVids)
                 lastStep = step
                 stepClicked = false
-                step.scrollIntoView({ behavior: 'instant', inline: 'center' })
+                if(index < arr.length - 1){
+                    step.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                } else {
+                    // last step
+                    step.scrollIntoView({ behavior: 'smooth', block: 'end' })
+                }
 
             });
             step.addEventListener("focusin", () => {
@@ -37,25 +46,27 @@ export function initStepNavigation(mainTargetDiv){
 
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
-                console.log('here')
-                
-
+                if(key == 'm'){   
+                }
+                if (key === "enter") {
+                    // toggleStepImages(step, e);
+                    const stepFloat = e.target.closest('.step-float')
+                    const img = stepFloat.querySelector('img ,video')                 
+                    toggleSingleImage(img)
+                    lastStep = step
+                }
             });
             // --- unified pointerdown for click/tap ---
             step.addEventListener("pointerdown", e => {
-                e.preventDefault();
-                e.stopPropagation();
                 if (e.target.tagName !== "IMG") {
                     denlargeAllImages(allImgs);
                     lastStep = step;
-                    // changeTutorialLink(e.target)
                 }
             });
-            step.dataset.listenerAdded = "true";
+            // step.dataset.listenerAdded = "true";
         }
     });
 }
-
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
     let key = e.key
@@ -65,25 +76,39 @@ export function handleStepNav({e, focusZone}){
             steps[intLet - 1 ].focus()
         }
     }
+    /////////////
+    //**
+    // MAKE FOCUS ZONES for stepFocused and not !stepFocused
+    //  */
     if(key === 's'){
-        console.log("'s' in step-nav ")
-        console.log(lastClickedSideBarLink)
-        if (lastClickedSideBarLink){
-            lastClickedSideBarLink.focus()
-            return
-        }
+        // if (lastClickedSideBarLink){
+        //     lastClickedSideBarLink.focus()
+        //     return
+        // }
     }
     if (key === 'f') {
         iSteps = (iSteps + 1) % steps.length
+        steps[iSteps].focus()
+    }
+    if (key === 'f' && e.target === mainTargetDiv) {
+        iSteps = 0
+        steps[iSteps].focus()
     }
     if (key === 'a') {
         iSteps = (iSteps - 1 + steps.length) % steps.length
+        steps[iSteps].focus()
     }
-    if(key === 'f' && e.target === mainTargetDiv){
-        iSteps = 0
-
+    /////////////
+    if(steps[iSteps]){
+    } else{
+        
     }
-    steps[iSteps].focus()
-    
-    
 }
+document.addEventListener('click', (e) => {
+    const step = e.target.closest('.step-float');
+    if (!step) return;
+    // remove from all
+    document.querySelectorAll('.step-float.selected').forEach(el => el.classList.remove('selected'));
+    // add to the tapped one
+    step.classList.add('selected');
+});

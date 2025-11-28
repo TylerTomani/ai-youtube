@@ -1,31 +1,38 @@
 // step-nav.js
 import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
+import { getFocusZone } from "./get-focus-zone.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
 import { handleMKey } from "./m-key-handler.js"
-// import {home}
 let steps = []
+let copyCodes = []
 let iSteps = 0
+let iCopyCodes = 0
 export let lastStep ;
+export let lastFocusedMainEl ;
 let allImgs = [];
-
 let iImgContainerImages = 0
+// I don't know if i need copyCodesStepsFocused ???
+// export let copyCodesStepFocused = false;
+let stepFocused = false 
 let stepClicked = false
-export let copyCodesStepFocused = false;
-export function removeLastStep(){
-    lastStep = null
 
+export function removeLastStep(){lastStep = null}
+function updateCurrentCopyCodes({e}){
+    copyCodes = e.target.querySelectorAll('.copy-code')
 }
-export function initStepNavigation(mainTargetDiv){
+export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
     steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
             step.addEventListener("focus", () => {
-                // copyCodesStepFocused = false
+                stepClicked = false
                 iSteps = index;
+                // maybe not iCopyCodes = 0
+                iCopyCodes = 0
                 iImgContainerImages = 0;
                 // iCopyCodes = 0
                 denlargeAllImages(allImgs);
@@ -40,16 +47,31 @@ export function initStepNavigation(mainTargetDiv){
                 }
 
             });
-            step.addEventListener("focusin", () => {
-                iSteps = index;
-            })
+            step.addEventListener("focusin", () => { iSteps = index;})
             step.addEventListener("focusout", () => { denlargeAllImages(allImgs) })
-
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
-                if(key == 'm'){   
+                if(key === 'm'){
+                    step.focus()
                 }
-                if (key === "enter") {
+                if (key === "enter" ) {
+                    if (!e.shiftKey){
+
+                        updateCurrentCopyCodes({e})
+                        stepClicked = !stepClicked
+                        const stepFloat = e.target.closest('.step-float')
+                        const img = stepFloat.querySelector('img ,video')                 
+                        toggleSingleImage(img)
+                        if(img.classList.contains('enlarge') && stepClicked){
+                            const firstCopyCode = e.target.querySelector('.copy-code')
+                            if(firstCopyCode){
+                                firstCopyCode.focus()
+                            }
+                        }
+                        lastStep = step
+                    }else {
+                        step.focus()
+                    }
                 }
             });
             // --- unified pointerdown for click/tap ---
@@ -62,42 +84,73 @@ export function initStepNavigation(mainTargetDiv){
             // step.dataset.listenerAdded = "true";
         }
     });
+    copyCodes.forEach((el,i) => {
+        el.addEventListener('keydown', e => {
+            let key = e.key.toLowerCase()
+            
+        });
+        el.addEventListener('focus', e => {
+            iCopyCodes = i
+            
+        });
+    })
 }
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
     let key = e.key
     if(!isNaN(key)){
         let intLet = parseInt(key)
-        if(intLet <= steps.length){
-            steps[intLet - 1 ].focus()
+        if (!stepClicked){  
+            if(intLet <= steps.length){
+                steps[intLet - 1 ].focus()
+            }
         }
     }
+    stepFocused = !stepFocused
+    // console.log(stepFocused)
     /////////////
     //**
     // MAKE FOCUS ZONES for stepFocused and not !stepFocused
     //  */
     if(key === 's'){
-        // if (lastClickedSideBarLink){
-        //     lastClickedSideBarLink.focus()
-        //     return
-        // }
+        if (lastClickedSideBarLink){
+            lastClickedSideBarLink.focus()
+            return
+        }
     }
     if (key === 'f') {
-        iSteps = (iSteps + 1) % steps.length
-        steps[iSteps].focus()
+        if(!stepClicked){
+            iSteps = (iSteps + 1) % steps.length
+            steps[iSteps].focus()
+        } else if(stepClicked){
+            iCopyCodes = (iCopyCodes + 1) % copyCodes.length
+            copyCodes[iCopyCodes].focus()
+        }
     }
     if (key === 'f' && e.target === mainTargetDiv) {
-        iSteps = 0
-        steps[iSteps].focus()
+        console.log(focusZone)
+        if (!stepClicked) {  
+            iSteps = 0
+            steps[iSteps].focus()
+        }
     }
     if (key === 'a') {
-        iSteps = (iSteps - 1 + steps.length) % steps.length
-        steps[iSteps].focus()
+        if (!stepClicked) {  
+            iSteps = (iSteps - 1 + steps.length) % steps.length
+            steps[iSteps].focus()
+        } else if(stepClicked){
+            iCopyCodes = (iCopyCodes - 1 + copyCodes.length) % copyCodes.length
+            copyCodes[iCopyCodes].focus()
+        }
+        else {
+            // cycle through set of updated copyCodes
+            const step = e.target.closest('.step-float')
+            step.focus()
+        }
     }
     /////////////
     if(steps[iSteps]){
     } else{
-        
     }
 }
 document.addEventListener('click', (e) => {

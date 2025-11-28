@@ -54,7 +54,7 @@ export function injectContent(href) {
         .then(html => {
             // Insert HTML into the main container
             mainTargetDiv.innerHTML = html; 
-            initStepNavigation(mainTargetDiv)
+            initStepNavigation({ mainTargetDiv})
             removeLastStep()
             // Update nav lesson title if available
             const parser = new DOMParser();
