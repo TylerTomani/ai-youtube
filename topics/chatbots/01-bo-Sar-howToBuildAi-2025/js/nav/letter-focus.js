@@ -4,23 +4,19 @@ import { handleMKey } from "./m-key-handler.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 import { lastClickedSideBarLink } from "./side-bar-nav.js";
 import { mainContainer, sideBarBtn } from "../ui/toggle-side-bar.js";
-import { lastStep } from "./step-nav.js";
 export function letterFocus({ e, focusZone }) {
     if (!e || !e.key) return;    
     // Ignore typing fields and modifier keys
     const tag = e.target.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-
     const key = e.key.toLowerCase();
     if (key.length !== 1 || !/^[a-z0-9]$/.test(key)) return;
-    
     // Find visible, valid elements
     const allEls = [...document.querySelectorAll('a, [id]')].filter(el => {
         const rect = el.getBoundingClientRect();
         return el.offsetParent !== null && rect.width > 0 && rect.height > 0;
     });
-
     // Filter elements by ID starting with pressed key
     const matching = allEls.filter(el => {
         const id = el.id?.toLowerCase?.() || '';

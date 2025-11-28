@@ -9,8 +9,8 @@ let steps = []
 let copyCodes = []
 let iSteps = 0
 let iCopyCodes = 0
-export let lastStep ;
-export let lastFocusedMainEl ;
+export let lastStep
+export let lastFocusedMainEl
 let allImgs = [];
 let iImgContainerImages = 0
 // I don't know if i need copyCodesStepsFocused ???
@@ -55,23 +55,30 @@ export function initStepNavigation({ mainTargetDiv}){
                     step.focus()
                 }
                 if (key === "enter" ) {
+                    const stepFloat = e.target.closest('.step-float')
+                    const img = stepFloat.querySelector('img ,video')                 
                     if (!e.shiftKey){
-
                         updateCurrentCopyCodes({e})
                         stepClicked = !stepClicked
-                        const stepFloat = e.target.closest('.step-float')
-                        const img = stepFloat.querySelector('img ,video')                 
                         toggleSingleImage(img)
-                        if(img.classList.contains('enlarge') && stepClicked){
-                            const firstCopyCode = e.target.querySelector('.copy-code')
-                            if(firstCopyCode){
+                        const firstCopyCode = e.target.querySelector('.copy-code')
+                        if(img){
+                            if(img.classList.contains('enlarge') && stepClicked){
+                                if(firstCopyCode){
+                                    firstCopyCode.focus()
+                                }
+                            }
+                        } else {
+                            if (firstCopyCode) {
                                 firstCopyCode.focus()
                             }
                         }
                         lastStep = step
                     }else {
                         step.focus()
+                        toggleSingleImage(img)
                     }
+                    
                 }
             });
             // --- unified pointerdown for click/tap ---
@@ -87,11 +94,12 @@ export function initStepNavigation({ mainTargetDiv}){
     copyCodes.forEach((el,i) => {
         el.addEventListener('keydown', e => {
             let key = e.key.toLowerCase()
-            
+            console.log('here')
         });
         el.addEventListener('focus', e => {
             iCopyCodes = i
-            
+            lastFocusedMainEl = e.target
+            console.log(lastFocusedMainEl)
         });
     })
 }
@@ -100,12 +108,17 @@ export function handleStepNav({e, focusZone}){
     let key = e.key
     if(!isNaN(key)){
         let intLet = parseInt(key)
+        // console.log(stepClicked)
         if (!stepClicked){  
             if(intLet <= steps.length){
                 steps[intLet - 1 ].focus()
             }
+        } else if(stepClicked){
+            if(copyCodes[intLet - 1]){
+                copyCodes[intLet -1 ].focus()
+            }
         }
-    }
+    } 
     stepFocused = !stepFocused
     // console.log(stepFocused)
     /////////////
@@ -113,6 +126,7 @@ export function handleStepNav({e, focusZone}){
     // MAKE FOCUS ZONES for stepFocused and not !stepFocused
     //  */
     if(key === 's'){
+        stepClicked = false
         if (lastClickedSideBarLink){
             lastClickedSideBarLink.focus()
             return
@@ -123,12 +137,14 @@ export function handleStepNav({e, focusZone}){
             iSteps = (iSteps + 1) % steps.length
             steps[iSteps].focus()
         } else if(stepClicked){
+            console.log('here')
             iCopyCodes = (iCopyCodes + 1) % copyCodes.length
-            copyCodes[iCopyCodes].focus()
+            if(copyCodes){
+                copyCodes[iCopyCodes].focus()
+            }
         }
     }
     if (key === 'f' && e.target === mainTargetDiv) {
-        console.log(focusZone)
         if (!stepClicked) {  
             iSteps = 0
             steps[iSteps].focus()
@@ -139,8 +155,11 @@ export function handleStepNav({e, focusZone}){
             iSteps = (iSteps - 1 + steps.length) % steps.length
             steps[iSteps].focus()
         } else if(stepClicked){
-            iCopyCodes = (iCopyCodes - 1 + copyCodes.length) % copyCodes.length
-            copyCodes[iCopyCodes].focus()
+            if(copyCodes){
+
+                iCopyCodes = (iCopyCodes - 1 + copyCodes.length) % copyCodes.length
+                copyCodes[iCopyCodes].focus()
+            }
         }
         else {
             // cycle through set of updated copyCodes

@@ -1,10 +1,13 @@
 // m-key-handler.js
-import { lastStep } from "./step-nav.js";
+import { lastStep,lastFocusedMainEl } from "./step-nav.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 export function handleMKey({e,focusZone}) {
     e.preventDefault();
     e.stopPropagation();
+    let key = e.key.toLowerCase()
     // 1. If there is a lastStep → ALWAYS go there
+    // console.log(lastFocusedMainEl)
+    // console.log('handle m key')
     if(focusZone != 'mainTargetDiv'){
         if(lastStep){
             lastStep.focus()
@@ -25,5 +28,7 @@ export function handleMKey({e,focusZone}) {
                 return
             } 
         }
+        // console.log(focusZone)
+        
     }
 }

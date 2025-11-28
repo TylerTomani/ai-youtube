@@ -66,6 +66,13 @@ function setupGlobalKeyListener() {
         if(allowedKeys.includes(key)) {
             focusZone = 'header'
         }
+        if(e.target === mainTargetDiv){
+            focusZone = 'mainTargetDiv'
+            if(key === 'enter'){
+                const firstStep = mainTargetDiv.querySelector('.step-float')
+                firstStep.focus()
+            }
+        }
         /** The ABOVE 4 LINES !!! fixes it ALLL!!, I sandboxed in when to be each focusZone with THIS !!!!
          * Took since pretty much March 25', but this page particulary since August, it's now November 22,2025
          */
