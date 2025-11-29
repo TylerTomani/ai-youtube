@@ -139,7 +139,7 @@ export function handleStepNav({e, focusZone}){
         } else if(stepClicked){
             console.log('here')
             iCopyCodes = (iCopyCodes + 1) % copyCodes.length
-            if(copyCodes){
+            if(copyCodes[iCopyCodes]){
                 copyCodes[iCopyCodes].focus()
             }
         }
@@ -155,7 +155,7 @@ export function handleStepNav({e, focusZone}){
             iSteps = (iSteps - 1 + steps.length) % steps.length
             steps[iSteps].focus()
         } else if(stepClicked){
-            if(copyCodes){
+            if(copyCodes[iCopyCodes]){
 
                 iCopyCodes = (iCopyCodes - 1 + copyCodes.length) % copyCodes.length
                 copyCodes[iCopyCodes].focus()

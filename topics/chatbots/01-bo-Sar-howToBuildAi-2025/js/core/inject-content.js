@@ -10,8 +10,8 @@ import { handleSKeySideBarNav } from "./main-script.js";
 import { updateImgs } from "../ui/toggle-img-sizes.js";
 // import { handleMKey } from "../nav/m-key-handler.js";
 // import { addCopyCode } from "../ui/copy-code.js";
-const nxtBtn = document.querySelector('#endNxtBtn')
-const prevBtn = document.querySelector('#prevBtn')
+export const nxtBtn = document.querySelector('#endNxtBtn')
+export const prevBtn = document.querySelector('#prevBtn')
 // nxtBtn.addEventListener('click', e => {})
 nxtBtn.addEventListener('keydown', e => {
     const key = e.key.toLowerCase();
@@ -20,6 +20,8 @@ nxtBtn.addEventListener('keydown', e => {
 
     // move forward
     if (key === 'enter') {
+        e.preventDefault()
+        e.stopPropagation()
         // start from the last clicked link
         iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink);
         iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length;
@@ -31,7 +33,7 @@ nxtBtn.addEventListener('keydown', e => {
     }
 });
 nxtBtn.addEventListener('click', e => {
-    // e.preventDefautl()
+    e.preventDefault()
     e.stopPropagation()
     iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink);
     iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length;
