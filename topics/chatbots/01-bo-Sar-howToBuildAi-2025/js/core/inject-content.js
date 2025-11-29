@@ -30,6 +30,17 @@ nxtBtn.addEventListener('keydown', e => {
         }
     }
 });
+nxtBtn.addEventListener('click', e => {
+    e.preventDefautl()
+    e.stopPropagation()
+    iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink);
+    iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length;
+    updateLastClicked(allSideBarLinks[iAllSideBarLinks])
+    const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
+    if (href) {
+        injectContent(href);
+    }
+});
 // move backward
 prevBtn.addEventListener('keydown', e => {
     const key = e.key.toLowerCase();
