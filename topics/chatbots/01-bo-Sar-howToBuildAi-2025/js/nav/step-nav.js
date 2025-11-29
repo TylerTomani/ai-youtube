@@ -98,9 +98,28 @@ export function initStepNavigation({ mainTargetDiv}){
         el.addEventListener('focus', e => {
             iCopyCodes = i
             lastFocusedMainEl = e.target
-            
         });
     })
+    mainTargetDiv.addEventListener('keydown', e => {
+        let key = e.key.toLowerCase()
+        // The intLet and 'E' and 
+        if (!isNaN(key)) {
+            let intLet = parseInt(key)
+            numStepNav(intLet)
+            
+        } 
+    });
+}
+function numStepNav(intLet){
+    if (!stepClicked) {
+        if (intLet <= steps.length) {
+            steps[intLet - 1].focus()
+        }
+    } else if (stepClicked) {
+        if (copyCodes[intLet - 1]) {
+            copyCodes[intLet - 1].focus()
+        }
+    }
 }
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
@@ -108,15 +127,7 @@ export function handleStepNav({e, focusZone}){
     if(!isNaN(key)){
         let intLet = parseInt(key)
         // 
-        if (!stepClicked){  
-            if(intLet <= steps.length){
-                steps[intLet - 1 ].focus()
-            }
-        } else if(stepClicked){
-            if(copyCodes[intLet - 1]){
-                copyCodes[intLet -1 ].focus()
-            }
-        }
+        numStepNav(intLet)
     } 
     stepFocused = !stepFocused
     // 

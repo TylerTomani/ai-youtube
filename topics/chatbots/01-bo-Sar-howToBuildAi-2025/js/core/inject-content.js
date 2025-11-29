@@ -31,6 +31,7 @@ nxtBtn.addEventListener('keydown', e => {
             injectContent(href);
         }
     }
+    
 });
 nxtBtn.addEventListener('click', e => {
     e.preventDefault()
@@ -55,6 +56,16 @@ prevBtn.addEventListener('keydown', e => {
         if (href) {
             injectContent(href);
         }
+    }
+});
+prevBtn.addEventListener('click', e => {
+    e.preventDefault()
+    e.stopPropagation()
+    iAllSideBarLinks = (iAllSideBarLinks - 1 + allSideBarLinks.length) % allSideBarLinks.length;
+    updateLastClicked(allSideBarLinks[iAllSideBarLinks])
+    const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
+    if (href) {
+        injectContent(href);
     }
 });
 

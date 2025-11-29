@@ -17,7 +17,6 @@ export let clickedSubSideLink = null
 // sub side bar link handling, (( the link that drop down ))
 export function updateLastClicked(link){
     let i = allSideBarLinks.indexOf(link)
-    console.log(i)
     lastClickedSideBarLink = allSideBarLinks[i]
     lastFocusedSideBarLink = allSideBarLinks[i]
 }
@@ -150,9 +149,6 @@ export function sideBarNav({ e , focusZone}) {
     }
     // 'f' key moves forward
     if (key === 'f') {
-        suppressIndexUpdate = true;
-
-        // Refresh visibleLinks
         const visibleLinks = allSideBarLinks.filter(link => link.offsetParent !== null);
         const activeEl = document.activeElement;
 
@@ -160,15 +156,31 @@ export function sideBarNav({ e , focusZone}) {
         let currentVisibleIndex = visibleLinks.indexOf(activeEl);
 
         // Move forward (wrap around if needed)
-        const nextIndex = (currentVisibleIndex + 1) % visibleLinks.length;
+        
+        if(!e.shiftKey){
 
-        // Focus the next visible link
-        visibleLinks[nextIndex].focus();
+            suppressIndexUpdate = true;
 
-        // Update global index to match new focus
-        iSideBarLinks = allSideBarLinks.indexOf(visibleLinks[nextIndex]);
+            // Refresh visibleLinks
+            const nextIndex = (currentVisibleIndex + 1) % visibleLinks.length;
+            // Focus the next visible link
+            visibleLinks[nextIndex].focus();
+            // Update global index to match new focus
+            iSideBarLinks = allSideBarLinks.indexOf(visibleLinks[nextIndex]);
+            suppressIndexUpdate = false;
+        } else {
 
-        suppressIndexUpdate = false;
+            suppressIndexUpdate = true;
+
+            // Refresh visibleLinks
+            const prevIndex = (currentVisibleIndex - 1 + visibleLinks.length) % visibleLinks.length;
+            // Focus the next visible link
+            visibleLinks[prevIndex].focus();
+            // Update global index to match new focus
+            iSideBarLinks = allSideBarLinks.indexOf(visibleLinks[prevIndex]);
+            suppressIndexUpdate = false;
+
+        }
     }
     // 'a' key moves backward
     if (key === 'a') {
