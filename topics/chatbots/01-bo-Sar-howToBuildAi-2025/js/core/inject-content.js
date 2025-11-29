@@ -31,7 +31,7 @@ nxtBtn.addEventListener('keydown', e => {
     }
 });
 nxtBtn.addEventListener('click', e => {
-    e.preventDefautl()
+    // e.preventDefautl()
     e.stopPropagation()
     iAllSideBarLinks = allSideBarLinks.indexOf(lastClickedSideBarLink);
     iAllSideBarLinks = (iAllSideBarLinks + 1) % allSideBarLinks.length;
