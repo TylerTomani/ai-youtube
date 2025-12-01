@@ -1,15 +1,13 @@
 // inject-content.js
 let iAllSideBarLinks = 0
-import { allSideBarLinks,lastClickedSideBarLink,
-    updateLastClicked,getHrefFromLink } from "../nav/side-bar-nav.js";
+import { allSideBarLinks,lastClickedSideBarLink,updateLastClicked,getHrefFromLink } from "../nav/side-bar-nav.js";
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 import { removeLastStep } from "../nav/step-nav.js";
 import { handleSKeySideBarNav } from "./main-script.js";
 
 import { updateImgs } from "../ui/toggle-img-sizes.js";
-// import { handleMKey } from "../nav/m-key-handler.js";
-// import { addCopyCode } from "../ui/copy-code.js";
+import { addCopyCode } from "../ui/copy-code.js";
 export const nxtBtn = document.querySelector('#endNxtBtn')
 export const prevBtn = document.querySelector('#prevBtn')
 // nxtBtn.addEventListener('click', e => {})
@@ -80,6 +78,7 @@ export function injectContent(href) {
             mainTargetDiv.innerHTML = html; 
             initStepNavigation({ mainTargetDiv})
             removeLastStep()
+            addCopyCode()
             // Update nav lesson title if available
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');

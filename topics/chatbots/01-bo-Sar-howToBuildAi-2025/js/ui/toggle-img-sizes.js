@@ -1,3 +1,4 @@
+// toggle-img-sizes.js
 let allImgs 
 export function updateImgs(){
     allImgs = document.querySelectorAll('.step-img img, .step-vid video')

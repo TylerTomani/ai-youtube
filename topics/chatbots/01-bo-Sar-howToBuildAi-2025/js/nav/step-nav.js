@@ -1,10 +1,14 @@
 // step-nav.js
+import { videoControls, pauseAllVideos} from "../ui/playStepVid.js"
+
 import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { getFocusZone } from "./get-focus-zone.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
 import { handleMKey } from "./m-key-handler.js"
+
+
 let steps = []
 let copyCodes = []
 let iSteps = 0
@@ -12,6 +16,7 @@ let iCopyCodes = 0
 export let lastStep
 export let lastFocusedMainEl
 let allImgs = [];
+let allVids = [];
 let iImgContainerImages = 0
 // I don't know if i need copyCodesStepsFocused ???
 // export let copyCodesStepFocused = false;
@@ -25,6 +30,7 @@ function updateCurrentCopyCodes({e}){
 export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
+    allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
     steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
@@ -36,7 +42,6 @@ export function initStepNavigation({ mainTargetDiv}){
                 iImgContainerImages = 0;
                 // iCopyCodes = 0
                 denlargeAllImages(allImgs);
-                // pauseEnlargeAllVids(allVids)
                 lastStep = step
                 stepClicked = false
                 if(index < arr.length - 1){
@@ -45,18 +50,19 @@ export function initStepNavigation({ mainTargetDiv}){
                     // last step
                     step.scrollIntoView({ behavior: 'smooth', block: 'end' })
                 }
-
+                pauseAllVideos({allVids})
             });
             step.addEventListener("focusin", () => { iSteps = index;})
             step.addEventListener("focusout", () => { denlargeAllImages(allImgs) })
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
+                const stepFloat = e.target.closest('.step-float')
+                const img = stepFloat.querySelector('img ,video')                 
                 if(key === 'm'){
                     step.focus()
                 }
                 if (key === "enter" ) {
-                    const stepFloat = e.target.closest('.step-float')
-                    const img = stepFloat.querySelector('img ,video')                 
+                    // console.log(img)
                     if (!e.shiftKey){
                         updateCurrentCopyCodes({e})
                         stepClicked = !stepClicked
@@ -79,6 +85,12 @@ export function initStepNavigation({ mainTargetDiv}){
                         toggleSingleImage(img)
                     }
                     
+                }
+                if (img.tagName == 'VIDEO') {
+                    let vid = img
+
+                    videoControls({vid,e})
+                    return
                 }
             });
             // --- unified pointerdown for click/tap ---
