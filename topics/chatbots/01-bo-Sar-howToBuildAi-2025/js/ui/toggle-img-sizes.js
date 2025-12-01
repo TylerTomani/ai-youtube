@@ -13,7 +13,6 @@ export function toggleSingleImage(img) {
 
 }
 export function toggleStepImages(step, e) {
-
     const images = Array.from(step.querySelectorAll(".step-img > img"));
     if (!images.length) return;
     if (images.length === 1) {
