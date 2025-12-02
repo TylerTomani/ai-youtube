@@ -1,5 +1,5 @@
 // step-nav.js
-import { videoControls, pauseAllVideos} from "../ui/playStepVid.js"
+import { videoControls, pauseAllVideos, toggleVideoSizeClick} from "../ui/playStepVid.js"
 
 import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
@@ -31,6 +31,13 @@ export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
+    allVids.forEach(vid => {
+        vid.addEventListener('click', e => {
+            e.preventDefault()
+            e.stopPropagation()
+            toggleVideoSizeClick({ vid, e, steps, stepFloat })
+        });
+    })
     steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
@@ -50,6 +57,7 @@ export function initStepNavigation({ mainTargetDiv}){
                     // last step
                     step.scrollIntoView({ behavior: 'smooth', block: 'end' })
                 }
+                if(allVids){}
                 pauseAllVideos({allVids})
             });
             step.addEventListener("focusin", () => { iSteps = index;})
