@@ -2,10 +2,12 @@
 let playing = false;
 
 function playPauseVideo({ vid }) {
-    if (playing) {
-        vid.play();
-    } else {
-        vid.pause();
+    if(vid){
+        if (vid && playing) {
+            vid.play();
+        } else {
+            vid.pause();
+        }
     }
 }
 

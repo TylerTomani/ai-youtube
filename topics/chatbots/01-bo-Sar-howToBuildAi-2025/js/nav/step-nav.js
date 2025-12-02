@@ -86,10 +86,12 @@ export function initStepNavigation({ mainTargetDiv}){
                     }
                     
                 }
-                if (img.tagName == 'VIDEO') {
-                    let vid = img
 
-                    videoControls({vid,e})
+                if (img && img.tagName == 'VIDEO') {
+                    let vid = img
+                    if(vid){
+                        videoControls({vid,e})
+                    }
                     return
                 }
             });

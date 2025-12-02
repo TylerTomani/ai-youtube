@@ -76,6 +76,7 @@ export function injectContent(href) {
         .then(html => {
             // Insert HTML into the main container
             mainTargetDiv.innerHTML = html; 
+            scrollTo(0,0)
             initStepNavigation({ mainTargetDiv})
             removeLastStep()
             addCopyCode()
@@ -83,13 +84,9 @@ export function injectContent(href) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             updateImgs()
-            // const headerH3 = doc.querySelector('#targetHeaderh3');
-            // if (headerH3 && navLessonTitle) navLessonTitle.textContent = headerH3.textContent;
-            // Initialize step navigation & copy-code buttons
-            // initStepNavigation(mainTargetDiv, sidebarLinks, iSideBarLinks);
-            // addCopyCode();
+            
             // Optional callback after injection
             if (typeof callback === "function") callback();
         })
-        // .catch(err => {console.error('Failed to load content:', err);});
+        .catch(err => {console.error('Failed to load content:', err);});
 }

@@ -25,6 +25,7 @@ export function mainContentNav({ e, focusZone }){
         return
     }
     if(key === 's'){
+        console.log('s in main-content-nav')
         if(!mainContainer.classList.contains('collapsed')) {
             lastClickedSideBarLink.focus()
             return
