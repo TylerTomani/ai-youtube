@@ -1,6 +1,6 @@
 // step-nav.js
 import { videoControls, pauseAllVideos, toggleVideoSizeClick} from "../ui/playStepVid.js"
-
+ 
 import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { getFocusZone } from "./get-focus-zone.js"
@@ -24,8 +24,8 @@ let stepFocused = false
 let stepClicked = false
 
 export function removeLastStep(){lastStep = null}
-function updateCurrentCopyCodes({e}){
-    copyCodes = e.target.querySelectorAll('.copy-code')
+function updateCurrentCopyCodes({step}){
+    copyCodes = [...step.querySelectorAll('.copy-code')]
 }
 export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
@@ -42,7 +42,7 @@ export function initStepNavigation({ mainTargetDiv}){
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
             step.addEventListener("focus", () => {
-                stepClicked = false
+                stepClicked = true
                 iSteps = index;
                 // maybe not iCopyCodes = 0
                 iCopyCodes = 0
@@ -64,6 +64,7 @@ export function initStepNavigation({ mainTargetDiv}){
             step.addEventListener("focusout", () => { denlargeAllImages(allImgs) })
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
+                const step = e.target
                 const stepFloat = e.target.closest('.step-float')
                 const img = stepFloat.querySelector('img ,video')                 
                 if(key === 'm'){
@@ -72,8 +73,9 @@ export function initStepNavigation({ mainTargetDiv}){
                 if (key === "enter" ) {
                     // console.log(img)
                     if (!e.shiftKey){
-                        updateCurrentCopyCodes({e})
-                        stepClicked = !stepClicked
+
+                        updateCurrentCopyCodes({step: stepFloat})
+                        stepClicked = true
                         toggleSingleImage(img)
                         const firstCopyCode = e.target.querySelector('.copy-code')
                         if(img){
@@ -116,6 +118,7 @@ export function initStepNavigation({ mainTargetDiv}){
     copyCodes.forEach((el,i) => {
         el.addEventListener('keydown', e => {
             let key = e.key.toLowerCase()
+
         });
         el.addEventListener('focus', e => {
             iCopyCodes = i
@@ -125,6 +128,14 @@ export function initStepNavigation({ mainTargetDiv}){
     mainTargetDiv.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
         // The intLet and 'E' and 
+        if(e.target.classList.contains('.copy-code')) {
+
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+        }
         if (!isNaN(key)) {
             let intLet = parseInt(key)
             numStepNav(intLet)
