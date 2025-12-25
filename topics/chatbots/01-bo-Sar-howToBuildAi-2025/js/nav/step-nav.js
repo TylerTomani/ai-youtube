@@ -1,6 +1,5 @@
 // step-nav.js
-import { videoControls, pauseAllVideos, toggleVideoSizeClick} from "../ui/playStepVid.js"
- 
+import { videoControls, pauseAllVideos, toggleVideoSizeClick} from "../ui/playStepVid.js" 
 import { mainTargetDiv } from "./main-content-nav.js"
 import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { getFocusZone } from "./get-focus-zone.js"
@@ -31,11 +30,12 @@ export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
+    
     allVids.forEach(vid => {
         vid.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
-            toggleVideoSizeClick({ vid, e, steps, stepFloat })
+            toggleVideoSizeClick({ vid, e, steps})
         });
     })
     steps.forEach((step, index,arr) => {
@@ -67,9 +67,9 @@ export function initStepNavigation({ mainTargetDiv}){
                 const step = e.target
                 const stepFloat = e.target.closest('.step-float')
                 const img = stepFloat.querySelector('img ,video')                 
-                if(key === 'm'){
-                    step.focus()
-                }
+                // if(key === 'm'){
+                //     step.focus()
+                // }
                 if (key === "enter" ) {
                     // console.log(img)
                     if (!e.shiftKey){
@@ -117,7 +117,13 @@ export function initStepNavigation({ mainTargetDiv}){
     });
     copyCodes.forEach((el,i) => {
         el.addEventListener('keydown', e => {
-            let key = e.key.toLowerCase()
+            // let key = e.key.toLowerCase()
+            // if(key === 'm'){
+            //     // e.preventDefault()
+            //     console.log('here')
+            //     const step = e.target.closest('.step-float')
+            //     step.focus()
+            // }
 
         });
         el.addEventListener('focus', e => {
@@ -127,6 +133,16 @@ export function initStepNavigation({ mainTargetDiv}){
     })
     mainTargetDiv.addEventListener('keydown', e => {
         let key = e.key.toLowerCase()
+
+        if (key === 'm') {
+            const step = e.target.closest('.step-float')
+            if (step) {
+                e.preventDefault()
+                stepClicked = false
+                step.focus()
+                return
+            }
+        }
         // The intLet and 'E' and 
         if(e.target.classList.contains('.copy-code')) {
 

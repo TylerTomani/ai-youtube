@@ -237,3 +237,9 @@ sideBarBtn.addEventListener('keydown', e => {
         mainTargetDiv.focus()
     }
 });
+sideBarBtn.addEventListener('focus', e => {
+    // sideBar.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'})
+    sideBar.scrollIntoView({ behavior: "smooth", block: "start" });
+    console.log('here',sideBar)
+
+});

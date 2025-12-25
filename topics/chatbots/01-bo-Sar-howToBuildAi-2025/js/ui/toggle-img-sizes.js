@@ -6,12 +6,13 @@ export function updateImgs(){
 // --- Image handling ---
 export function toggleSingleImage(img) {
     // denlargeAllImages()
+    console.log('init')
     if(img){
         img.classList.toggle("enlarge");
         // img.style.zIndex = img.classList.contains("enlarge") ? 100 : 0;
     }
-
 }
+
 export function toggleStepImages(step, e) {
     const images = Array.from(step.querySelectorAll(".step-img > img"));
     if (!images.length) return;

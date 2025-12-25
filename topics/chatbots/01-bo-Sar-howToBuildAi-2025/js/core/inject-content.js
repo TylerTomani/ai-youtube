@@ -10,6 +10,18 @@ import { updateImgs } from "../ui/toggle-img-sizes.js";
 import { addCopyCode } from "../ui/copy-code.js";
 export const nxtBtn = document.querySelector('#endNxtBtn')
 export const prevBtn = document.querySelector('#prevBtn')
+
+// Temporary fix, i'm quering step-floats again which i shouldn't
+export const lessonBtnsContainer = document.querySelector('.lesson-btns-container')
+lessonBtnsContainer.addEventListener('keydown', e => {
+    let key = e.key.toLowerCase()   
+    const steps = document.querySelectorAll('.step-float')
+
+    if(key === 'a'){
+        mainTargetDiv.scrollIntoView({behavior:'smooth', block: 'end',inline:'nearest'})
+        steps[steps.length - 1].focus()
+    }
+});
 // nxtBtn.addEventListener('click', e => {})
 nxtBtn.addEventListener('keydown', e => {
     const key = e.key.toLowerCase();
@@ -45,6 +57,7 @@ nxtBtn.addEventListener('click', e => {
 // move backward
 prevBtn.addEventListener('keydown', e => {
     const key = e.key.toLowerCase();
+    
     if (key === 'm') mainTargetDiv.focus();
     if (key === 's') handleSKeySideBarNav(e);
     if (key === 'enter') {

@@ -22,7 +22,7 @@ function vidKeyCntrl({ vid, e, key }) {
     if(!vid)return
     switch (key) {
         case 13: // Enter
-            if (!vid.classList.contains('enlarge')) {
+            if (vid.classList.contains('enlarge')) {
                 playing = true;
             }
             break;
@@ -63,17 +63,17 @@ export function pauseAllVideos({ allVids }) {
 
 export function toggleVideoSizeClick({ vid, e, steps, stepFloat }) {
     if (!vid) return
-    e.preventDefault()
-    if (e.target === steps[0] || stepFloat == steps[0]) {
-        vid.classList.add('first-vid-enlarge');
-    } else {
-        vid.classList.add('enlarge');
-    }
-
-    if (innerWidth < 500) {
-        // vid.setAttribute('controls','')
-    }
-
-    videoControls({ vid, e })
-    e.target.scrollIntoView({ behavior: 'instant', block: 'center' });
+    // e.preventDefault()
+    // // if (e.target === steps[0] || stepFloat == steps[0]) {
+    // //     vid.classList.add('first-vid-enlarge');
+    // // } else {
+    // // }
+    // videoControls({ vid, e })
+    // e.target.scrollIntoView({ behavior: 'instant', block: 'center' });
+    // console.log(vid)
+    // if(vid.classList.contains('enlarge')){
+    //     vid.classList.remove('enlarge')
+    // }else {
+    //     vid.classList.add('enlarge')
+    // }
 }
