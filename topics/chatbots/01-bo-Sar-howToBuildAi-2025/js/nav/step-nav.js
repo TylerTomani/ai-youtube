@@ -29,23 +29,24 @@ function updateCurrentCopyCodes({step}){
 }
 export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
-    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,step-vid > video"));
+    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,.step-vid > video"));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
     
     allVids.forEach(vid => {
         vid.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
-            // toggleVideoSizeClick({ vid, e, steps})
+            toggleVideoSizeClick({ vid, e, steps})
             // toggleSingleImage(vid)
         });
     })
     allImgs.forEach(img => {
         img.addEventListener('click', e => {
             e.preventDefault()
-            console.log('here')
             e.stopPropagation()
-            toggleSingleImage(img)
+            if(e.target.tagName === "IMG"){
+                toggleSingleImage(img)
+            }
         });
     })
     steps.forEach((step, index,arr) => {
@@ -87,7 +88,6 @@ export function initStepNavigation({ mainTargetDiv}){
                 if (key === "enter" ) {
                     // console.log(img)
                     if (!e.shiftKey){
-
                         updateCurrentCopyCodes({step: stepFloat})
                         stepClicked = true
                         toggleSingleImage(img)

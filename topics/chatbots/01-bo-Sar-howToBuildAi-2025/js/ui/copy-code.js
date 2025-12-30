@@ -21,6 +21,9 @@ export function addCopyCode() {
             e.stopPropagation()
             handleCopy(e)
             animate(el)
+            const step = e.target.closest('.step-float')
+            step.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+            console.log(step)
         })
     })
     function handleCopy(e) {
@@ -43,7 +46,7 @@ export function addCopyCode() {
         // Optional: animate on click for code elements as you had
         element.addEventListener('click', e => {
             e.preventDefault()
-
+            
             // handleCopy(e.taget, true);
 
         });

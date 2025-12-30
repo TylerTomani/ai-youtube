@@ -37,6 +37,7 @@
     transition: all 0.025s ease;
     touch-action: manipulation;
     border: 1px solid blue;
+    z-index: 5
 }
 /* Enlarged images always on top */
 .step-vid>video,

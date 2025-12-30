@@ -8,7 +8,7 @@ export function toggleSingleImage(img) {
     // denlargeAllImages()
     if(img){
         img.classList.toggle("enlarge");
-        // img.style.zIndex = img.classList.contains("enlarge") ? 100 : 0;
+        img.style.zIndex = img.classList.contains("enlarge") ? 100 : 0;
     }
 }
 if(allImgs){
@@ -17,7 +17,7 @@ if(allImgs){
         el.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
-            toggleSingleImage(e.target)
+            // toggleSingleImage(e.target)
         });
     })
 }

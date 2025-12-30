@@ -1,7 +1,7 @@
 // playStepVid.js
 let playing = false;
 
-function playPauseVideo({ vid }) {
+function playPauseVideo({ vid,playing }) {
     if (!vid) return
     if(vid){
         if (vid && playing) {
@@ -15,6 +15,7 @@ function playPauseVideo({ vid }) {
 export function videoControls({ vid, e }) {
     if (!vid) return
     let key = e.keyCode;
+    console.log(e.type)
     vidKeyCntrl({vid,e,key})
 }
 
@@ -44,8 +45,7 @@ function vidKeyCntrl({ vid, e, key }) {
             playing = true;
             break;
     }
-    playPauseVideo({ vid });
-    return playing;
+    playPauseVideo({ vid,playing });
 }
 
 
