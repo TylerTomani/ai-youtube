@@ -103,6 +103,9 @@ a.resource:visited{
         margin: 2.5% 0;
         padding-top: 2%;
     }
+    .resource {
+        min-width: 300px;
+    }
     .resource>img {
         max-width: 50px;
     }

@@ -36,7 +36,16 @@ export function initStepNavigation({ mainTargetDiv}){
         vid.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
-            toggleVideoSizeClick({ vid, e, steps})
+            // toggleVideoSizeClick({ vid, e, steps})
+            // toggleSingleImage(vid)
+        });
+    })
+    allImgs.forEach(img => {
+        img.addEventListener('click', e => {
+            e.preventDefault()
+            console.log('here')
+            e.stopPropagation()
+            toggleSingleImage(img)
         });
     })
     steps.forEach((step, index,arr) => {
