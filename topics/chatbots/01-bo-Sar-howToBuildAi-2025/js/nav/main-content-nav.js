@@ -15,6 +15,7 @@ export function mainContentNav({ e, focusZone }){
     }
     if(key === 'e'){
         nxtBtn.focus()
+        mainContainer.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'end'})
     }
     if(key === 'p'){
         prevBtn.focus()
