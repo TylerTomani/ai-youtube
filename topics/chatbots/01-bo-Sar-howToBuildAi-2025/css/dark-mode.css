@@ -2,6 +2,9 @@
     --bg-primary: #201d1d;
     --font-primary: whitesmoke;
 }
+.dark-mode .code-container>.copy-code{
+    border: 1px solid white !important;
+}
 .dark-mode .page-header {
     background-color: var(--bg-primary);
     color: var(--bg-primary) !important;
