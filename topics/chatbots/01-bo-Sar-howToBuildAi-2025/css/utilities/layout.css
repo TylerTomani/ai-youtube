@@ -1,4 +1,6 @@
-
+body {
+    overflow-x: hidden;
+}
 .lesson-btns-container{
     position: fixed;
     /* font-size: 20rem; */
