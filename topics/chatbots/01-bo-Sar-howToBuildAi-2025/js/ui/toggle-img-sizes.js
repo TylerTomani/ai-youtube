@@ -17,7 +17,7 @@ if(allImgs){
         el.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
-            // toggleSingleImage(e.target)
+            toggleSingleImage(e.target)
         });
     })
 }
