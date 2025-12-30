@@ -57,10 +57,10 @@ export function initStepNavigation({ mainTargetDiv}){
                     step.scrollIntoView({ behavior: 'smooth', block: 'center' })
                 } else {
                     // last step
-                    step.scrollIntoView({ behavior: 'smooth', block: 'end' })
+                    step.scrollIntoView({ behavior: 'smooth', block: 'center' })
                 }
                 if(allVids){}
-                if (e.target == steps[steps.length - 1]) {
+                if (e.target == steps[steps.length - 1] && steps.length > 3) {
                     mainContainer.scrollIntoView({ behavior: 'smooth', block: 'end', container: 'all' })
                 }
                 pauseAllVideos({allVids})

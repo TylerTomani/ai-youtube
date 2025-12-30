@@ -1,6 +1,6 @@
 .page-header.grid {
     .box {
-        /* border: 1px dashed blue; */
+        border: 1px solid black;
     }
 }
 nav#navBarLessonTitle{
