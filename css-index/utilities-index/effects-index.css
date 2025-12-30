@@ -5,7 +5,11 @@
 
 .resource:active,
 .resource:focus {
-    box-shadow: 2px 2px 8px 6px lightseagreen;
+    /* box-shadow: 2px 2px 1px 1px lightseagreen; */
+}
+.lessons-btns-container button:active,
+.lessons-btns-container button:focus{
+    /* box-shadow: 2px 2px 1px 1px lightseagreen; */
 }
 
 .animate {
