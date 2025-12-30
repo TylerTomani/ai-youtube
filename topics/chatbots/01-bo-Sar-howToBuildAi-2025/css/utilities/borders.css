@@ -10,3 +10,7 @@ aside.side-bar{
     border-right: 1px solid black;
 
 }
+.lesson-btns-container > button{
+    border-radius: 8px;
+
+}

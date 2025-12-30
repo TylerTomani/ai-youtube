@@ -6,6 +6,7 @@ import { getFocusZone } from "./get-focus-zone.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
 import { handleMKey } from "./m-key-handler.js"
+import { mainContainer } from "../ui/toggle-side-bar.js"
 
 
 let steps = []
@@ -41,7 +42,7 @@ export function initStepNavigation({ mainTargetDiv}){
     steps.forEach((step, index,arr) => {
         if (!step.dataset.listenerAdded) {
             step.setAttribute("tabindex", "0");
-            step.addEventListener("focus", () => {
+            step.addEventListener("focus", (e) => {
                 stepClicked = true
                 iSteps = index;
                 // maybe not iCopyCodes = 0
@@ -51,6 +52,7 @@ export function initStepNavigation({ mainTargetDiv}){
                 denlargeAllImages(allImgs);
                 lastStep = step
                 stepClicked = false
+                
                 if(index < arr.length - 1){
                     step.scrollIntoView({ behavior: 'smooth', block: 'center' })
                 } else {
@@ -58,6 +60,9 @@ export function initStepNavigation({ mainTargetDiv}){
                     step.scrollIntoView({ behavior: 'smooth', block: 'end' })
                 }
                 if(allVids){}
+                if (e.target == steps[steps.length - 1]) {
+                    mainContainer.scrollIntoView({ behavior: 'smooth', block: 'end', container: 'all' })
+                }
                 pauseAllVideos({allVids})
             });
             step.addEventListener("focusin", () => { iSteps = index;})
