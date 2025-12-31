@@ -99,6 +99,9 @@ allSideBarLinks.forEach((el, i) => {
             handleMKey({e,focusZone:mainTargetDiv})
             return;
         }
+        if(key === 'enter'){
+            changeTutorialLink(e)
+        }
     })  
     el.addEventListener('focus', (e) => {
         lastFocusedSideBarLink = e.target
@@ -229,6 +232,10 @@ export function sideBarNav({ e , focusZone}) {
 
         // Fallback: if not in sublink or drop-down, reset index
         iSideBarLinks = 0;
+    }
+    if (key === 't') {
+        const tutorialLink = changeTutorialLink(e)
+        tutorialLink.focus()
     }
 }
 sideBarBtn.addEventListener('keydown', e => {

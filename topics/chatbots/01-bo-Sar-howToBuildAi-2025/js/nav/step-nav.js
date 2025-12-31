@@ -86,7 +86,7 @@ export function initStepNavigation({ mainTargetDiv}){
                 //     step.focus()
                 // }
                 if (key === "enter" ) {
-                    // console.log(img)
+                    changeTutorialLink(e)
                     if (!e.shiftKey){
                         updateCurrentCopyCodes({step: stepFloat})
                         stepClicked = true
@@ -114,7 +114,7 @@ export function initStepNavigation({ mainTargetDiv}){
                 if (img && img.tagName == 'VIDEO') {
                     let vid = img
                     if(vid){
-                        videoControls({vid,e})
+                        // videoControls({vid,e})
                     }
                     return
                 }
@@ -186,25 +186,22 @@ function numStepNav(intLet){
 }
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
+
     let key = e.key
     if(!isNaN(key)){
         let intLet = parseInt(key)
         // 
         numStepNav(intLet)
     } 
+    if(key === 'enter'){
+    }
     stepFocused = !stepFocused
     // 
     /////////////
     //**
     // MAKE FOCUS ZONES for stepFocused and not !stepFocused
     //  */
-    if(key === 's'){
-        stepClicked = false
-        if (lastClickedSideBarLink){
-            lastClickedSideBarLink.focus()
-            return
-        }
-    }
+    
     if (key === 'f') {
         if(!stepClicked){
             iSteps = (iSteps + 1) % steps.length
@@ -238,6 +235,17 @@ export function handleStepNav({e, focusZone}){
             const step = e.target.closest('.step-float')
             step.focus()
         }
+    }
+    if (key === 's') {
+        stepClicked = false
+        if (lastClickedSideBarLink) {
+            lastClickedSideBarLink.focus()
+            return
+        }
+    }
+    if (key === 't') {
+
+        tutorialLink.focus()
     }
     /////////////
     if(steps[iSteps]){

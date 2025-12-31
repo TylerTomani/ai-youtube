@@ -23,7 +23,6 @@ export function addCopyCode() {
             animate(el)
             const step = e.target.closest('.step-float')
             step.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-            console.log(step)
         })
     })
     function handleCopy(e) {

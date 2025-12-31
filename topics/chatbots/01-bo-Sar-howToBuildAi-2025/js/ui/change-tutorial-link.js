@@ -1,5 +1,7 @@
 // change-tutorial-link.js
+
 export function changeTutorialLink(e) {
+    const tutorialLink = document.querySelector('#tutorialLink')
     const targetLink = e.target
     // console.log(e.target)
     const vidBase = targetLink.getAttribute("data-video");
@@ -8,6 +10,8 @@ export function changeTutorialLink(e) {
     let vidHref = vidBase;
     if (ts) {
         vidHref += (vidBase.includes("?") ? "&" : "?") + `t=${ts}s`;
+        console.log(vidHref)
         tutorialLink.href = vidHref;
     }
+    return tutorialLink
 }
