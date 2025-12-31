@@ -27,10 +27,7 @@ export function mainContentNav({ e, focusZone }){
     }
     if(key === 's'){
         if(!mainContainer.classList.contains('collapsed')) {
-            // if(isVisible(lastClickedSideBarLink)){
-            //     lastClickedSideBarLink.focus()
-                
-            // }
+
             lastClickedSideBarLink.focus()
             return
         }
@@ -42,8 +39,4 @@ export function mainContentNav({ e, focusZone }){
     // THE PROBLEM IS IN handleStepNav.js
     handleStepNav({ e, focusZone })
 }
-function isVisible(el) {
-    return !!(el && el.offsetParent);
-}
-
 

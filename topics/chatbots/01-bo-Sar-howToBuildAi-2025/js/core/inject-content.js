@@ -1,6 +1,7 @@
 // inject-content.js
 let iAllSideBarLinks = 0
 import { allSideBarLinks,lastClickedSideBarLink,updateLastClicked,getHrefFromLink } from "../nav/side-bar-nav.js";
+import { mainContainer } from "../ui/toggle-side-bar.js";
 import { mainTargetDiv } from "../nav/main-content-nav.js";
 import { initStepNavigation } from "../nav/step-nav.js";
 import { removeLastStep } from "../nav/step-nav.js";
@@ -84,12 +85,24 @@ prevBtn.addEventListener('click', e => {
 });
 
 function handleHighlight(){
+
     allSideBarLinks.forEach(el => {
         if (el.classList.contains('highlight')) {
             el.classList.remove('highlight')
+
         }
     })
-    allSideBarLinks[iAllSideBarLinks].classList.add('highlight')
+    
+    let nxtLessonSideBarLi = allSideBarLinks[iAllSideBarLinks]
+    nxtLessonSideBarLi.classList.add('highlight')
+    
+    const dropSnips = nxtLessonSideBarLi.closest('.drop-snips')
+    if(dropSnips.classList.contains('hide')) dropSnips.classList.remove('hide')
+    
+
+}
+function isVisible(el) {
+    return !!(el && el.offsetParent);
 }
 export function injectContent(href) {
     fetch(href)
