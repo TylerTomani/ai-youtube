@@ -7,7 +7,7 @@
     height: 5vh;
 }
 .sub-resources-container>a.resource {
-    min-width: 15vw;
+    /* min-width: 15vw; */
 }
 a.resource {
     height: 100%;
@@ -17,4 +17,9 @@ a.resource {
 }
 .page-wrapper>footer.mobile-footer-header {
     width: 100%;
+}
+@media screen and (max-width:720px) {
+    .resource {
+        min-width: 100px !important;
+    }
 }

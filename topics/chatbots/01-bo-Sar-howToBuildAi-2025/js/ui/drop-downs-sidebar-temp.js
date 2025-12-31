@@ -38,8 +38,8 @@ export function initDropDowns() {
 }
 
 export function hideTopicSnips() {
-    document.querySelectorAll(".side-bar-links .drop-snips").forEach(el => {
-        if (!el.classList.contains("show")) {
+    document.querySelectorAll(".side-bar-links > li .drop-snips").forEach(el => {
+        if (!el.classList.contains("show") ) {
             el.classList.add("hide");
         }
     });

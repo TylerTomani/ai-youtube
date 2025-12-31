@@ -2,7 +2,7 @@
 // ===== Imports =====
 import { letterFocus } from "../nav/letter-focus.js";
 import { getFocusZone } from "../nav/get-focus-zone.js";
-import { initDropDowns } from "../ui/drop-downs-sidebar-temp.js";
+import { initDropDowns,hideTopicSnips } from "../ui/drop-downs-sidebar-temp.js";
 import { handleStepNav, lastStep } from "../nav/step-nav.js";
 import { initToggleSidebar, mainContainer, sideBar, sideBarBtn } from "../ui/toggle-side-bar.js";
 import { sideBarNav, lastClickedSideBarLink, lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
