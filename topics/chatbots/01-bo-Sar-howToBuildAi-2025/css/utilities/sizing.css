@@ -15,3 +15,11 @@
     max-height: 80px;
 
 }
+
+.side-bar ul>li {
+    width: 100%;
+}
+.side-bar ul>li>a {
+    width: 90%;
+    text-decoration: none;
+}
