@@ -7,8 +7,6 @@ import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
 import { handleMKey } from "./m-key-handler.js"
 import { mainContainer } from "../ui/toggle-side-bar.js"
-
-
 let steps = []
 let copyCodes = []
 let iSteps = 0
@@ -29,14 +27,13 @@ function updateCurrentCopyCodes({step}){
 }
 export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
-    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img,.step-vid > video"));
+    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img, .step-vid > video"));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
-    
     allVids.forEach(vid => {
         vid.addEventListener('click', e => {
             e.preventDefault()
             e.stopPropagation()
-            toggleVideoSizeClick({ vid, e, steps})
+            // toggleVideoSizeClick({ vid, e, steps})
             // toggleSingleImage(vid)
         });
     })
@@ -114,7 +111,7 @@ export function initStepNavigation({ mainTargetDiv}){
                 if (img && img.tagName == 'VIDEO') {
                     let vid = img
                     if(vid){
-                        // videoControls({vid,e})
+                        videoControls({vid,e})
                     }
                     return
                 }

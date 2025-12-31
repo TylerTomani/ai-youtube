@@ -45,7 +45,8 @@ export function addCopyCode() {
         // Optional: animate on click for code elements as you had
         element.addEventListener('click', e => {
             e.preventDefault()
-            
+            const stepFloat = e.target.closest('.step-float')
+            stepFloat.scrollIntoView({behavior:'instant', inline: 'nearest', block: 'center'})
             // handleCopy(e.taget, true);
 
         });
