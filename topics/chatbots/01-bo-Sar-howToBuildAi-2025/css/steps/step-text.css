@@ -13,9 +13,7 @@
     /* flex-grow: 1; */
     align-content: center;
 }
-.step-float{
-    border:  1px solid lightskyblue;
-}
+
 .step-float>.step-txt {
     /* flex-shrink: 1; */
     flex-grow: 1;
