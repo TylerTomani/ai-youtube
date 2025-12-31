@@ -4,6 +4,9 @@
 .side-bar-links {
     margin-left: 15%;
 }
+.side-bar-links > li {
+    margin-bottom: 10%;
+}
 .side-bar-links > li >ul,
 .side-bar-links > li >ol{
     margin-left: 15%;
