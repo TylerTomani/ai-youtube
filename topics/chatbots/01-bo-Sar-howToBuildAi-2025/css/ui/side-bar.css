@@ -4,14 +4,11 @@
     --sidebar-collapsed-width: 2.5%;
 }
 .side-bar a.topic{
-    text-decoration: none;
-    
+    text-decoration: none;    
 }
 .side-bar h3{
     border-bottom: 1px solid blue;
     width: 50%;
-    margin-bottom: 5%;
-    margin-top: 20%;
 }
 .side-bar {
     width: var(--sidebar-width);
@@ -23,7 +20,6 @@
     /* overflow: hidden; */
     /* height: calc(100vh - var(--header-height, 80px)); */
 }
-
 #sideBarBtn {
     position: absolute;
     top: 0px;
@@ -34,23 +30,9 @@
     pointer-events: auto;
     /* make sure it's above other stuff */
 }
-
-ul.side-bar-links>li {
-    /* margin-top: 10%; */
-}
-
 .side-bar ul {
     list-style: decimal;
-    /* font-size: .5rem; */
-    margin: 0;
-    margin-left: 20%;
-
 }
-
-.side-bar ul>li {}
-
 .side-bar ul>li>a {
     text-decoration: none;
-
 }
-

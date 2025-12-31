@@ -38,6 +38,7 @@ nxtBtn.addEventListener('keydown', e => {
         updateLastClicked(allSideBarLinks[iAllSideBarLinks])
         const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
         if (href) {
+            handleHighlight()
             injectContent(href);
         }
     }
@@ -51,6 +52,7 @@ nxtBtn.addEventListener('click', e => {
     updateLastClicked(allSideBarLinks[iAllSideBarLinks])
     const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
     if (href) {
+        handleHighlight()
         injectContent(href);
     }
 });
@@ -65,6 +67,7 @@ prevBtn.addEventListener('keydown', e => {
         updateLastClicked(allSideBarLinks[iAllSideBarLinks])
         const href = getHrefFromLink(allSideBarLinks[iAllSideBarLinks])
         if (href) {
+            handleHighlight()
             injectContent(href);
         }
     }
@@ -80,6 +83,14 @@ prevBtn.addEventListener('click', e => {
     }
 });
 
+function handleHighlight(){
+    allSideBarLinks.forEach(el => {
+        if (el.classList.contains('highlight')) {
+            el.classList.remove('highlight')
+        }
+    })
+    allSideBarLinks[iAllSideBarLinks].classList.add('highlight')
+}
 export function injectContent(href) {
     fetch(href)
         .then(response => {
