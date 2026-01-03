@@ -1,4 +1,4 @@
-                           // playStepVid.js
+// playStepVid.js
 let playing = false; 
 export function pauseAllVideos({ allVids }) {
     if (!allVids || !allVids.forEach) return;
@@ -19,58 +19,52 @@ export function videoControls({ vid, e }) {
         vidKeyCntrl({ vid, e, key })
     }
     if (e.type == 'click') {
-        console.log('click')
         toggleVideoSizeClick({ vid, e })
     }
 }
-
 function vidKeyCntrl({ vid, e, key }) {
     if (!vid) return
-    switch (key) {
-        case 13: // Enter
-            if (vid.classList.contains('enlarge')) {
+    if (e.type == 'click') {
+    } else {
+
+        switch (key) {
+            case 13: // Enter
+                if (vid.classList.contains('enlarge')) {
+                    playing = true;
+                }
+                break;
+            case 32: // Space
+                e.preventDefault();
+                if (vid.currentTime === vid.duration) {
+                    vid.currentTime = 0;
+                    playing = false;
+                } else {
+                    playing = !playing;
+                }
+                break;
+            case 37: // Left arrow
+                vid.currentTime -= 0.5;
                 playing = true;
-            }
-            break;
-        case 32: // Space
-            e.preventDefault();
-            if (vid.currentTime === vid.duration) {
-                vid.currentTime = 0;
-                playing = false;
-            } else {
-                playing = !playing;
-            }
-            break;
-        case 37: // Left arrow
-            vid.currentTime -= 0.5;
-            playing = true;
-            break;
-        case 39: // Right arrow
-            vid.currentTime += 0.5;
-            playing = true;
-            break;
+                break;
+            case 39: // Right arrow
+                vid.currentTime += 0.5;
+                playing = true;
+                break;
+        }
     }
     playPauseVideo({ vid, playing });
 }
 export function toggleVideoSizeClick({ vid, e }) {
     if (!vid) return
-    
     vid.classList.toggle('enlarge')
     if(vid.classList.contains('enlarge') && !playing){
         playing = true
     } else {
         playing = false
     }
-    // if(playing && !vid.classList.contains('enlarge')){
-    //     playing = true       
-    // } else { 
-    //     playing == true
-    // }   
     vidKeyCntrl({vid,e})
-    // playPauseVideo({vid,playing})   
 }
 function playPauseVideo({ vid, playing }) {
-    console.log(playing)
     if (!vid) return
     if (vid) {
         if (playing) {

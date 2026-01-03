@@ -49,8 +49,19 @@
     left: 50%;
     /* center + enlarge */
     transform: translate(-50%, -90%) scale(1.2);
-    z-index: 9999 !important;
-
+    z-index: 9999 !important;    
+}
+.step-vid{
+    position: relative;
+}
+.step-vid .vid-cntrl-btns{
+    position: absolute;
+    display: flex;
+    border: 2px solid blue;
+    width: 100%;
+    align-items: space-between;
+    justify-content: space-between;
+    bottom: 10%;
 }
 .step-float .step-vid>video.enlarge,
 .step-float .step-img>img.enlarge {

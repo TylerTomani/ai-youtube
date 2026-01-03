@@ -16,11 +16,8 @@ export let lastFocusedMainEl
 let allImgs = [];
 let allVids = [];
 let iImgContainerImages = 0
-// I don't know if i need copyCodesStepsFocused ???
-// export let copyCodesStepFocused = false;
 let stepFocused = false 
 let stepClicked = false
-
 export function removeLastStep(){lastStep = null}
 function updateCurrentCopyCodes({step}){
     copyCodes = [...step.querySelectorAll('.copy-code')]
@@ -33,7 +30,6 @@ export function initStepNavigation({ mainTargetDiv}){
         vid.addEventListener('click', e => {
             // e.preventDefault()
             // e.stopPropagation()
-            
             if (e.target.tagName === "VIDEO") {
                 videoControls({vid,e})
             }
@@ -204,7 +200,6 @@ function numStepNav(intLet){
 }
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
-
     let key = e.key
     if(!isNaN(key)){
         let intLet = parseInt(key)
@@ -218,8 +213,7 @@ export function handleStepNav({e, focusZone}){
     /////////////
     //**
     // MAKE FOCUS ZONES for stepFocused and not !stepFocused
-    //  */
-    
+    //  */    
     if (key === 'f') {
         if(!stepClicked){
             iSteps = (iSteps + 1) % steps.length
