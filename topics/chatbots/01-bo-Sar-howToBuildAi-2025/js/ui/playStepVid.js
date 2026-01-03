@@ -1,31 +1,31 @@
-// playStepVid.js
-let playing = false;
-
-function playPauseVideo({ vid,playing }) {
-    if (!vid) return
-    if(vid){
-        if (vid && playing) {
-            vid.play();
-        } else {
+                           // playStepVid.js
+let playing = false; 
+export function pauseAllVideos({ allVids }) {
+    if (!allVids || !allVids.forEach) return;
+    allVids.forEach(vid => {
+        vid.classList.remove("enlarge");
+        vid.classList.remove("first-vid-enlarge");
+        vid.style.border = "none";
+        if (!vid.paused) {
             vid.pause();
         }
-    }
+    });
 }
-
 export function videoControls({ vid, e }) {
     if (!vid) return
     let key = e.keyCode;
-    if(e.type == 'keydown'){
-
-        vidKeyCntrl({vid,e,key})
+    if (e.type == 'keydown') {
+        console.log('keydown')
+        vidKeyCntrl({ vid, e, key })
     }
-    if(e.type == 'click'){
-        toggleVideoSizeClick({vid,e})
+    if (e.type == 'click') {
+        console.log('click')
+        toggleVideoSizeClick({ vid, e })
     }
 }
 
 function vidKeyCntrl({ vid, e, key }) {
-    if(!vid)return
+    if (!vid) return
     switch (key) {
         case 13: // Enter
             if (vid.classList.contains('enlarge')) {
@@ -50,36 +50,33 @@ function vidKeyCntrl({ vid, e, key }) {
             playing = true;
             break;
     }
-    playPauseVideo({ vid,playing });
+    playPauseVideo({ vid, playing });
 }
-
-
-export function pauseAllVideos({ allVids }) {
-    if (!allVids || !allVids.forEach) return;
-    allVids.forEach(vid => {
-        vid.classList.remove("enlarge");
-        vid.classList.remove("first-vid-enlarge");
-        vid.style.border = "none";
-        if (!vid.paused) {
+export function toggleVideoSizeClick({ vid, e }) {
+    if (!vid) return
+    
+    vid.classList.toggle('enlarge')
+    if(vid.classList.contains('enlarge') && !playing){
+        playing = true
+    } else {
+        playing = false
+    }
+    // if(playing && !vid.classList.contains('enlarge')){
+    //     playing = true       
+    // } else { 
+    //     playing == true
+    // }   
+    vidKeyCntrl({vid,e})
+    // playPauseVideo({vid,playing})   
+}
+function playPauseVideo({ vid, playing }) {
+    console.log(playing)
+    if (!vid) return
+    if (vid) {
+        if (playing) {
+            vid.play();
+        } else {
             vid.pause();
         }
-    });
-}
-
-export function toggleVideoSizeClick({ vid, e, steps, stepFloat }) {
-    if (!vid) return
-    // e.preventDefault()
-    // // if (e.target === steps[0] || stepFloat == steps[0]) {
-    // //     vid.classList.add('first-vid-enlarge');
-    // // } else {
-    // // }
-    videoControls({ vid, e })
-    // e.target.scrollIntoView({ behavior: 'instant', block: 'center' });
-    // console.log(vid)
-    vid.classList.toggle('enlarge')
-    // if(vid.classList.contains('enlarge')){
-    //     vid.classList.remove('enlarge')
-    // }else {
-    //     vid.classList.add('enlarge')
-    // }
+    }
 }

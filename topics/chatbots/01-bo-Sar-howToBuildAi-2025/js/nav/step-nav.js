@@ -30,11 +30,24 @@ export function initStepNavigation({ mainTargetDiv}){
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img, .step-vid > video"));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
     allVids.forEach(vid => {
-        vid.addEventListener('pointerdown', e => {
+        vid.addEventListener('click', e => {
+            // e.preventDefault()
+            // e.stopPropagation()
+            
+            if (e.target.tagName === "VIDEO") {
+                videoControls({vid,e})
+            }
+        });
+        vid.addEventListener('keydown', e => {
             e.preventDefault()
             e.stopPropagation()
+            const key = e.key.toLowerCase()
+            if(key === 32){
+                e.preventDefault()
+            }
             if (e.target.tagName === "VIDEO") {
-                toggleVideoSizeClick({vid,e})
+                const key = e.target.key.toLowerCase()
+                videoControls({vid,e,})
             }
         });
     })
