@@ -30,15 +30,16 @@ export function initStepNavigation({ mainTargetDiv}){
     allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img, .step-vid > video"));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
     allVids.forEach(vid => {
-        vid.addEventListener('click', e => {
+        vid.addEventListener('pointerdown', e => {
             e.preventDefault()
             e.stopPropagation()
-            // toggleVideoSizeClick({ vid, e, steps})
-            // toggleSingleImage(vid)
+            if (e.target.tagName === "VIDEO") {
+                toggleVideoSizeClick({vid,e})
+            }
         });
     })
     allImgs.forEach(img => {
-        img.addEventListener('click', e => {
+        img.addEventListener('pointerdown', e => {
             e.preventDefault()
             e.stopPropagation()
             if(e.target.tagName === "IMG"){
@@ -117,13 +118,20 @@ export function initStepNavigation({ mainTargetDiv}){
                 }
             });
             // --- unified pointerdown for click/tap ---
-            step.addEventListener("pointerdown", e => {
-                if (e.target.tagName !== "IMG") {
-                    denlargeAllImages(allImgs);
-                    lastStep = step;
-                }
-            });
-            // step.dataset.listenerAdded = "true";
+            // step.addEventListener("pointerdown", e => {
+            //     if (e.target.tagName !== "IMG") {
+            //         denlargeAllImages(allImgs);
+                    
+            //         lastStep = step;
+            //     }
+            //     if (e.target.tagName !== "VIDEO") {
+            //         denlargeAllImages(allImgs);
+            //         videoControls({e,})
+                    
+            //         lastStep = step;
+            //     }
+            // });
+            step.dataset.listenerAdded = "true";
         }
     });
     copyCodes.forEach((el,i) => {

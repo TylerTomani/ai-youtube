@@ -15,8 +15,13 @@ function playPauseVideo({ vid,playing }) {
 export function videoControls({ vid, e }) {
     if (!vid) return
     let key = e.keyCode;
-    console.log(e.type)
-    vidKeyCntrl({vid,e,key})
+    if(e.type == 'keydown'){
+
+        vidKeyCntrl({vid,e,key})
+    }
+    if(e.type == 'click'){
+        toggleVideoSizeClick({vid,e})
+    }
 }
 
 function vidKeyCntrl({ vid, e, key }) {
@@ -68,9 +73,10 @@ export function toggleVideoSizeClick({ vid, e, steps, stepFloat }) {
     // //     vid.classList.add('first-vid-enlarge');
     // // } else {
     // // }
-    // videoControls({ vid, e })
+    videoControls({ vid, e })
     // e.target.scrollIntoView({ behavior: 'instant', block: 'center' });
     // console.log(vid)
+    vid.classList.toggle('enlarge')
     // if(vid.classList.contains('enlarge')){
     //     vid.classList.remove('enlarge')
     // }else {

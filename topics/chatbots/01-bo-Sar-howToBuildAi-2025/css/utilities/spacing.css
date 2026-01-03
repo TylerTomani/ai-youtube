@@ -1,12 +1,10 @@
 .side-bar h3 {
     margin-bottom: 5%;
-    margin-top: 20%;
+    /* margin-top: 20%; */
 }
 .side-bar-links {
-    padding-top: 12%;
+    margin-top: 20%;
     padding-left: 4% ;
-    /* border: 2px solid blue; */
-    margin-top: 100%;
     margin-left: 15%;
 }
 .side-bar-links > li {
