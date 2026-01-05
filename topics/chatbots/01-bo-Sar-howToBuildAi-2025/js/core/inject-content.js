@@ -28,7 +28,6 @@ nxtBtn.addEventListener('keydown', e => {
     const key = e.key.toLowerCase();
     if (key === 'm') mainTargetDiv.focus();
     if (key === 's') handleSKeySideBarNav(e);
-
     // move forward
     if (key === 'enter') {
         e.preventDefault()
@@ -43,7 +42,6 @@ nxtBtn.addEventListener('keydown', e => {
             injectContent(href);
         }
     }
-    
 });
 nxtBtn.addEventListener('click', e => {
     e.preventDefault()
@@ -85,21 +83,15 @@ prevBtn.addEventListener('click', e => {
 });
 
 function handleHighlight(){
-
     allSideBarLinks.forEach(el => {
         if (el.classList.contains('highlight')) {
             el.classList.remove('highlight')
-
         }
     })
-    
     let nxtLessonSideBarLi = allSideBarLinks[iAllSideBarLinks]
     nxtLessonSideBarLi.classList.add('highlight')
-    
     const dropSnips = nxtLessonSideBarLi.closest('.drop-snips')
     if(dropSnips.classList.contains('hide')) dropSnips.classList.remove('hide')
-    
-
 }
 function isVisible(el) {
     return !!(el && el.offsetParent);

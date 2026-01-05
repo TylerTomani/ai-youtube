@@ -29,7 +29,7 @@ function vidKeyCntrl({ vid, e, key }) {
 
         switch (key) {
             case 13: // Enter
-                if (vid.classList.contains('enlarge')) {
+                if (vid.parent.classList.contains('enlarge')) {
                     playing = true;
                 }
                 break;

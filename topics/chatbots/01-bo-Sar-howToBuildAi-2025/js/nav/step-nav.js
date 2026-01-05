@@ -1,7 +1,7 @@
 // step-nav.js
 import { videoControls, pauseAllVideos, toggleVideoSizeClick} from "../ui/playStepVid.js" 
 import { mainTargetDiv } from "./main-content-nav.js"
-import { toggleSingleImage,toggleStepImages,denlargeAllImages } from "../ui/toggle-img-sizes.js"
+import { toggleSingleImage,denlargeAllImages } from "../ui/toggle-img-sizes.js"
 import { getFocusZone } from "./get-focus-zone.js"
 import { changeTutorialLink } from "../ui/change-tutorial-link.js"
 import { lastClickedSideBarLink } from "./side-bar-nav.js"
@@ -24,7 +24,7 @@ function updateCurrentCopyCodes({step}){
 }
 export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
-    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img > img, .step-vid > video"));
+    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img , .step-vid "));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
     allVids.forEach(vid => {
         vid.addEventListener('click', e => {
@@ -88,7 +88,7 @@ export function initStepNavigation({ mainTargetDiv}){
                 let key = e.key.toLowerCase();
                 const step = e.target
                 const stepFloat = e.target.closest('.step-float')
-                const img = stepFloat.querySelector('img ,video')                 
+                const img = stepFloat.querySelector('.step-img ,.step-vid')                 
                 // if(key === 'm'){
                 //     step.focus()
                 // }
