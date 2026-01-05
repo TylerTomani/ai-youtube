@@ -9,6 +9,7 @@
 .side-bar h3{
     border-bottom: 1px solid blue;
     width: 50%;
+    
 }
 .side-bar {
     width: var(--sidebar-width);
