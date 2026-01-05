@@ -13,7 +13,7 @@ let iSteps = 0
 let iCopyCodes = 0
 export let lastStep
 export let lastFocusedMainEl
-let allImgs = [];
+let allStepImgVids = [];
 let allVids = [];
 let iImgContainerImages = 0
 let stepFocused = false 
@@ -24,7 +24,7 @@ function updateCurrentCopyCodes({step}){
 }
 export function initStepNavigation({ mainTargetDiv}){
     steps = [...mainTargetDiv.querySelectorAll('.step-float')]
-    allImgs = Array.from(mainTargetDiv.querySelectorAll(".step-img , .step-vid "));
+    allStepImgVids = Array.from(mainTargetDiv.querySelectorAll(".step-img , .step-vid "));
     allVids = Array.from(mainTargetDiv.querySelectorAll(".step-vid > video"));
     allVids.forEach(vid => {
         vid.addEventListener('click', e => {
@@ -47,12 +47,13 @@ export function initStepNavigation({ mainTargetDiv}){
             }
         });
     })
-    allImgs.forEach(img => {
-        img.addEventListener('pointerdown', e => {
+    allStepImgVids.forEach(el => {
+        el.addEventListener('pointerdown', e => {
             e.preventDefault()
             e.stopPropagation()
-            if(e.target.tagName === "IMG"){
-                toggleSingleImage(img)
+            if(el.classList.contains('step-img')){
+                
+                toggleSingleImage(el)
             }
         });
     })
@@ -66,7 +67,7 @@ export function initStepNavigation({ mainTargetDiv}){
                 iCopyCodes = 0
                 iImgContainerImages = 0;
                 // iCopyCodes = 0
-                denlargeAllImages(allImgs);
+                denlargeAllImages(allStepImgVids);
                 lastStep = step
                 stepClicked = false
                 
@@ -83,12 +84,12 @@ export function initStepNavigation({ mainTargetDiv}){
                 pauseAllVideos({allVids})
             });
             step.addEventListener("focusin", () => { iSteps = index;})
-            step.addEventListener("focusout", () => { denlargeAllImages(allImgs) })
+            step.addEventListener("focusout", () => { denlargeAllImages(allStepImgVids) })
             step.addEventListener("keydown", e => {
                 let key = e.key.toLowerCase();
                 const step = e.target
                 const stepFloat = e.target.closest('.step-float')
-                const img = stepFloat.querySelector('.step-img ,.step-vid')                 
+                const stepImgVid = stepFloat.querySelector('.step-img ,.step-vid')                 
                 // if(key === 'm'){
                 //     step.focus()
                 // }
@@ -97,10 +98,10 @@ export function initStepNavigation({ mainTargetDiv}){
                     if (!e.shiftKey){
                         updateCurrentCopyCodes({step: stepFloat})
                         stepClicked = true
-                        toggleSingleImage(img)
+                        toggleSingleImage(stepImgVid)
                         const firstCopyCode = e.target.querySelector('.copy-code')
-                        if(img){
-                            if(img.classList.contains('enlarge') && stepClicked){
+                        if(stepImgVid){
+                            if(stepImgVid.classList.contains('enlarge') && stepClicked){
                                 if(firstCopyCode){
                                     firstCopyCode.focus()
                                 }
@@ -113,33 +114,20 @@ export function initStepNavigation({ mainTargetDiv}){
                         lastStep = step
                     }else {
                         step.focus()
-                        toggleSingleImage(img)
+                        toggleSingleImage(stepImgVid)
                     }
                     
                 }
-
-                if (img && img.tagName == 'VIDEO') {
-                    let vid = img
+                // This needs to be changed because img is no long img or video
+                // adjust for step-img and step-vid
+                if (stepImgVid && stepImgVid.classList.contains('step-vid') ) {
+                    let vid = stepImgVid.querySelector('video')
                     if(vid){
                         videoControls({vid,e})
                     }
                     return
                 }
             });
-            // --- unified pointerdown for click/tap ---
-            // step.addEventListener("pointerdown", e => {
-            //     if (e.target.tagName !== "IMG") {
-            //         denlargeAllImages(allImgs);
-                    
-            //         lastStep = step;
-            //     }
-            //     if (e.target.tagName !== "VIDEO") {
-            //         denlargeAllImages(allImgs);
-            //         videoControls({e,})
-                    
-            //         lastStep = step;
-            //     }
-            // });
             step.dataset.listenerAdded = "true";
         }
     });

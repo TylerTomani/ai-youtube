@@ -4,23 +4,27 @@
     /* float: right; */
     /* flex: 0 0 auto; */
 }
+.step-float {
+    /* position: relative; */
+}
 /* Default step images */
 .step-vid,
 .step-img {
+    position: relative;
     float: right;
     display: flex;
     flex-direction: column;
-    margin-right: 5%;
-    margin-left: 10px;
+    /* margin-right: 5%; */
+    /* margin-left: 10px; */
     max-height: 200px;
     max-width: 250px;
     min-height: 200px;
     min-width: 250px;
-    box-shadow: 0 0 1px 1px lightcyan;
+    /* box-shadow: 0 0 1px 1px lightcyan; */
     pointer-events: auto;
     transition: all 0.025s ease;
     touch-action: manipulation;
-    border: 1px solid blue Impo !important;
+    /* border: 1px solid blue  !important; */
     /* z-index: 5 */
 }
 .step-float .step-vid.enlarge,
@@ -31,10 +35,11 @@
     top: 50%;
     left: 50%;
     /* bottom: 50%; */
-    width: 50vw;
-    max-height: 300px;
-    max-width: 450px;
-    border: 1px solid black !important;
+    /* width:  100%; */
+    /* height: 100%; */
+    /* max-height: 200px; */
+    /* max-width: 450px; */
+    
     transform: translate(-50%, -90%) scale(1.8);
     z-index: 9999 !important;
 }
@@ -47,7 +52,7 @@
 .step-float .step-vid.enlarge video,
 .step-float .step-img.enlarge img{
     position: absolute;
-    height: 50vh !important;
+    border: black 1px solid ;
 }                                        
 .step-img::after,
 .step-vid::after {
@@ -67,18 +72,22 @@
     /* display: flex; */
     /* flex-direction: column; */
 }
-.step-vid .vid-cntrl-btns{
+.step-vid.enlarge .vid-cntrl-btns{
     position: absolute;
     display: flex;
-    border: 2px solid blue;
     width: 100%;
     /* align-items: center; */
     justify-content: center;
     bottom: 4%;
+    
+    gap: 50%;
 }
-.vid-cntrl-btns{ 
+.vid-cntrl-btns > button{
+    border: 2px solid orange;
     padding: 0 5%;
-    border: 1px solid orange;
+} 
+.vid-cntrl-btns{ 
+    display: none;
 }
 @media screen and (min-width: 700px) {
     .step-vid.enlarge{

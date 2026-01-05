@@ -25,11 +25,12 @@ export function videoControls({ vid, e }) {
 function vidKeyCntrl({ vid, e, key }) {
     if (!vid) return
     if (e.type == 'click') {
+        
     } else {
 
         switch (key) {
             case 13: // Enter
-                if (vid.parent.classList.contains('enlarge')) {
+                if (e.target.classList.contains('enlarge')) {
                     playing = true;
                 }
                 break;
@@ -55,9 +56,10 @@ function vidKeyCntrl({ vid, e, key }) {
     playPauseVideo({ vid, playing });
 }
 export function toggleVideoSizeClick({ vid, e }) {
+    const stepVid = vid.parentElement
+    stepVid.classList.toggle('enlarge')
     if (!vid) return
-    vid.classList.toggle('enlarge')
-    if(vid.classList.contains('enlarge') && !playing){
+    if(stepVid.classList.contains('enlarge') && !playing){
         playing = true
     } else {
         playing = false
