@@ -3,12 +3,15 @@
 export function getFocusZone({ e, el } = {}) {
     const target = el || e?.target || document.activeElement;
 
-    if (!target) return null;
+    // 🔒 No focus yet? Default to sidebar
+    if (!target || target === document.body) {
+        return 'sideBar';
+    }
 
     if (target.closest('header')) return 'header';
     if (target.closest('aside.side-bar')) return 'sideBar';
-    if (target.closest('nav#navBarLessonTitle')) return 'sideBar';
     if (target.closest('#mainTargetDiv')) return 'mainTargetDiv';
 
-    return null;
+    // Safe fallback
+    return 'sideBar';
 }

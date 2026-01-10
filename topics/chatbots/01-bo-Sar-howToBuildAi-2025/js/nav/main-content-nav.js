@@ -9,6 +9,7 @@ import { letterFocus } from "./letter-focus.js";
 import { nxtBtn,prevBtn } from "../core/inject-content.js";
 export function mainContentNav({ e, focusZone }){
     let key = e.key.toLowerCase()
+    console.log(e.target)
     if (key === 'm') {
         handleMKey({e,focusZone})
         return;
@@ -27,8 +28,11 @@ export function mainContentNav({ e, focusZone }){
     }
     if(key === 's'){
         if(!mainContainer.classList.contains('collapsed')) {
-
-            lastClickedSideBarLink.focus()
+            if(lastClickedSideBarLink){
+                lastClickedSideBarLink.focus()
+            } else {
+                sideBarBtn.focus()
+            }
             return
         }
         if (mainContainer.classList.contains('collapsed')){

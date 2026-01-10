@@ -189,6 +189,8 @@ function numStepNav(intLet){
 export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
     let key = e.key
+    // if(e.target ==)
+    
     if(!isNaN(key)){
         let intLet = parseInt(key)
         // 
@@ -205,7 +207,7 @@ export function handleStepNav({e, focusZone}){
     if (key === 'f') {
         if(!stepClicked){
             iSteps = (iSteps + 1) % steps.length
-            steps[iSteps].focus()
+            steps[iSteps]?.focus()
         } else if(stepClicked){
             iCopyCodes = (iCopyCodes + 1) % copyCodes.length
             if(copyCodes[iCopyCodes]){
@@ -216,7 +218,7 @@ export function handleStepNav({e, focusZone}){
     if (key === 'f' && e.target === mainTargetDiv) {
         if (!stepClicked) {  
             iSteps = 0
-            steps[iSteps].focus()
+            steps[0]?.focus()
         }
     }
     if (key === 'a') {

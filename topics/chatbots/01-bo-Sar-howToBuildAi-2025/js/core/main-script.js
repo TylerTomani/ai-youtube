@@ -21,7 +21,7 @@ function initMain(e) {
     const initialZone = getFocusZone({ el: document.activeElement });
     // const initialZone = 'sideBar'
     if (initialZone === 'sideBar') sideBarNav({ e, focusZone: initialZone });
-    letterFocus({ e, focusZone: initialZone });
+    // letterFocus({ e, focusZone: initialZone });
     // Initialize event listeners
     setupSidebarShortcuts();
     setupGlobalKeyListener();
