@@ -192,5 +192,6 @@ sideBarBtn.addEventListener('keydown', e => {
 });
 
 sideBarBtn.addEventListener('focus', () => {
-    sideBar.scrollIntoView({ behavior: "smooth", block: "start" });
+    // sideBar.scrollIntoView({ behavior: "smooth", block: "start",inline:'start' });
+    scrollTo(0,0)
 });

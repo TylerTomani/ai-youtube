@@ -190,7 +190,6 @@ export function handleStepNav({e, focusZone}){
     if(focusZone != 'mainTargetDiv') return
     let key = e.key
     // if(e.target ==)
-    
     if(!isNaN(key)){
         let intLet = parseInt(key)
         // 

@@ -8,6 +8,17 @@ import { initToggleSidebar, mainContainer, sideBar, sideBarBtn } from "../ui/tog
 import { sideBarNav, lastClickedSideBarLink, lastFocusedSideBarLink } from "../nav/side-bar-nav.js";
 import { mainContentNav, mainTargetDiv } from "../nav/main-content-nav.js";
 export const navBarLessonTitle = document.querySelector('#navBarLessonTitle');
+
+// This is event listener is sloppy, fix in colorCode template
+navBarLessonTitle.addEventListener('keydown', e => {
+    let key = e.key.toLowerCase()
+    if (key === 's') {
+        console.log('ehre')
+        sideBarBtn.focus()
+        scrollTo(0, 0)
+        return
+    }
+});
 // ===== Initialization =====
 document.addEventListener('DOMContentLoaded', initMain);
 function initMain(e) {

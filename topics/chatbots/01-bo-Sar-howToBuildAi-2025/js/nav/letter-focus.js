@@ -4,6 +4,7 @@ import { handleMKey } from "./m-key-handler.js";
 import { mainTargetDiv } from "./main-content-nav.js";
 import { lastClickedSideBarLink } from "./side-bar-nav.js";
 import { mainContainer, sideBarBtn } from "../ui/toggle-side-bar.js";
+import { navBarLessonTitle } from "../ui/toggle-side-bar.js";
 export function letterFocus({ e, focusZone }) {
     if (!e || !e.key) return;    
     // Ignore typing fields and modifier keys
